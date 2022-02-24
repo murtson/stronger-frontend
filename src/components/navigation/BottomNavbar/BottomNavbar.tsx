@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 
-function BottomNavbar() {
+const BottomNavbar: React.FC = () => {
   const [value, setValue] = useState(0);
 
   return (
@@ -32,10 +31,10 @@ function BottomNavbar() {
       }}
     >
       <BottomNavigationAction icon={<DonutSmallOutlinedIcon />} />
-      <BottomNavigationAction icon={<AddCircleOutlineOutlinedIcon />} />
+      <BottomNavigationAction icon={<WhatshotOutlinedIcon />} />
       <BottomNavigationAction icon={<AccountCircleOutlinedIcon />} />
     </BottomNavigation>
   );
-}
+};
 
 export default BottomNavbar;

@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material';
+import { createBreakpoints } from '@mui/system';
+const breakpoints = createBreakpoints({});
 
 export const mainTheme = createTheme({
   components: {
@@ -20,6 +22,20 @@ export const mainTheme = createTheme({
   },
   typography: {
     fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
+    subtitle1: {
+      fontSize: 16,
+      fontWeight: 600,
+      [breakpoints.up('md')]: {
+        fontSize: 18,
+      },
+    },
+    subtitle2: {
+      fontSize: 14,
+      fontWeight: 600,
+      [breakpoints.up('md')]: {
+        fontSize: 16,
+      },
+    },
   },
   palette: {
     secondary: {
