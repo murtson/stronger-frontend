@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import WorkoutPage from './pages/WorkoutPage/WorkoutPage';
+import { Container, Grid } from '@mui/material';
+import BottomNavbar from './components/navigation/BottomNavbar/BottomNavbar';
+import SideNavigation from './components/navigation/SideNavigation/SideNavigation';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className='App'>
+      <Grid
+        container
+        maxWidth='lg'
+        sx={{
+          position: 'relative',
+          height: '100vh',
+          display: 'flex',
+          margin: 'auto',
+        }}
+      >
+        <Grid item sm={2} md={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <SideNavigation />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={10}
+          md={8}
+          sx={{
+            borderLeftWidth: { xs: 0, sm: '1px' },
+            borderLeftStyle: 'solid',
+            borderLeftColor: 'divider',
+            borderRightWidth: { xs: 0, sm: '1px' },
+            borderRightStyle: 'solid',
+            borderRightColor: 'divider',
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <WorkoutPage />
+          <BottomNavbar />
+        </Grid>
+        <Grid item lg={2} sx={{ display: { xs: 'none', lg: 'block' } }}></Grid>
+      </Grid>
     </div>
   );
 }
