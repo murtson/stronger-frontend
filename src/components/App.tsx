@@ -8,7 +8,7 @@ import OverviewView from '../views/WorkoutPageViews/OverviewView/OverviewView';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='App' style={{ backgroundColor: '#f7f8fa' }}>
       <Router>
         <Routes>
           <Route path='/*' element={<AppLayout />}>

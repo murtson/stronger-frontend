@@ -14,7 +14,10 @@ const Datepicker: React.FC = () => {
           xs: 0,
           md: 1,
         },
-        borderBottom: '1px solid #e8e8e8',
+        borderBottom: { xs: '1px solid #e8e8e8', md: 'none' },
+        backgroundColor: 'white',
+        borderRadius: { md: 4 },
+        marginTop: { md: '25px' },
       }}
     >
       <Grid
