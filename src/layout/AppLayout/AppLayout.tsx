@@ -1,72 +1,60 @@
-import { Grid, Stack, Typography, Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import React from 'react';
 
-import BottomNavbar from '../../components/navigation/BottomNavbar/BottomNavbar';
-import SideNavigation from '../../components/navigation/SideNavbar/SideNavigation';
+import { Grid, Stack, Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import BottomNavbar from '../../components/Navigation/BottomNavbar/BottomNavbar';
+import SideNavigation from '../../components/Navigation/SideNavbar/SideNavigation';
 import SideCalendar from '../../components/SideCalendar/SideCalendar';
 import SideHistory from '../../components/SideHistory/SideHistory';
 
 const AppLayout: React.FC = () => {
+  const theme = useTheme();
+  const isMediumAndUpScreen = useMediaQuery(theme.breakpoints.up('md'));
+  const isLargerAndUpScreen = useMediaQuery(theme.breakpoints.up('lg'));
+
   return (
     <>
-      <Box
-        sx={{
-          display: {
-            xs: 'none',
-            md: 'block',
-          },
-          width: '100%',
-          backgroundColor: 'white',
-          height: 125,
-          position: 'absolute',
-          // borderBottom: '1px solid #e8e8e8',
-        }}
-      ></Box>
+      {isMediumAndUpScreen ? (
+        <Box
+          sx={{
+            width: '100%',
+            backgroundColor: 'white',
+            height: 125,
+            position: 'absolute',
+            boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
+          }}
+        ></Box>
+      ) : null}
       <Grid
         container
         maxWidth='xl'
         sx={{
           position: 'relative',
-          height: '100vh',
           display: 'flex',
+          height: '100vh',
           margin: 'auto',
         }}
       >
-        <Grid item sm={2} md={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <SideNavigation />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={10}
-          md={6}
-          sx={{
-            display: 'flex',
-            // borderLeftWidth: { xs: 0, sm: '1px' },
-            // borderLeftStyle: 'solid',
-            // borderLeftColor: 'divider',
-            // borderRightWidth: { xs: 0, sm: '1px' },
-            // borderRightStyle: 'solid',
-            // borderRightColor: 'divider',
-          }}
-        >
+        {isMediumAndUpScreen ? (
+          <Grid item md={4} lg={3}>
+            <SideNavigation />
+          </Grid>
+        ) : null}
+        <Grid item xs={12} md={7} lg={6} sx={{ display: 'flex' }}>
           <Outlet />
-          <BottomNavbar />
+          {isMediumAndUpScreen ? null : <BottomNavbar />}
         </Grid>
-        <Grid item lg={3} sx={{ display: { xs: 'none', lg: 'block' } }}>
-          <Stack
-            spacing={5}
-            sx={{
-              marginLeft: 4,
-              marginRight: 4,
-              marginTop: { xs: '125px', md: '150px' },
-            }}
-          >
-            <SideCalendar />
-            <SideHistory />
-          </Stack>
-        </Grid>
+        {isLargerAndUpScreen ? (
+          <Grid item lg={3}>
+            <Stack spacing={5} sx={{ marginLeft: 4, marginRight: 4, marginTop: '150px' }}>
+              <SideCalendar />
+              <SideHistory />
+            </Stack>
+          </Grid>
+        ) : null}
       </Grid>
     </>
   );

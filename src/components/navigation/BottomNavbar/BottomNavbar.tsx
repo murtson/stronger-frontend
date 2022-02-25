@@ -24,6 +24,7 @@ const BottomNavbar: React.FC = () => {
     if (newValue === 'workout') subRoute = 'exercises';
     else if (newValue === 'home') subRoute = 'stats';
     else subRoute = 'feed';
+    setValue(newValue);
     navigate(`${newValue}/${subRoute}`);
   };
 
@@ -33,10 +34,6 @@ const BottomNavbar: React.FC = () => {
       value={value}
       onChange={handleChange}
       sx={{
-        display: {
-          xs: 'flex',
-          sm: 'none',
-        },
         position: 'fixed',
         width: '100%',
         bottom: 0,
@@ -45,7 +42,6 @@ const BottomNavbar: React.FC = () => {
         borderTopColor: 'divider',
         left: '50%',
         transform: 'translateX(-50%)',
-        maxWidth: 598,
       }}
     >
       <BottomNavigationAction icon={<DonutSmallOutlinedIcon />} value='home' />

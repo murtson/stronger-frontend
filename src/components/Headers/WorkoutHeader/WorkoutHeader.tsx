@@ -3,10 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Box, Tab, Tabs, Grid, Typography, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import HistoryIcon from '@mui/icons-material/History';
-import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const AntTabs = styled(Tabs)(({ theme }) => ({
@@ -17,7 +14,11 @@ const AntTabs = styled(Tabs)(({ theme }) => ({
 
   '& .MuiTabs-indicator': {
     backgroundColor: 'primary.main',
-    height: 2,
+    borderRadius: '3px',
+    [theme.breakpoints.up('md')]: {
+      height: '3px',
+      borderRadius: '3px',
+    },
   },
 }));
 
@@ -59,25 +60,20 @@ const WorkoutHeader: React.FC = () => {
   return (
     <Box
       sx={{
-        height: { xs: 105, md: 125 },
+        height: { xs: 100, md: 125 },
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'white',
       }}
     >
-      <Grid container sx={{ flex: 1 }}>
-        <Grid
-          item
-          xs={6}
-          sx={{
-            paddingLeft: 2,
-            display: 'flex',
-            alignItems: 'flex-start',
-          }}
-        >
+      <Grid
+        container
+        sx={{ flex: 1, paddingLeft: { xs: 2, md: 0 }, paddingRight: { xs: 1, md: 0 } }}
+      >
+        <Grid item xs={6} sx={{ display: 'flex', alignItems: 'flex-start' }}>
           <Typography
             variant='h6'
-            sx={{ fontWeight: 600, lineHeight: 1.25, paddingTop: { xs: 2, sm: 2 } }}
+            sx={{ fontWeight: 600, lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}
           >
             Workout
           </Typography>
@@ -89,17 +85,16 @@ const WorkoutHeader: React.FC = () => {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'flex-end',
-            paddingTop: { xs: 1 },
-            paddingRight: 1,
+            paddingTop: { xs: 0, sm: 1 },
           }}
         >
-          <IconButton sx={{ color: 'text.primary', backgroundColor: '#eeeeee', marginLeft: 1 }}>
+          <IconButton sx={{ color: 'text.primary', marginLeft: 1 }}>
             <AddCircleOutlineOutlinedIcon />
           </IconButton>
-          <IconButton sx={{ color: 'text.primary', backgroundColor: '#eeeeee', marginLeft: 1 }}>
+          <IconButton sx={{ color: 'text.primary', marginLeft: 1 }}>
             <HistoryIcon />
           </IconButton>
-          <IconButton sx={{ color: 'text.primary', backgroundColor: '#eeeeee', marginLeft: 1 }}>
+          <IconButton sx={{ color: 'text.primary', marginLeft: 1 }}>
             <DateRangeIcon />
           </IconButton>
         </Grid>

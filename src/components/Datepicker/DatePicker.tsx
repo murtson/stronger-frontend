@@ -2,22 +2,28 @@ import React from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
 const Datepicker: React.FC = () => {
   return (
     <Grid
       container
       sx={{
+        height: {
+          xs: '40px',
+          md: '56px',
+        },
+        marginTop: { md: '25px' },
+        borderRadius: { xs: 0, md: 2 },
+        boxShadow: {
+          xs: 'none',
+          md: '0 2px 1px 0 rgb(0 0 0 / 10%)',
+        },
+        borderBottom: { xs: '1px solid #e8e8e8', md: 'none' },
         padding: {
           xs: 0,
           md: 1,
         },
-        borderBottom: { xs: '1px solid #e8e8e8', md: 'none' },
         backgroundColor: 'white',
-        borderRadius: { md: 4 },
-        marginTop: { md: '25px' },
       }}
     >
       <Grid

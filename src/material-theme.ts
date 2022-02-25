@@ -14,7 +14,7 @@ export const mainTheme = createTheme({
         },
         sizeSmall: {},
         sizeMedium: {
-          lineHeight: 2,
+          lineHeight: 2.1,
           borderRadius: 5,
         },
       },
