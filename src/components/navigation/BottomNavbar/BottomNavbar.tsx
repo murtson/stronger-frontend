@@ -6,7 +6,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 
 type PageValues = 'home' | 'workout' | 'profile';
-type PageTabValues = 'stats' | 'exercises' | 'feed';
+type PageTabValues = '/stats' | '/exercises' | '';
 
 const BottomNavbar: React.FC = () => {
   const [value, setValue] = useState('workout');
@@ -21,11 +21,11 @@ const BottomNavbar: React.FC = () => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: PageValues) => {
     let subRoute: PageTabValues;
-    if (newValue === 'workout') subRoute = 'exercises';
-    else if (newValue === 'home') subRoute = 'stats';
-    else subRoute = 'feed';
+    if (newValue === 'workout') subRoute = '/exercises';
+    else if (newValue === 'home') subRoute = '/stats';
+    else subRoute = '';
     setValue(newValue);
-    navigate(`${newValue}/${subRoute}`);
+    navigate(`${newValue}${subRoute}`);
   };
 
   return (

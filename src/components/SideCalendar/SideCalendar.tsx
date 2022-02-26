@@ -6,10 +6,11 @@ function SideCalendar() {
     <Box
       sx={{
         padding: 3,
-        borderRadius: 3,
-        height: 300,
+
+        height: 325,
         backgroundColor: 'white',
         boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
+        boxSizing: 'border-box',
         // boxShadow: '0px 2px 4px  rgba(0,0,0,0.2)',
       }}
     >

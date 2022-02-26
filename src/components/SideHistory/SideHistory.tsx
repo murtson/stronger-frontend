@@ -6,8 +6,8 @@ function SideHistory() {
     <Box
       sx={{
         padding: 3,
-        borderRadius: 3,
-        height: 300,
+
+        height: 325,
         // border: '1px solid #e8e8e8',
         backgroundColor: 'white',
         boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',

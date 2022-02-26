@@ -10,6 +10,8 @@ import HomePage from './pages/HomePage/HomePage';
 import StatsView from './views/HomePageViews/StatsView/StatsView';
 import MusclesView from './views/HomePageViews/MusclesView/MusclesView';
 
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+
 function App() {
   return (
     <div className='App' style={{ backgroundColor: '#f7f8fa' }}>
@@ -27,7 +29,7 @@ function App() {
               <Route path='exercises' element={<ExercisesView />} />
               <Route path='overview' element={<OverviewView />} />
             </Route>
-            <Route path='home' element={<p>Profile page</p>} />
+            <Route path='profile' element={<ProfilePage />} />
           </Route>
         </Routes>
       </Router>

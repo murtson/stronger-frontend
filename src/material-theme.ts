@@ -21,17 +21,17 @@ export const mainTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['Source Sans Pro', 'sans-serif'].join(','),
+    fontFamily: ['IBM Plex Sans', 'sans-serif'].join(','),
     subtitle1: {
       fontSize: 16,
-      fontWeight: 600,
+      fontWeight: 500,
       [breakpoints.up('md')]: {
         fontSize: 18,
       },
     },
     subtitle2: {
       fontSize: 14,
-      fontWeight: 600,
+      fontWeight: 500,
       [breakpoints.up('md')]: {
         fontSize: 16,
       },
@@ -59,5 +59,28 @@ export const mainTheme = createTheme({
     error: {
       main: '#F95555',
     },
+    neutral: {
+      light: '#f7f8fa',
+      main: '#dbdee5',
+      dark: '#757d91',
+    },
   },
 });
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    neutral: Palette['primary'];
+  }
+
+  // allow configuration using `createTheme`
+  interface PaletteOptions {
+    neutral?: PaletteOptions['primary'];
+  }
+}
+
+// Update the Button's color prop options
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    neutral: true;
+  }
+}

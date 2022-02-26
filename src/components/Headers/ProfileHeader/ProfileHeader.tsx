@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Grid, Typography, IconButton } from '@mui/material';
-import HistoryIcon from '@mui/icons-material/History';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import HeaderTabs from '../HeaderTabs/HeaderTabs';
+import { Box, Tab, Tabs, Grid, Typography, IconButton } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
-const tabsArray = [
-  { value: 'stats', label: 'Stats' },
-  { value: 'muscles', label: 'Muscles' },
-];
-
-const HomeHeader: React.FC = () => {
+const ProfileHeader: React.FC = () => {
   const [value, setValue] = useState('stats');
   let navigate = useNavigate();
   let location = useLocation();
@@ -34,7 +28,7 @@ const HomeHeader: React.FC = () => {
         height: { xs: 100, md: 125 },
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'white',
+        backgroundColor: { xs: 'neutral.main', md: 'white' },
       }}
     >
       <Grid
@@ -53,7 +47,7 @@ const HomeHeader: React.FC = () => {
             variant='h6'
             sx={{ fontWeight: 600, lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}
           >
-            Home
+            Profile
           </Typography>
         </Grid>
         <Grid
@@ -67,19 +61,15 @@ const HomeHeader: React.FC = () => {
           }}
         >
           <IconButton sx={{ color: 'text.primary' }}>
-            <AddCircleOutlineOutlinedIcon />
+            <HelpOutlineOutlinedIcon />
           </IconButton>
           <IconButton sx={{ color: 'text.primary' }}>
-            <HistoryIcon />
-          </IconButton>
-          <IconButton sx={{ color: 'text.primary' }}>
-            <DateRangeIcon />
+            <SettingsOutlinedIcon />
           </IconButton>
         </Grid>
       </Grid>
-      <HeaderTabs tabs={tabsArray} />
     </Box>
   );
 };
 
-export default HomeHeader;
+export default ProfileHeader;

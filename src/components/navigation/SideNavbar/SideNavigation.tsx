@@ -48,7 +48,7 @@ const SideTab = styled(
 }));
 
 type PageValues = 'home' | 'workout' | 'profile';
-type PageTabValues = 'stats' | 'exercises' | 'feed';
+type PageTabValues = '/stats' | '/exercises' | '';
 type IconPosition = 'top' | 'start' | 'end' | 'bottom';
 
 const SideNavigation: React.FC = () => {
@@ -64,11 +64,11 @@ const SideNavigation: React.FC = () => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: PageValues) => {
     let subRoute: PageTabValues;
-    if (newValue === 'workout') subRoute = 'exercises';
-    else if (newValue === 'home') subRoute = 'stats';
-    else subRoute = 'feed';
+    if (newValue === 'workout') subRoute = '/exercises';
+    else if (newValue === 'home') subRoute = '/stats';
+    else subRoute = '';
     setValue(newValue);
-    navigate(`${newValue}/${subRoute}`);
+    navigate(`${newValue}${subRoute}`);
   };
 
   return (
@@ -77,9 +77,11 @@ const SideNavigation: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
+        justifyContent: 'space-between',
         marginRight: 4,
         marginLeft: 4,
         marginTop: { xs: '125px', md: '150px' },
+        height: 325,
       }}
     >
       <Box
@@ -89,9 +91,7 @@ const SideNavigation: React.FC = () => {
           paddingBottom: 2,
           paddingTop: 2,
           backgroundColor: 'white',
-          borderRadius: 3,
           boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
-          marginBottom: 3,
           maxWidth: 275,
           width: '100%',
           boxSizing: 'border-box',
