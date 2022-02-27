@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 import HeaderTabs from '../HeaderTabs/HeaderTabs';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -10,22 +9,6 @@ const tabsArray = [
 ];
 
 const HomeHeader: React.FC = () => {
-  const [value, setValue] = useState('stats');
-  let navigate = useNavigate();
-  let location = useLocation();
-
-  useEffect(() => {
-    // Perhaps do something with Typescript?
-    const pathname = location.pathname.split('/');
-    const isInvalidPathNames = pathname[2] !== 'stats' && pathname[2] !== 'muscles';
-    if (!pathname[2] || isInvalidPathNames) return;
-    setValue(pathname[2]);
-  }, [location]);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    navigate(newValue);
-  };
-
   return (
     <Box
       sx={{

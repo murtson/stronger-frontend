@@ -5,14 +5,14 @@ function SideHistory() {
   return (
     <Box
       sx={{
+        height: 325,
+        backgroundColor: 'white',
+        boxSizing: 'border-box',
         padding: 3,
         borderRadius: 2,
-        height: 325,
-        // border: '1px solid #e8e8e8',
-        backgroundColor: 'white',
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'neutral.main',
+        borderColor: 'divider',
       }}
     >
       <Typography variant='h6' align='center' sx={{ fontWeight: 600, lineHeight: 1.25 }}>

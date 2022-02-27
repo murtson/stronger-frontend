@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Tab, Tabs, Grid, Typography, IconButton, Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import { Box, Grid, Typography, IconButton } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
 const SelectCategoryHeader: React.FC = () => {
-  const [value, setValue] = useState('stats');
   let navigate = useNavigate();
   let location = useLocation();
-
-  useEffect(() => {
-    // Perhaps do something with Typescript?
-    const pathname = location.pathname.split('/');
-    const isInvalidPathNames = pathname[2] !== 'stats' && pathname[2] !== 'muscles';
-    if (!pathname[2] || isInvalidPathNames) return;
-    setValue(pathname[2]);
-  }, [location]);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    navigate(newValue);
-  };
-
+  const theme = useTheme();
   return (
     <Box
       sx={{
-        height: { xs: 100, md: 125 },
-        borderBottom: '1px solid #e8e8e8',
         flexDirection: 'column',
+        height: { xs: 99, md: 125 },
+        borderBottom: `1px solid ${theme.palette.divider}`,
         backgroundColor: 'white',
       }}
     >
@@ -37,16 +22,16 @@ const SelectCategoryHeader: React.FC = () => {
         container
         sx={{
           flex: 1,
-          paddingLeft: { xs: 1, md: 2 },
-          paddingRight: { xs: 1, md: 2 },
-          paddingTop: { xs: 1, md: 2 },
+          paddingLeft: { xs: 1, md: 0 },
+          paddingRight: { xs: 1, md: 0 },
+          paddingTop: { xs: 0, md: 1 },
         }}
       >
         <Grid item xs={10} sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton sx={{ color: 'text.primary' }}>
+          <IconButton sx={{ color: 'text.primary' }} onClick={() => navigate(-1)}>
             <ArrowBackOutlinedIcon />
           </IconButton>
-          <Typography variant='h6' sx={{ fontWeight: 600, paddingLeft: 2 }}>
+          <Typography variant='h6' sx={{ fontWeight: 600, paddingLeft: { xs: 1, md: 3 } }}>
             Category
           </Typography>
         </Grid>
@@ -60,7 +45,7 @@ const SelectCategoryHeader: React.FC = () => {
             justifyContent: 'flex-end',
           }}
         >
-          <IconButton sx={{ color: 'text.primary' }}>
+          <IconButton sx={{ color: 'text.primary' }} onClick={() => navigate('/workout/exercises')}>
             <CloseOutlinedIcon />
           </IconButton>
         </Grid>

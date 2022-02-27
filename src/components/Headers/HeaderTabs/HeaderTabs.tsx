@@ -4,7 +4,9 @@ import { Tab, Tabs } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.neutral.main}`,
+  borderBottom: `1px solid ${theme.palette.divider}`,
+
+  color: 'white',
   [theme.breakpoints.up('md')]: {
     borderBottom: 'none',
   },

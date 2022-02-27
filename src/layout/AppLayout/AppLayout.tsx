@@ -9,6 +9,7 @@ import BottomNavbar from '../../components/Navigation/BottomNavbar/BottomNavbar'
 import SideNavigation from '../../components/Navigation/SideNavbar/SideNavigation';
 import SideCalendar from '../../components/SideCalendar/SideCalendar';
 import SideHistory from '../../components/SideHistory/SideHistory';
+import AppSpeedDial from '../../components/Buttons/SpeedDial/SpeedDial';
 
 const AppLayout: React.FC = () => {
   const theme = useTheme();
@@ -20,11 +21,11 @@ const AppLayout: React.FC = () => {
       {isMediumAndUpScreen ? (
         <Box
           sx={{
+            position: 'absolute',
+            height: 125,
             width: '100%',
             backgroundColor: 'white',
-            height: 125,
-            position: 'absolute',
-            borderBottom: `1px solid ${theme.palette.neutral.main}`,
+            borderBottom: `1px solid ${theme.palette.divider}`,
           }}
         ></Box>
       ) : null}
@@ -46,6 +47,7 @@ const AppLayout: React.FC = () => {
         <Grid item xs={12} md={7} lg={6} sx={{ display: 'flex' }}>
           <Outlet />
           {isMediumAndUpScreen ? null : <BottomNavbar />}
+          {isMediumAndUpScreen ? null : <AppSpeedDial />}
         </Grid>
         {isLargerAndUpScreen ? (
           <Grid item lg={3}>

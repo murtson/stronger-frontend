@@ -1,14 +1,6 @@
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import {
-  FormControl,
-  InputLabel,
-  InputBase,
-  OutlinedInput,
-  InputAdornment,
-  FormLabel,
-  Box,
-} from '@mui/material';
+import { InputBase, Box } from '@mui/material';
 
 const SearchField: React.FC = () => {
   return (
@@ -17,20 +9,24 @@ const SearchField: React.FC = () => {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        margin: 1,
-        backgroundColor: 'neutral.light',
-        borderRadius: 20,
+        marginLeft: { xs: 1, md: 2 },
+        marginRight: { xs: 1, md: 2 },
+        backgroundColor: { xs: 'neutral.light', md: 'white' },
+        borderRadius: 2,
         paddingLeft: 2,
         paddingRight: 2,
-        paddingTop: 0.5,
-        paddingBottom: 0.5,
-        borderWidth: 1,
+        borderWidth: { xs: 0, md: 1 },
         borderStyle: 'solid',
-        borderColor: 'neutral.main',
+        borderColor: 'divider',
+        height: 55,
+        margin: { sm: 0, md: '12.5px 0' },
       }}
     >
-      <InputBase placeholder='Search for exercises' sx={{ flex: 1 }}></InputBase>
-      <SearchIcon sx={{}} />
+      <SearchIcon sx={{ marginRight: 2, color: 'primary.main' }} />
+      <InputBase
+        placeholder='Search for exercises...'
+        sx={{ flex: 1, '& .MuiInputBase-input': { color: 'black', fontWeight: 500 } }}
+      ></InputBase>
     </Box>
   );
 };

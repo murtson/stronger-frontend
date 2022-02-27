@@ -8,13 +8,15 @@ const StatsView: React.FC = () => {
   return (
     <Box
       sx={{
-        flex: 1,
         display: 'flex',
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        margin: { xs: 0, md: '24px 0' },
-        border: { xs: `1px solid ${theme.palette.neutral.main}` },
+        marginBottom: { xs: 0, md: '25px' },
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'divider',
         borderRadius: { xs: 0, md: 2 },
       }}
     >

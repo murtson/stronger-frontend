@@ -7,16 +7,13 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 
 const SideTabs = styled(Tabs)(({ theme }) => ({
-  borderBottom: '1px solid #e8e8e8',
   [theme.breakpoints.up('md')]: {
     borderBottom: 'none',
   },
-
   '& .MuiTabs-indicator': {
     display: 'none',
   },
 }));
-
 const SideTab = styled(
   (props: { label: string; value: string; icon: any; iconPosition: IconPosition }) => (
     <Tab {...props} />
@@ -71,7 +68,7 @@ const SideNavigation: React.FC = () => {
   };
 
   const handleClick = (event: React.SyntheticEvent) => {
-    navigate('/category');
+    navigate('/log/category');
   };
 
   return (
@@ -89,17 +86,17 @@ const SideNavigation: React.FC = () => {
     >
       <Box
         sx={{
-          paddingBottom: 2,
-          paddingTop: 2,
-          backgroundColor: 'white',
-          // boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
           maxWidth: 275,
           width: '100%',
-          boxSizing: 'border-box',
+          backgroundColor: 'white',
+          paddingBottom: 2,
+          paddingTop: 2,
           borderRadius: 2,
+          boxSizing: 'border-box',
           borderStyle: 'solid',
           borderWidth: 1,
-          borderColor: 'neutral.main',
+          borderColor: 'divider',
+          // boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
         }}
       >
         <Typography variant='h6' sx={{ paddingLeft: 2.5, marginBottom: 2 }}>

@@ -5,14 +5,14 @@ function SideCalendar() {
   return (
     <Box
       sx={{
-        padding: 3,
-        borderRadius: 2,
         height: 325,
         backgroundColor: 'white',
+        boxSizing: 'border-box',
+        padding: 3,
+        borderRadius: 2,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: 'neutral.main',
-        boxSizing: 'border-box',
+        borderColor: 'divider',
         // boxShadow: '0px 2px 4px  rgba(0,0,0,0.2)',
       }}
     >

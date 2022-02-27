@@ -74,9 +74,8 @@ const DateIntervalSelector: React.FC = () => {
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        marginTop: { md: '25px' },
-        height: {},
-
+        margin: { md: '24.5px 0' },
+        height: 55,
         borderRadius: { xs: 0, md: 2 },
       }}
     >

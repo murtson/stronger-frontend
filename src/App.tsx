@@ -10,10 +10,11 @@ import StatsView from './views/HomePageViews/StatsView/StatsView';
 import MusclesView from './views/HomePageViews/MusclesView/MusclesView';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SelectCategoryPage from './pages/SelectCategoryPage/SelectCategoryPage';
+import LogLayout from './layout/LogLayout/LogLayout';
 
 function App() {
   return (
-    <div className='App' style={{ backgroundColor: '#f7f8fa' }}>
+    <div className='App' style={{ backgroundColor: '#f5f5f5' }}>
       <Router>
         <Routes>
           <Route path='/*' element={<AppLayout />}>
@@ -30,7 +31,9 @@ function App() {
             </Route>
             <Route path='profile' element={<ProfilePage />} />
           </Route>
-          <Route path='category' element={<SelectCategoryPage />} />
+          <Route path='log' element={<LogLayout />}>
+            <Route path='category' element={<SelectCategoryPage />} />
+          </Route>
         </Routes>
       </Router>
     </div>

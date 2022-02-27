@@ -29,10 +29,10 @@ const ProfileInfo: React.FC = () => {
         sx={{
           position: 'relative',
           padding: { xs: 2, md: 4 },
-          borderTop: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
-          borderRight: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
-          borderLeft: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
-          borderBottom: { xs: `1px solid ${theme.palette.neutral.main}` },
+          borderTop: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
+          borderRight: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
+          borderLeft: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
+          borderBottom: { xs: `1px solid ${theme.palette.divider}` },
           backgroundColor: 'white',
 
           borderRadius: '0 0 8px 8px',

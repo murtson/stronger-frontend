@@ -24,10 +24,10 @@ export const mainTheme = createTheme({
     fontFamily: ['IBM Plex Sans', 'sans-serif'].join(','),
     subtitle1: {
       fontSize: 14,
-      fontWeight: 500,
+      fontWeight: 600,
       [breakpoints.up('md')]: {
         fontSize: 16,
-        fontWeight: 500,
+        fontWeight: 600,
       },
     },
     subtitle2: {
@@ -62,7 +62,7 @@ export const mainTheme = createTheme({
       main: '#F95555',
     },
     neutral: {
-      light: '#F3F6F9',
+      light: '#f5f5f5',
       main: '#dbdee5',
       dark: '#757d91',
     },
