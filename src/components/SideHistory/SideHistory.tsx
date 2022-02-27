@@ -6,11 +6,13 @@ function SideHistory() {
     <Box
       sx={{
         padding: 3,
-
+        borderRadius: 2,
         height: 325,
         // border: '1px solid #e8e8e8',
         backgroundColor: 'white',
-        boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: 'neutral.main',
       }}
     >
       <Typography variant='h6' align='center' sx={{ fontWeight: 600, lineHeight: 1.25 }}>

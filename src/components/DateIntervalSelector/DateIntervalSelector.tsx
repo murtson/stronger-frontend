@@ -11,22 +11,22 @@ import {
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   width: '100%',
-  gap: theme.spacing(1.5),
 
+  gap: theme.spacing(2),
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(0.5),
+    gap: theme.spacing(0),
   },
   '& .MuiToggleButtonGroup-grouped': {
     border: 0,
-    backgroundColor: 'white',
+
     color: theme.palette.text.secondary,
-    [theme.breakpoints.up('md')]: {
-      boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
-    },
+
+    [theme.breakpoints.up('md')]: {},
     [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing(0.5),
-      marginLeft: theme.spacing(0.5),
-      marginRight: theme.spacing(0.5),
+      marginTop: theme.spacing(1),
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      marginBottom: theme.spacing(1),
     },
     '&.Mui-selected': {
       color: 'white',
@@ -75,15 +75,12 @@ const DateIntervalSelector: React.FC = () => {
         display: 'flex',
         justifyContent: 'space-between',
         marginTop: { md: '25px' },
-        height: {
-          xs: '40px',
-          md: '46px',
-        },
+        height: {},
+
         borderRadius: { xs: 0, md: 2 },
       }}
     >
       <StyledToggleButtonGroup
-        color='primary'
         size='small'
         value={dateInterval}
         exclusive

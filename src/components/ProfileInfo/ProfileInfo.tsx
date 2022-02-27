@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, Typography, Avatar, Button, Grid, Stack } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import FaceIcon from '@mui/icons-material/Face';
 
 const ProfileInfo: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -10,13 +13,15 @@ const ProfileInfo: React.FC = () => {
         flexDirection: 'column',
         height: { md: 325 },
         marginTop: { xs: 'none', md: 3 },
+        borderRadius: 2,
       }}
     >
       <Box
         sx={{
           display: { xs: 'none', md: 'block' },
           flex: 1,
-          backgroundColor: 'neutral.main',
+          background: 'linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%)',
+          borderRadius: '8px 8px 0 0',
         }}
       ></Box>
       <Grid
@@ -24,10 +29,13 @@ const ProfileInfo: React.FC = () => {
         sx={{
           position: 'relative',
           padding: { xs: 2, md: 4 },
-          borderTop: { xs: '1px solid #b4bed7', md: 'none' },
-          borderBottom: { xs: '1px solid #e8e8e8', md: 'none' },
+          borderTop: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
+          borderRight: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
+          borderLeft: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
+          borderBottom: { xs: `1px solid ${theme.palette.neutral.main}` },
           backgroundColor: 'white',
-          boxShadow: { xs: 'none', md: '0 2px 1px 0 rgb(0 0 0 / 10%)' },
+
+          borderRadius: '0 0 8px 8px',
         }}
       >
         <Avatar
@@ -48,26 +56,26 @@ const ProfileInfo: React.FC = () => {
           <Typography variant='h5' sx={{ fontWeight: 500 }}>
             Username
           </Typography>
-          <Typography variant='subtitle1' sx={{ fontWeight: 500, color: 'text.secondary' }}>
+          <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
             username@mail.com
           </Typography>
         </Grid>
         <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-          <Button variant='contained' sx={{ flex: 0, borderRadius: 2 }}>
-            <Typography variant='subtitle2'>Edit your profile</Typography>
+          <Button variant='contained' sx={{ flex: 0, borderRadius: 2, minWidth: { md: '200px' } }}>
+            Edit your profile
           </Button>
         </Grid>
         <Grid item xs={12}>
           <Typography
-            variant='subtitle1'
-            sx={{ fontWeight: 500, color: 'text.secondary', marginTop: { xs: 4, md: 6 } }}
+            variant='subtitle2'
+            sx={{ color: 'text.secondary', marginTop: { xs: 4, md: 6 } }}
           >
             <Box component='span'>Workouts: </Box>
-            <Box component='span' sx={{ color: 'text.primary', marginRight: 3 }}>
+            <Box component='span' sx={{ color: 'text.primary', fontWeight: 500, marginRight: 3 }}>
               12
             </Box>
             <Box component='span'>Joined: </Box>
-            <Box component='span' sx={{ color: 'text.primary' }}>
+            <Box component='span' sx={{ color: 'text.primary', fontWeight: 500 }}>
               3 months ago
             </Box>
           </Typography>

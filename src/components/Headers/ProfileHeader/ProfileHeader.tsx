@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Tab, Tabs, Grid, Typography, IconButton } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import { Box, Grid, Typography, IconButton } from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ProfileHeader: React.FC = () => {
   const [value, setValue] = useState('stats');
@@ -28,7 +26,10 @@ const ProfileHeader: React.FC = () => {
         height: { xs: 100, md: 125 },
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: { xs: 'neutral.main', md: 'white' },
+        background: {
+          xs: 'linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%)',
+          md: 'none',
+        },
       }}
     >
       <Grid
@@ -45,7 +46,12 @@ const ProfileHeader: React.FC = () => {
         >
           <Typography
             variant='h6'
-            sx={{ fontWeight: 600, lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}
+            sx={{
+              fontWeight: 600,
+              lineHeight: 1.25,
+              paddingTop: { xs: 1, sm: 2 },
+              color: { xs: 'white', md: 'text.primary' },
+            }}
           >
             Profile
           </Typography>
@@ -60,11 +66,8 @@ const ProfileHeader: React.FC = () => {
             paddingTop: { xs: 0, sm: 1 },
           }}
         >
-          <IconButton sx={{ color: 'text.primary' }}>
-            <HelpOutlineOutlinedIcon />
-          </IconButton>
-          <IconButton sx={{ color: 'text.primary' }}>
-            <SettingsOutlinedIcon />
+          <IconButton>
+            <MoreVertIcon sx={{ color: { xs: 'white', md: 'text.primary' } }} />
           </IconButton>
         </Grid>
       </Grid>

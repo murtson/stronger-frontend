@@ -5,12 +5,11 @@ import AppLayout from './layout/AppLayout/AppLayout';
 import WorkoutPage from './pages/WorkoutPage/WorkoutPage';
 import ExercisesView from './views/WorkoutPageViews/ExercisesView/ExercisesView';
 import OverviewView from './views/WorkoutPageViews/OverviewView/OverviewView';
-
 import HomePage from './pages/HomePage/HomePage';
 import StatsView from './views/HomePageViews/StatsView/StatsView';
 import MusclesView from './views/HomePageViews/MusclesView/MusclesView';
-
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import SelectCategoryPage from './pages/SelectCategoryPage/SelectCategoryPage';
 
 function App() {
   return (
@@ -31,6 +30,7 @@ function App() {
             </Route>
             <Route path='profile' element={<ProfilePage />} />
           </Route>
+          <Route path='category' element={<SelectCategoryPage />} />
         </Routes>
       </Router>
     </div>

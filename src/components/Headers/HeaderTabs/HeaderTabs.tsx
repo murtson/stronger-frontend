@@ -4,17 +4,15 @@ import { Tab, Tabs } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-  borderBottom: '1px solid #e8e8e8',
+  borderBottom: `1px solid ${theme.palette.neutral.main}`,
   [theme.breakpoints.up('md')]: {
     borderBottom: 'none',
   },
-
   '& .MuiTabs-indicator': {
     backgroundColor: 'primary.main',
-
     height: '2px',
     [theme.breakpoints.up('md')]: {
-      height: '3px',
+      height: '2px',
     },
   },
 }));

@@ -24,7 +24,7 @@ const AppLayout: React.FC = () => {
             backgroundColor: 'white',
             height: 125,
             position: 'absolute',
-            boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
+            borderBottom: `1px solid ${theme.palette.neutral.main}`,
           }}
         ></Box>
       ) : null}
@@ -49,7 +49,7 @@ const AppLayout: React.FC = () => {
         </Grid>
         {isLargerAndUpScreen ? (
           <Grid item lg={3}>
-            <Stack spacing={5} sx={{ marginLeft: 4, marginRight: 4, marginTop: '150px' }}>
+            <Stack spacing={3} sx={{ marginLeft: 4, marginRight: 4, marginTop: '150px' }}>
               <SideCalendar />
               <SideHistory />
             </Stack>

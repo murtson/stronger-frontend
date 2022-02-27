@@ -22,28 +22,27 @@ const SideTab = styled(
     <Tab {...props} />
   )
 )(({ theme }) => ({
-  minHeight: '50px',
-  fontSize: 18,
+  minHeight: '42px',
+  fontSize: 16,
+  marginLeft: '8px',
+  marginRight: '8px',
+  marginBottom: '16px',
   borderRadius: '8px',
-  marginBottom: '8px',
   textTransform: 'none',
   justifyContent: 'flex-start',
-  [theme.breakpoints.down('md')]: {
-    fontSize: 16,
-  },
+
   fontWeight: 600,
   color: theme.palette.text.secondary,
   '&:hover': {
-    backgroundColor: '#e8e8e8',
+    backgroundColor: theme.palette.neutral.main,
     opacity: 0.5,
   },
   '&.Mui-selected': {
-    color: theme.palette.text.primary,
-    backgroundColor: '#e8e8e8',
-    fontWeight: 600,
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
   },
   '&.Mui-focusVisible': {
-    backgroundColor: '#d1eaff',
+    backgroundColor: theme.palette.neutral.main,
   },
 }));
 
@@ -71,6 +70,10 @@ const SideNavigation: React.FC = () => {
     navigate(`${newValue}${subRoute}`);
   };
 
+  const handleClick = (event: React.SyntheticEvent) => {
+    navigate('/category');
+  };
+
   return (
     <Box
       sx={{
@@ -86,18 +89,20 @@ const SideNavigation: React.FC = () => {
     >
       <Box
         sx={{
-          paddingLeft: 1,
-          paddingRight: 1,
           paddingBottom: 2,
           paddingTop: 2,
           backgroundColor: 'white',
-          boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
+          // boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
           maxWidth: 275,
           width: '100%',
           boxSizing: 'border-box',
+          borderRadius: 2,
+          borderStyle: 'solid',
+          borderWidth: 1,
+          borderColor: 'neutral.main',
         }}
       >
-        <Typography variant='h6' sx={{ fontWeight: '600', paddingLeft: 2.5, marginBottom: 2 }}>
+        <Typography variant='h6' sx={{ paddingLeft: 2.5, marginBottom: 2 }}>
           Navigation
         </Typography>
 
@@ -130,7 +135,12 @@ const SideNavigation: React.FC = () => {
           </SideTabs>
         </Stack>
       </Box>
-      <Button variant='contained' fullWidth sx={{ fontSize: 16, borderRadius: 2, maxWidth: 275 }}>
+      <Button
+        onClick={handleClick}
+        variant='contained'
+        fullWidth
+        sx={{ fontSize: 16, borderRadius: 2, maxWidth: 275 }}
+      >
         New workout
       </Button>
     </Box>

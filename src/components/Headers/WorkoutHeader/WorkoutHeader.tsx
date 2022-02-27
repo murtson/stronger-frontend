@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
-import HistoryIcon from '@mui/icons-material/History';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import DateRangeIcon from '@mui/icons-material/DateRange';
 import HeaderTabs from '../HeaderTabs/HeaderTabs';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const tabsArray = [
   { value: 'exercises', label: 'Exercises' },
@@ -60,13 +58,7 @@ const WorkoutHeader: React.FC = () => {
           }}
         >
           <IconButton sx={{ color: 'text.primary' }}>
-            <AddCircleOutlineOutlinedIcon />
-          </IconButton>
-          <IconButton sx={{ color: 'text.primary' }}>
-            <HistoryIcon />
-          </IconButton>
-          <IconButton sx={{ color: 'text.primary' }}>
-            <DateRangeIcon />
+            <MoreVertIcon />
           </IconButton>
         </Grid>
       </Grid>

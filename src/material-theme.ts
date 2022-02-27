@@ -23,10 +23,11 @@ export const mainTheme = createTheme({
   typography: {
     fontFamily: ['IBM Plex Sans', 'sans-serif'].join(','),
     subtitle1: {
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: 500,
       [breakpoints.up('md')]: {
-        fontSize: 18,
+        fontSize: 16,
+        fontWeight: 500,
       },
     },
     subtitle2: {
@@ -47,7 +48,8 @@ export const mainTheme = createTheme({
       contrastText: 'white',
     },
     primary: {
-      main: '#377FEA',
+      light: 'rgb(229 242 255)',
+      main: '#007FFF',
     },
     warning: {
       main: '#F95555',
@@ -60,7 +62,7 @@ export const mainTheme = createTheme({
       main: '#F95555',
     },
     neutral: {
-      light: '#f7f8fa',
+      light: '#F3F6F9',
       main: '#dbdee5',
       dark: '#757d91',
     },
