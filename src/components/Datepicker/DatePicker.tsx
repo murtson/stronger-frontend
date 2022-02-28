@@ -2,10 +2,8 @@ import React from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import { useTheme } from '@mui/material/styles';
 
 const Datepicker: React.FC = () => {
-  const theme = useTheme();
   return (
     <Grid
       container

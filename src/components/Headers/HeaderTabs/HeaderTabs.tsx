@@ -53,7 +53,7 @@ const HeaderTabs: React.FC<Props> = ({ tabs }) => {
     const isValidPathName = validPathsArray.includes(pathname[2]);
     if (!pathname[2] || !isValidPathName) return;
     setValue(pathname[2]);
-  }, [location]);
+  }, [location, tabs]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);

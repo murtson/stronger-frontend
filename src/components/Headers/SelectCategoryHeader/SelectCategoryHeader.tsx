@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -7,7 +7,6 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
 const SelectCategoryHeader: React.FC = () => {
   let navigate = useNavigate();
-  let location = useLocation();
   const theme = useTheme();
   return (
     <Box
@@ -24,7 +23,7 @@ const SelectCategoryHeader: React.FC = () => {
           flex: 1,
           paddingLeft: { xs: 1, md: 0 },
           paddingRight: { xs: 1, md: 0 },
-          paddingTop: { xs: 0, md: 1 },
+          paddingTop: { xs: 1, md: 1 },
         }}
       >
         <Grid item xs={10} sx={{ display: 'flex', alignItems: 'center' }}>

@@ -1,9 +1,7 @@
 import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
 const MusclesView: React.FC = () => {
-  const theme = useTheme();
   return (
     <Box
       sx={{

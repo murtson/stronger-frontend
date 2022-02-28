@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Avatar, Button, Grid, Stack } from '@mui/material';
+import { Box, Typography, Avatar, Button, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import FaceIcon from '@mui/icons-material/Face';
 
