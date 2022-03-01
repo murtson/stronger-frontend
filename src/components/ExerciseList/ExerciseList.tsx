@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useQuery } from '@apollo/client';
-import { GET_EXERCISE_CATEGORIES } from '../../graphql/queries';
 import {
   Box,
   List,
@@ -11,13 +11,19 @@ import {
   ListItemAvatar,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-
-import ExerciseCategory from '../../interfaces/ExerciseCategory';
 import SkeletonList from '../Loaders/SkeletonList/SkeletonList';
+import { GET_CATEGORY_EXERCISES } from '../../graphql/queries';
 
-const CategoryList: React.FC = () => {
-  const { error, loading, data } = useQuery(GET_EXERCISE_CATEGORIES);
+import Exercise from '../../interfaces/Exercise';
+
+const ExerciseList: React.FC = () => {
   let navigate = useNavigate();
+  const { id } = useParams();
+  const { data, error, loading } = useQuery(GET_CATEGORY_EXERCISES, {
+    variables: {
+      id: Number(id),
+    },
+  });
 
   const handleClick = (id: string) => {
     navigate(`${id}`);
@@ -39,15 +45,13 @@ const CategoryList: React.FC = () => {
           <SkeletonList numberOfLoaders={9} />
         ) : (
           <List sx={{ padding: { xs: 0 } }}>
-            {data.exerciseCategories.map((category: ExerciseCategory) => {
+            {data.categoryExercises.map((exercise: Exercise) => {
               return (
                 <ListItemButton
-                  onClick={() => handleClick(category.id)}
-                  key={category.id}
+                  onClick={() => handleClick(exercise.id)}
+                  key={exercise.id}
                   divider
-                  sx={{
-                    '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } },
-                  }}
+                  sx={{ '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } } }}
                 >
                   <ListItemAvatar>
                     <Box
@@ -59,7 +63,10 @@ const CategoryList: React.FC = () => {
                       }}
                     />
                   </ListItemAvatar>
-                  <ListItemText primary={category.type}></ListItemText>
+                  <ListItemText
+                    primary={exercise.name}
+                    // secondary={`${category._count?.exercises} exercises`}
+                  ></ListItemText>
                   <ListItemIcon sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <NavigateNextIcon />
                   </ListItemIcon>
@@ -73,4 +80,4 @@ const CategoryList: React.FC = () => {
   );
 };
 
-export default CategoryList;
+export default ExerciseList;

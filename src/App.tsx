@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import AppLayout from './layout/AppLayout/AppLayout';
-
 import WorkoutPage from './pages/WorkoutPage/WorkoutPage';
 import ExercisesView from './views/WorkoutPageViews/ExercisesView/ExercisesView';
 import OverviewView from './views/WorkoutPageViews/OverviewView/OverviewView';
@@ -9,15 +8,17 @@ import HomePage from './pages/HomePage/HomePage';
 import StatsView from './views/HomePageViews/StatsView/StatsView';
 import MusclesView from './views/HomePageViews/MusclesView/MusclesView';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import SelectCategoryPage from './pages/SelectCategoryPage/SelectCategoryPage';
+
 import LogLayout from './layout/LogLayout/LogLayout';
+import SelectCategoryPage from './pages/SelectCategoryPage/SelectCategoryPage';
+import SelectExercisesPage from './pages/SelectExercisesPage/SelectExercisesPage';
 
 function App() {
   return (
     <div className='App' style={{ backgroundColor: '#f5f5f5' }}>
       <Router>
         <Routes>
-          <Route path='/*' element={<AppLayout />}>
+          <Route path='/' element={<AppLayout />}>
             <Route path='' element={<Navigate replace to='workout' />} />
             <Route path='home' element={<HomePage />}>
               <Route path='' element={<Navigate replace to='stats' />} />
@@ -33,6 +34,7 @@ function App() {
           </Route>
           <Route path='log' element={<LogLayout />}>
             <Route path='category' element={<SelectCategoryPage />} />
+            <Route path='category/:id' element={<SelectExercisesPage />} />
           </Route>
         </Routes>
       </Router>

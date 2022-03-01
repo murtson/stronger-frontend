@@ -6,6 +6,22 @@ export const GET_EXERCISE_CATEGORIES = gql`
       id
       type
       color
+      _count {
+        exercises
+      }
+    }
+  }
+`;
+
+export const GET_CATEGORY_EXERCISES = gql`
+  query GetCategoryExercises($id: Int!) {
+    categoryExercises(id: $id) {
+      id
+      name
+      logType
+      description
+      color
+      categoryId
     }
   }
 `;
