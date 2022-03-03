@@ -5,7 +5,6 @@ import { styled } from '@mui/material/styles';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
-
   color: 'white',
   [theme.breakpoints.up('md')]: {
     borderBottom: 'none',
@@ -13,6 +12,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   '& .MuiTabs-indicator': {
     backgroundColor: 'primary.main',
     height: '2px',
+
     [theme.breakpoints.up('md')]: {
       height: '2px',
     },
@@ -26,7 +26,7 @@ const StyledTab = styled((props: { label: string; value: string }) => <Tab {...p
     [theme.breakpoints.down('md')]: {
       fontSize: 16,
     },
-    fontWeight: 600,
+    fontWeight: 500,
     color: theme.palette.text.secondary,
     '&.Mui-selected': {
       // color: theme.palette.text.primary,

@@ -5,8 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { mainTheme } from './material-theme';
-// import { Provider as ReduxProvider } from 'react-redux';
-// import { store } from './redux/store';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from './redux/store';
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 
@@ -28,13 +28,13 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <ReduxProvider store={store}> */}
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={mainTheme}>
-        <App />
-      </ThemeProvider>
-    </ApolloProvider>
-    {/* </ReduxProvider> */}
+    <ReduxProvider store={store}>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={mainTheme}>
+          <App />
+        </ThemeProvider>
+      </ApolloProvider>
+    </ReduxProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

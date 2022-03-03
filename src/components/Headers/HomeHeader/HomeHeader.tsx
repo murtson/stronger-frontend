@@ -30,10 +30,7 @@ const HomeHeader: React.FC = () => {
             alignItems: 'flex-start',
           }}
         >
-          <Typography
-            variant='h6'
-            sx={{ fontWeight: 600, lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}
-          >
+          <Typography variant='h6' sx={{ lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}>
             Home
           </Typography>
         </Grid>

@@ -23,19 +23,22 @@ export const mainTheme = createTheme({
   typography: {
     fontFamily: ['IBM Plex Sans', 'sans-serif'].join(','),
     subtitle1: {
-      fontSize: 14,
-      fontWeight: 600,
-      [breakpoints.up('md')]: {
-        fontSize: 16,
-        fontWeight: 600,
-      },
+      // fontSize: 14,
+      fontWeight: 500,
+      // [breakpoints.up('md')]: {
+      //   fontSize: 16,
+      //   fontWeight: 500,
+      // },
     },
     subtitle2: {
-      fontSize: 14,
+      // fontSize: 14,
       fontWeight: 500,
-      [breakpoints.up('md')]: {
-        fontSize: 16,
-      },
+      // [breakpoints.up('md')]: {
+      //   fontSize: 16,
+      // },
+    },
+    h6: {
+      fontFamily: 'IBM Plex Sans',
     },
   },
   palette: {

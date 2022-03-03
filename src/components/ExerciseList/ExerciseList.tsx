@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useQuery } from '@apollo/client';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   List,
@@ -9,43 +7,61 @@ import {
   ListItemIcon,
   ListItemText,
   ListItemAvatar,
+  Typography,
+  Button,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../Loaders/SkeletonList/SkeletonList';
-import { GET_CATEGORY_EXERCISES } from '../../graphql/queries';
 
 import Exercise from '../../interfaces/Exercise';
 
-const ExerciseList: React.FC = () => {
+interface Props {
+  categoryExercises: Exercise[];
+  isLoading: boolean;
+  category: string;
+}
+
+const ExerciseList: React.FC<Props> = ({ categoryExercises, isLoading, category }) => {
   let navigate = useNavigate();
-  const { id } = useParams();
-  const { data, error, loading } = useQuery(GET_CATEGORY_EXERCISES, {
-    variables: {
-      id: Number(id),
-    },
-  });
 
   const handleClick = (id: string) => {
-    navigate(`${id}`);
+    navigate(`/log/${id}`);
   };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: 'white',
-        flex: { xs: 1, md: 0 },
-        borderRadius: { xs: 0, md: 2 },
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: 'divider',
-      }}
-    >
-      {data ? (
-        loading ? (
+    <React.Fragment>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingTop: 1,
+          paddingBottom: 1,
+          paddingLeft: { xs: 2, md: 0 },
+          paddingRight: { xs: 2, md: 0 },
+        }}
+      >
+        <Typography variant='subtitle1' sx={{ color: 'text.secondary' }}>
+          {category} exercises
+        </Typography>
+        <Button>+ ADD EXERCISE</Button>
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: 'white',
+          flex: { xs: 1, md: 0 },
+          borderRadius: { xs: 0, md: 2 },
+          borderStyle: 'solid',
+          borderWidth: 1,
+          borderColor: 'divider',
+          marginBottom: { xs: 0, md: 2 },
+        }}
+      >
+        {isLoading ? (
           <SkeletonList numberOfLoaders={9} />
         ) : (
           <List sx={{ padding: { xs: 0 } }}>
-            {data.categoryExercises.map((exercise: Exercise) => {
+            {categoryExercises.map((exercise: Exercise) => {
               return (
                 <ListItemButton
                   onClick={() => handleClick(exercise.id)}
@@ -56,9 +72,9 @@ const ExerciseList: React.FC = () => {
                   <ListItemAvatar>
                     <Box
                       sx={{
-                        backgroundColor: 'divider',
-                        width: 30,
-                        height: 30,
+                        backgroundColor: exercise.color,
+                        width: 20,
+                        height: 20,
                         borderRadius: '50%',
                       }}
                     />
@@ -74,9 +90,9 @@ const ExerciseList: React.FC = () => {
               );
             })}
           </List>
-        )
-      ) : null}
-    </Box>
+        )}
+      </Box>
+    </React.Fragment>
   );
 };
 

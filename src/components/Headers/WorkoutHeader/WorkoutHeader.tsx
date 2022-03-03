@@ -2,6 +2,9 @@ import React from 'react';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 import HeaderTabs from '../HeaderTabs/HeaderTabs';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import StyledIconButton from '../../Buttons/IconButton/StyledIconButton';
+import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 
 const tabsArray = [
   { value: 'exercises', label: 'Exercises' },
@@ -20,13 +23,15 @@ const WorkoutHeader: React.FC = () => {
     >
       <Grid
         container
-        sx={{ flex: 1, paddingLeft: { xs: 2, md: 0 }, paddingRight: { xs: 1, md: 0 } }}
+        sx={{
+          flex: 1,
+
+          paddingLeft: { xs: 2, md: 0 },
+          paddingRight: { xs: 1, md: 0 },
+        }}
       >
         <Grid item xs={6} sx={{ display: 'flex', alignItems: 'flex-start' }}>
-          <Typography
-            variant='h6'
-            sx={{ fontWeight: 600, lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}
-          >
+          <Typography variant='h6' sx={{ lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}>
             Workout
           </Typography>
         </Grid>
@@ -40,7 +45,11 @@ const WorkoutHeader: React.FC = () => {
             paddingTop: { xs: 0, sm: 1 },
           }}
         >
-          <IconButton sx={{ color: 'text.primary' }}>
+          <IconButton
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             <MoreVertIcon />
           </IconButton>
         </Grid>

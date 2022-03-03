@@ -17,7 +17,7 @@ const AppLayout: React.FC = () => {
   const isLargerAndUpScreen = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
-    <>
+    <Box sx={{ position: 'relative', zIndex: 0 }}>
       {isMediumAndUpScreen ? (
         <Box
           sx={{
@@ -26,6 +26,7 @@ const AppLayout: React.FC = () => {
             width: '100%',
             backgroundColor: 'white',
             borderBottom: `1px solid ${theme.palette.divider}`,
+            zIndex: -1,
           }}
         ></Box>
       ) : null}
@@ -35,7 +36,7 @@ const AppLayout: React.FC = () => {
         sx={{
           position: 'relative',
           display: 'flex',
-          height: '100vh',
+          minHeight: '100vh',
           margin: 'auto',
         }}
       >
@@ -58,7 +59,7 @@ const AppLayout: React.FC = () => {
           </Grid>
         ) : null}
       </Grid>
-    </>
+    </Box>
   );
 };
 

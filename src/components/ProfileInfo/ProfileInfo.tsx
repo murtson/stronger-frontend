@@ -35,7 +35,7 @@ const ProfileInfo: React.FC = () => {
           borderBottom: { xs: `1px solid ${theme.palette.divider}` },
           backgroundColor: 'white',
 
-          borderRadius: '0 0 8px 8px',
+          borderRadius: { xs: 0, md: '0 0 8px 8px' },
         }}
       >
         <Avatar

@@ -17,7 +17,7 @@ const ExercisesView: React.FC = () => {
         borderRadius: { xs: 0, md: 2 },
       }}
     >
-      <Typography variant='h6' sx={{ fontWeight: 600, color: 'text.secondary' }}>
+      <Typography variant='h6' sx={{ color: 'text.secondary' }}>
         Stats coming soon...
       </Typography>
     </Box>

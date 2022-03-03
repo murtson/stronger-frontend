@@ -30,7 +30,6 @@ const ProfileHeader: React.FC = () => {
           <Typography
             variant='h6'
             sx={{
-              fontWeight: 600,
               lineHeight: 1.25,
               paddingTop: { xs: 1, sm: 2 },
               color: { xs: 'white', md: 'text.primary' },
