@@ -1,5 +1,3 @@
-import { useGetAllExerciseCategories, useGetAllExercises } from './graphql/queries';
-
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import AppLayout from './layout/AppLayout/AppLayout';
@@ -17,18 +15,6 @@ import SelectExercisesPage from './pages/SelectExercise/SelectExercisesPage';
 import LogExercisePage from './pages/LogExercise/LogExercisePage';
 
 function App() {
-  // making API-calls here to cache the data in Apollo for better user experience
-  const {
-    data: categoryData,
-    error: categoryError,
-    loading: categoryLoading,
-  } = useGetAllExerciseCategories();
-  const {
-    data: exercisesData,
-    error: exercisesError,
-    loading: exercisesLoading,
-  } = useGetAllExercises();
-
   return (
     <div className='App' style={{ backgroundColor: '#f5f5f5' }}>
       <Router>

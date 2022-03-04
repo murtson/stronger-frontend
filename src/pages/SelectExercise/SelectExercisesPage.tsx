@@ -3,35 +3,24 @@ import SearchField from '../../components/SearchField/SearchField';
 import ExerciseList from '../../components/ExerciseList/ExerciseList';
 import { useParams } from 'react-router-dom';
 import SelectExerciseHeader from '../../components/Headers/SelectExerciseHeader/SelectExerciseHeader';
-import { useGetCategoryExercises, useGetExerciseCategory } from '../../graphql/queries';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const SelectExercisesPage: React.FC = () => {
   const { id } = useParams();
-
-  const {
-    data: exercisesData,
-    error: exercisesError,
-    loading: exercisesIsLoading,
-  } = useGetCategoryExercises(Number(id));
-
-  const {
-    data: categoryData,
-    error: categoryError,
-    loading: categoryIsLoading,
-  } = useGetExerciseCategory(Number(id));
+  const exercises = useSelector((state: RootState) => state.content.exercises).filter(
+    (exercise) => exercise.categoryId.toString() === id
+  );
+  const isLoading = useSelector((state: RootState) => state.content.loading);
+  const category = useSelector((state: RootState) => state.content.categories).find(
+    (category) => category.id.toString() === id
+  );
 
   return (
     <>
-      <SelectExerciseHeader
-        isLoading={categoryIsLoading}
-        title={categoryData?.exerciseCategory?.type}
-      />
+      <SelectExerciseHeader />
       <SearchField />
-      <ExerciseList
-        categoryExercises={exercisesData?.exercises}
-        isLoading={exercisesIsLoading}
-        category={categoryData?.exerciseCategory?.type}
-      />
+      <ExerciseList categoryExercises={exercises} isLoading={isLoading} category={category?.type} />
     </>
   );
 };

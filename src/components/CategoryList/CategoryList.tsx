@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_EXERCISE_CATEGORIES } from '../../graphql/queries';
 import {
   Box,
   List,
@@ -9,17 +7,20 @@ import {
   ListItemIcon,
   ListItemText,
   ListItemAvatar,
-  ListSubheader,
   Typography,
   Button,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import ExerciseCategory from '../../interfaces/ExerciseCategory';
 import SkeletonList from '../Loaders/SkeletonList/SkeletonList';
-import { CategoryColors } from '../../enums/colors';
 
-const CategoryList: React.FC = () => {
-  const { error, loading, data } = useQuery(GET_EXERCISE_CATEGORIES);
+import ExerciseCategory from '../../interfaces/ExerciseCategory';
+
+interface Props {
+  categories: ExerciseCategory[];
+  isLoading: boolean;
+}
+
+const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
   let navigate = useNavigate();
 
   const handleClick = (id: string) => {
@@ -54,41 +55,39 @@ const CategoryList: React.FC = () => {
           borderColor: 'divider',
         }}
       >
-        {data ? (
-          loading ? (
-            <SkeletonList numberOfLoaders={9} />
-          ) : (
-            <List sx={{ padding: { xs: 0 } }}>
-              {data.exerciseCategories.map((category: ExerciseCategory) => {
-                return (
-                  <ListItemButton
-                    onClick={() => handleClick(category.id)}
-                    key={category.id}
-                    divider
-                    sx={{
-                      '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } },
-                    }}
-                  >
-                    <ListItemAvatar>
-                      <Box
-                        sx={{
-                          backgroundColor: category.color,
-                          width: 20,
-                          height: 20,
-                          borderRadius: '50%',
-                        }}
-                      />
-                    </ListItemAvatar>
-                    <ListItemText primary={category.type}></ListItemText>
-                    <ListItemIcon sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <NavigateNextIcon />
-                    </ListItemIcon>
-                  </ListItemButton>
-                );
-              })}
-            </List>
-          )
-        ) : null}
+        {isLoading ? (
+          <SkeletonList numberOfLoaders={9} />
+        ) : (
+          <List sx={{ padding: { xs: 0 } }}>
+            {categories.map((category: ExerciseCategory) => {
+              return (
+                <ListItemButton
+                  onClick={() => handleClick(category.id)}
+                  key={category.id}
+                  divider
+                  sx={{
+                    '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } },
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Box
+                      sx={{
+                        backgroundColor: category.color,
+                        width: 20,
+                        height: 20,
+                        borderRadius: '50%',
+                      }}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText primary={category.type}></ListItemText>
+                  <ListItemIcon sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <NavigateNextIcon />
+                  </ListItemIcon>
+                </ListItemButton>
+              );
+            })}
+          </List>
+        )}
       </Box>
     </React.Fragment>
   );

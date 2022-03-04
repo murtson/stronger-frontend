@@ -37,7 +37,7 @@ const LogExerciseHeader: React.FC<Props> = ({ title }) => {
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton sx={{ color: 'text.primary', marginRight: 2 }} onClick={() => navigate(-1)}>
+          <IconButton sx={{ color: 'text.primary' }} onClick={() => navigate(-1)}>
             <ArrowBackOutlinedIcon />
           </IconButton>
         </Box>

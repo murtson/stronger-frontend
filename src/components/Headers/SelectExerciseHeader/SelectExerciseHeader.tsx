@@ -4,12 +4,8 @@ import { Box, Typography, IconButton, Skeleton, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-interface Props {
-  isLoading: boolean;
-  title: string;
-}
 
-const SelectExerciseHeader: React.FC<Props> = ({ isLoading, title }) => {
+const SelectExerciseHeader: React.FC = () => {
   let navigate = useNavigate();
   const { id } = useParams();
   const theme = useTheme();

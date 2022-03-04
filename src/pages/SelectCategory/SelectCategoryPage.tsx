@@ -2,15 +2,18 @@ import React from 'react';
 import SelectCategoryHeader from '../../components/Headers/SelectCategoryHeader/SelectCategoryHeader';
 import SearchField from '../../components/SearchField/SearchField';
 import CategoryList from '../../components/CategoryList/CategoryList';
-import { TextField } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const SelectCategoryPage: React.FC = () => {
+  const categories = useSelector((state: RootState) => state.content.categories);
+  const isLoading = useSelector((state: RootState) => state.content.loading);
+
   return (
     <>
       <SelectCategoryHeader />
-
       <SearchField />
-      <CategoryList />
+      <CategoryList categories={categories} isLoading={isLoading} />
     </>
   );
 };

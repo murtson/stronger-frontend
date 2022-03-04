@@ -18,7 +18,7 @@ import Exercise from '../../interfaces/Exercise';
 interface Props {
   categoryExercises: Exercise[];
   isLoading: boolean;
-  category: string;
+  category: string | undefined;
 }
 
 const ExerciseList: React.FC<Props> = ({ categoryExercises, isLoading, category }) => {
