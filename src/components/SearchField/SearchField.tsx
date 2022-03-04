@@ -10,17 +10,17 @@ const SearchField: React.FC = () => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          margin: { xs: 0, md: '16px 0' },
+          margin: { xs: '8px 16px 0 16px', md: '16px 0' },
           backgroundColor: { xs: 'white', md: 'white' },
-          borderRadius: { xs: 0, md: 2 },
+          borderRadius: { xs: 20, md: 20 },
           paddingLeft: 1,
           paddingRight: 1,
           borderWidth: 0,
           borderStyle: 'solid',
           borderColor: 'divider',
-          height: 48,
+          height: 42,
           // borderBottom: { xs: `1px solid rgba(0, 0, 0, 0.12)`, md: 'none' },
-          border: { xs: 'none', md: '1px solid rgba(0, 0, 0, 0.12)' },
+          border: { xs: '1px solid rgba(0, 0, 0, 0.12)' },
         }}
       >
         <SearchIcon sx={{ padding: 1, marginRight: 2, color: 'primary.main' }} />
@@ -29,7 +29,6 @@ const SearchField: React.FC = () => {
           sx={{ flex: 1, '& .MuiInputBase-input': { color: 'black', fontWeight: 500 } }}
         ></InputBase>
       </Box>
-      <Divider sx={{ border: { md: 0 } }} />
     </>
   );
 };

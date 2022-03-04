@@ -15,24 +15,29 @@ const SelectCategoryHeader: React.FC = () => {
         display: 'flex',
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        borderBottom: { xs: `1px solid ${theme.palette.divider}`, md: 'none' },
-        backgroundColor: { xs: 'white', md: 'transparent' },
+        // borderBottom: { xs: `1px solid ${theme.palette.divider}`, md: 'none' },
+        // backgroundColor: { xs: 'white', md: 'transparent' },
         // padding: { xs: 1, md: '8px 0' },
 
-        height: { xs: 100, md: 'auto' },
+        // height: { xs: 100, md: 'auto' },
         boxSizing: 'border-box',
         marginBottom: { xs: 0, md: 0 },
       }}
     >
       <Box
-        sx={{ display: 'flex', justifyContent: 'space-between', padding: { xs: 1, md: '16px 0' } }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: { xs: 1, md: '16px 0' },
+        }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton sx={{ color: 'text.primary', marginRight: 2 }} onClick={() => navigate(-1)}>
+          <IconButton sx={{ color: 'text.primary' }} onClick={() => navigate(-1)}>
             <ArrowBackOutlinedIcon />
           </IconButton>
-          <Typography variant='h6'>Select Category</Typography>
         </Box>
+        <Typography variant='h6'>Categories</Typography>
         <IconButton sx={{ color: 'text.primary' }}>
           <MoreVertIcon />
         </IconButton>
