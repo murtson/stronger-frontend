@@ -1,6 +1,6 @@
 import { CategoryColors } from '../enums/colors';
 
-export default interface ExerciseCategory {
+export interface ExerciseCategory {
   id: string;
   type: string;
   color: CategoryColors;

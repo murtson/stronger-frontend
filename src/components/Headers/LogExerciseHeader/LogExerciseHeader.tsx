@@ -3,20 +3,10 @@ import { Box, Grid, Typography, IconButton, Stack } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
-import Exercise from '../../../interfaces/Exercise';
+import { Exercise } from '../../../interfaces/Exercise';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const tabsArray = [
-  { value: 'track', label: 'Track' },
-  { value: 'history', label: 'History' },
-  { value: 'graph', label: 'Graph' },
-];
-
-interface Props {
-  title: string;
-}
-
-const LogExerciseHeader: React.FC<Props> = ({ title }) => {
+const LogExerciseHeader: React.FC = () => {
   let navigate = useNavigate();
   const theme = useTheme();
 

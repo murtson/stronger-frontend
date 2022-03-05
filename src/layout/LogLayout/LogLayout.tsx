@@ -12,7 +12,7 @@ const LogLayout: React.FC = () => {
     <Box sx={{ position: 'relative', zIndex: 0 }}>
       <Grid
         container
-        maxWidth='xl'
+        maxWidth='lg'
         sx={{
           display: 'flex',
           justifyContent: 'center',

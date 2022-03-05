@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import ExerciseCategory from '../../interfaces/ExerciseCategory';
-import Exercise from '../../interfaces/Exercise';
+import { ExerciseCategory } from '../../interfaces/ExerciseCategory';
+import { Exercise } from '../../interfaces/Exercise';
 import { request, GraphQLClient, gql } from 'graphql-request';
 import { GET_EXERCISE_CATEGORIES, GET_ALL_EXERCISES } from '../../graphql/queries';
 

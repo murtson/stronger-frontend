@@ -45,7 +45,8 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
     const { value } = e.currentTarget;
     const isNotANumber = isNaN(Number(value));
     const isNegativeNumber = Number(value) < 0;
-    if (isNotANumber || isNegativeNumber) return;
+    const isNotTooLarge = Number(value) > 10000;
+    if (isNotANumber || isNegativeNumber || isNotTooLarge) return;
     setWeight(Number(value));
   };
 
@@ -53,7 +54,8 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
     const { value } = e.currentTarget;
     const isNotANumber = isNaN(Number(value));
     const isNegativeNumber = Number(value) < 0;
-    if (isNotANumber || isNegativeNumber) return;
+    const isNotTooLarge = Number(value) > 100;
+    if (isNotANumber || isNegativeNumber || isNotTooLarge) return;
     setReps(Number(value));
   };
 

@@ -1,4 +1,4 @@
-export default interface Exercise {
+export interface Exercise {
   id: string;
   name: string;
   logType: string;

@@ -13,7 +13,7 @@ import {
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../Loaders/SkeletonList/SkeletonList';
 
-import Exercise from '../../interfaces/Exercise';
+import { Exercise } from '../../interfaces/Exercise';
 
 interface Props {
   categoryExercises: Exercise[];

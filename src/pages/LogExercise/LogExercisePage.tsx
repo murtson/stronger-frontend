@@ -21,9 +21,44 @@ import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircle';
 import LogExerciseHeader from '../../components/Headers/LogExerciseHeader/LogExerciseHeader';
 import AddIcon from '@mui/icons-material/Add';
 import LogController from './LogController/LogController';
+import { ExerciseSet } from '../../interfaces/ExerciseSet';
+import { Set } from '../../interfaces/Set';
+import LoggedSetsTable from './LoggedSetsTable/LoggedSetsTable';
 
-const weightIncrement = 2.5;
-const repsIncrement = 1;
+const styles = {
+  controllerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    mt: { xs: 1, md: 2 },
+    mb: { xs: 1, md: 2 },
+    ml: { xs: 2, md: 0 },
+    mr: { xs: 1, md: 0 },
+  },
+  setsAndButtonContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  loggedSetsContainer: {
+    flex: 1,
+    borderRadius: { xs: 0, md: 2 },
+    mb: { xs: 0, md: 3 },
+    position: 'relative',
+    pb: '75px',
+    backgroundColor: 'white',
+  },
+  finishButtonContainer: {
+    position: 'absolute',
+    left: '50%',
+    bottom: 0,
+    width: '100%',
+    transform: 'translateX(-50%)',
+    boxSizing: 'border-box',
+    padding: 2,
+    textAlign: 'center',
+  },
+};
 
 const LogExercisePage: React.FC = () => {
   const theme = useTheme();
@@ -178,8 +213,10 @@ const LogExercisePage: React.FC = () => {
 
   // if (props.appDataLoading) return <div>loading</div>;
 
-  const handleSaveButton = (set: { weight: number; reps: number }) => {
-    console.log(set);
+  const [loggedSets, setLoggedSets] = useState<Set[]>([]);
+
+  const handleSaveButton = (set: Set) => {
+    setLoggedSets([...loggedSets, set]);
   };
 
   return (
@@ -187,18 +224,8 @@ const LogExercisePage: React.FC = () => {
       {/* <Snackbar open={snackbarOpen} snackbarType={snackbarType} onClose={handleSnackbarClose}>
         {snackbarText}
       </Snackbar> */}
-      <LogExerciseHeader title='sbopp' />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mt: { xs: 1, md: 2 },
-          mb: { xs: 1, md: 2 },
-          ml: { xs: 2, md: 0 },
-          mr: { xs: 1, md: 0 },
-        }}
-      >
+      <LogExerciseHeader />
+      <Box sx={styles.controllerContainer}>
         <Typography variant='subtitle1'>Barbell Bench Press</Typography>
         <IconButton>
           <InfoOutlinedIcon sx={{ color: 'text.primary' }} />
@@ -206,33 +233,18 @@ const LogExercisePage: React.FC = () => {
       </Box>
       <LogController handleSaveButton={handleSaveButton} />
       <Divider sx={{ border: { md: 0 } }} />
-      <Box
-        sx={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <Box sx={styles.setsAndButtonContainer}>
         <Box
           sx={{
-            flex: 1,
-            backgroundColor: 'white',
-            borderRadius: { xs: 0, md: 2 },
+            ...styles.loggedSetsContainer,
             border: { xs: 0, md: `1px solid ${theme.palette.neutral.main}` },
-            mb: { xs: 0, md: 3 },
-            position: 'relative',
           }}
         >
+          {loggedSets.length > 0 ? <LoggedSetsTable loggedSets={loggedSets} /> : null}
           <Box
             sx={{
-              position: 'absolute',
-              left: '50%',
-              bottom: 0,
-              width: '100%',
-              transform: 'translateX(-50%)',
-              boxSizing: 'border-box',
-              padding: 2,
-              textAlign: 'center',
+              ...styles.finishButtonContainer,
+              borderTop: `1px solid ${theme.palette.neutral.main}`,
             }}
           >
             <Button variant='contained' sx={{ width: 300 }}>
@@ -244,34 +256,5 @@ const LogExercisePage: React.FC = () => {
     </Box>
   );
 };
-
-// const mapStateToProps = (state, ownProps) => {
-//   const allExercises = state.appData.exercises;
-//   const exercise = allExercises.find(
-//     (e) => e.exerciseId.toString() === ownProps.exerciseId.toString()
-//   );
-
-//   return {
-//     appDataloading: state.appData.loading,
-//     appDataError: state.appData.error,
-//     exercise: exercise,
-//     currentWorkout: state.workout.currentWorkout,
-//     workoutError: state.workout.error,
-//     workoutLoading: state.workout.loading,
-//     selectedDate: state.workout.selectedDate,
-//     editingSet: state.workout.editingSet,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onGetExercise: (exerciseId) => dispatch(getExercise(exerciseId)),
-//     onResetEditingExercise: () => dispatch(resetEditingExercise()),
-//     onSetEditingExercise: (editingExerciseData) =>
-//       dispatch(setEditingExercise(editingExerciseData)),
-//     onLogWorkoutSet: (exerciseData) => dispatch(logWorkoutSet(exerciseData)),
-//     onGetWorkoutSet: (workoutId, setId) => dispatch(getWorkoutSet(workoutId, setId)),
-//   };
-// };
 
 export default LogExercisePage;

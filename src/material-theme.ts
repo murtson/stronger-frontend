@@ -33,6 +33,7 @@ export const mainTheme = createTheme({
     subtitle2: {
       // fontSize: 14,
       fontWeight: 500,
+
       // [breakpoints.up('md')]: {
       //   fontSize: 16,
       // },
