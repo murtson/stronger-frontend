@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchField from '../../components/SearchField/SearchField';
-import ExerciseList from '../../components/ExerciseList/ExerciseList';
+import ExerciseList from './ExerciseList/ExerciseList';
 import { useParams } from 'react-router-dom';
-import SelectExerciseHeader from '../../components/Headers/SelectExerciseHeader/SelectExerciseHeader';
+import SelectExerciseHeader from './ExerciseHeader/SelectExerciseHeader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 

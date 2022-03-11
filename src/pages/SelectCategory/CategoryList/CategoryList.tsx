@@ -62,14 +62,12 @@ const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
           <List sx={{ padding: { xs: 0 } }}>
             {categories.map((category: ExerciseCategory) => {
               return (
-                <ListItem key={category.id} sx={{ padding: 0 }}>
-                  <ListItemButton
-                    onClick={() => handleClick(category.id)}
-                    divider
-                    sx={{
-                      '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } },
-                    }}
-                  >
+                <ListItem
+                  key={category.id}
+                  sx={{ padding: 0, '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } } }}
+                  divider
+                >
+                  <ListItemButton onClick={() => handleClick(category.id)} sx={{}}>
                     <ListItemAvatar>
                       <Box
                         sx={{

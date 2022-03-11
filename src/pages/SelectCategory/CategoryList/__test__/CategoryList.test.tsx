@@ -1,6 +1,6 @@
 import { render, screen } from '../../../../utilities/test-utils';
 import CategoryList from '../CategoryList';
-import { exerciseCategories } from '../../../../mocks/mock-data';
+import { exerciseCategories } from '../../../../mocks/mock-data/exerciseCategories';
 
 test('should display loader while loading', async () => {
   render(<CategoryList isLoading={true} categories={exerciseCategories} />);

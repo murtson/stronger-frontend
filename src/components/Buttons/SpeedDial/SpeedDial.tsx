@@ -27,7 +27,7 @@ const AppSpeedDial: React.FC = () => {
 
   return (
     <SpeedDial
-      ariaLabel='SpeedDial basic example'
+      ariaLabel='SpeedDial Main'
       sx={{ position: 'fixed', bottom: 72, right: 16 }}
       icon={<SpeedDialIcon openIcon={<WhatshotOutlinedIcon />} />}
     >

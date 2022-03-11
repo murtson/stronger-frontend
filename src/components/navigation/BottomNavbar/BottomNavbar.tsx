@@ -44,9 +44,21 @@ const BottomNavbar: React.FC = () => {
         transform: 'translateX(-50%)',
       }}
     >
-      <BottomNavigationAction icon={<DonutSmallOutlinedIcon />} value='home' />
-      <BottomNavigationAction icon={<WhatshotOutlinedIcon />} value='workout' />
-      <BottomNavigationAction icon={<AccountCircleOutlinedIcon />} value='profile' />
+      <BottomNavigationAction
+        data-testid='home-bottom-navbar'
+        icon={<DonutSmallOutlinedIcon />}
+        value='home'
+      />
+      <BottomNavigationAction
+        data-testid='workout-bottom-navbar'
+        icon={<WhatshotOutlinedIcon />}
+        value='workout'
+      />
+      <BottomNavigationAction
+        data-testid='profile-bottom-navbar'
+        icon={<AccountCircleOutlinedIcon />}
+        value='profile'
+      />
     </BottomNavigation>
   );
 };

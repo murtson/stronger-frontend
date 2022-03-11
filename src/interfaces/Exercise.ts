@@ -1,8 +1,8 @@
 export interface Exercise {
-  id: string;
+  id: string | number;
   name: string;
   logType: string;
-  description: string;
+  description?: string;
   color: string;
   categoryId: number;
 }
