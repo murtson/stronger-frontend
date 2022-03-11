@@ -56,7 +56,7 @@ const LoggedSetsTable: React.FC<Props> = ({ loggedSets }) => {
                   variant='subtitle2'
                   sx={{ display: 'inline-block', color: 'text.secondary' }}
                 >
-                  kgs
+                  reps
                 </Typography>
               </TableCell>
             </TableRow>

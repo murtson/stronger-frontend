@@ -7,7 +7,7 @@ interface Props {
 
 const SkeletonList: React.FC<Props> = ({ numberOfLoaders }) => {
   return (
-    <Stack sx={{ paddingBottom: { xs: 2, md: 0 } }}>
+    <Stack sx={{ paddingBottom: { xs: 2, md: 0 } }} data-testid='skeleton-list-loader'>
       {[...Array(numberOfLoaders)].map((_el, index) => (
         <Fragment key={index}>
           <Box

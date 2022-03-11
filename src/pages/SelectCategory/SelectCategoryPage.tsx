@@ -1,7 +1,7 @@
 import React from 'react';
-import SelectCategoryHeader from '../../components/Headers/SelectCategoryHeader/SelectCategoryHeader';
+import SelectCategoryHeader from './CategoryHeader/SelectCategoryHeader';
 import SearchField from '../../components/SearchField/SearchField';
-import CategoryList from '../../components/CategoryList/CategoryList';
+import CategoryList from './CategoryList/CategoryList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 

@@ -9,11 +9,12 @@ import {
   ListItemAvatar,
   Typography,
   Button,
+  ListItem,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import SkeletonList from '../Loaders/SkeletonList/SkeletonList';
+import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
 
-import { ExerciseCategory } from '../../interfaces/ExerciseCategory';
+import { ExerciseCategory } from '../../../interfaces/ExerciseCategory';
 
 interface Props {
   categories: ExerciseCategory[];
@@ -61,29 +62,30 @@ const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
           <List sx={{ padding: { xs: 0 } }}>
             {categories.map((category: ExerciseCategory) => {
               return (
-                <ListItemButton
-                  onClick={() => handleClick(category.id)}
-                  key={category.id}
-                  divider
-                  sx={{
-                    '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } },
-                  }}
-                >
-                  <ListItemAvatar>
-                    <Box
-                      sx={{
-                        backgroundColor: category.color,
-                        width: 20,
-                        height: 20,
-                        borderRadius: '50%',
-                      }}
-                    />
-                  </ListItemAvatar>
-                  <ListItemText primary={category.type}></ListItemText>
-                  <ListItemIcon sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <NavigateNextIcon />
-                  </ListItemIcon>
-                </ListItemButton>
+                <ListItem key={category.id} sx={{ padding: 0 }}>
+                  <ListItemButton
+                    onClick={() => handleClick(category.id)}
+                    divider
+                    sx={{
+                      '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } },
+                    }}
+                  >
+                    <ListItemAvatar>
+                      <Box
+                        sx={{
+                          backgroundColor: category.color,
+                          width: 20,
+                          height: 20,
+                          borderRadius: '50%',
+                        }}
+                      />
+                    </ListItemAvatar>
+                    <ListItemText primary={category.type}></ListItemText>
+                    <ListItemIcon sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <NavigateNextIcon />
+                    </ListItemIcon>
+                  </ListItemButton>
+                </ListItem>
               );
             })}
           </List>
