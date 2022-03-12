@@ -4,9 +4,10 @@ interface Props {
   placeholder: string;
   value: number | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  ariaLabel: string;
 }
 
-const LogInput: React.FC<Props> = ({ value, placeholder, onChange }) => {
+const LogInput: React.FC<Props> = ({ value, placeholder, onChange, ariaLabel }) => {
   return (
     <InputBase
       sx={{
@@ -28,7 +29,7 @@ const LogInput: React.FC<Props> = ({ value, placeholder, onChange }) => {
       value={!value ? '' : value}
       onChange={onChange}
       type='number'
-      inputProps={{ 'aria-label': placeholder }}
+      inputProps={{ 'aria-label': ariaLabel }}
     />
   );
 };

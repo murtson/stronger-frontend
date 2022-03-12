@@ -16,24 +16,32 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
   const [weight, setWeight] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
 
-  const handleDecreaseWeight = () => {
-    if (!weight) return;
-    setWeight(weight - weightIncrement);
+  const handleIncreaseWeight = () => {
+    if (!weight) return setWeight(weightIncrement);
+    const newWeight = weight + weightIncrement;
+    if (newWeight > 9999) return setWeight(9999);
+    setWeight(newWeight);
   };
 
-  const handleIncreaseWeight = () => {
-    if (!weight) setWeight(weightIncrement);
-    else setWeight(weight + weightIncrement);
+  const handleDecreaseWeight = () => {
+    if (!weight) return;
+    const newWeight = weight - weightIncrement;
+    if (newWeight < 0) return setWeight(0);
+    setWeight(newWeight);
   };
 
   const handleIncreaseReps = () => {
-    if (!reps) setReps(repsIncrement);
-    else setReps(reps + repsIncrement);
+    if (!reps) return setReps(repsIncrement);
+    const newReps = reps + repsIncrement;
+    if (newReps > 99) return setReps(99);
+    else setReps(newReps);
   };
 
   const handleDecreaseReps = () => {
     if (!reps) return;
-    setReps(reps - repsIncrement);
+    const newReps = reps - repsIncrement;
+    if (newReps < 0) return setReps(0);
+    setReps(newReps);
   };
 
   const handleClearButton = () => {
@@ -45,7 +53,7 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
     const { value } = e.currentTarget;
     const isNotANumber = isNaN(Number(value));
     const isNegativeNumber = Number(value) < 0;
-    const isNotTooLarge = Number(value) > 10000;
+    const isNotTooLarge = Number(value) > 9999;
     if (isNotANumber || isNegativeNumber || isNotTooLarge) return;
     setWeight(Number(value));
   };
@@ -54,7 +62,7 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
     const { value } = e.currentTarget;
     const isNotANumber = isNaN(Number(value));
     const isNegativeNumber = Number(value) < 0;
-    const isNotTooLarge = Number(value) > 100;
+    const isNotTooLarge = Number(value) > 99;
     if (isNotANumber || isNegativeNumber || isNotTooLarge) return;
     setReps(Number(value));
   };
@@ -76,15 +84,26 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
             sx={{ marginLeft: 'auto' }}
             onClick={handleDecreaseWeight}
             disabled={weight ? false : true}
+            data-testid='decrease-weight'
           >
             <RemoveCircleRoundedIcon fontSize='large' />
           </IconButton>
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <LogInput placeholder='0' onChange={handleChangeWeight} value={weight} />
+          <LogInput
+            placeholder='0'
+            ariaLabel='weight'
+            onChange={handleChangeWeight}
+            value={weight}
+          />
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex' }}>
-          <IconButton sx={{ marginRight: 'auto' }} onClick={handleIncreaseWeight}>
+          <IconButton
+            sx={{ marginRight: 'auto' }}
+            onClick={handleIncreaseWeight}
+            data-testid='increase-weight'
+            disabled={weight && weight >= 9999 ? true : false}
+          >
             <AddCircleRoundedIcon fontSize='large' />
           </IconButton>
         </Grid>
@@ -98,15 +117,21 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
             sx={{ marginLeft: 'auto' }}
             onClick={handleDecreaseReps}
             disabled={reps ? false : true}
+            data-testid='decrease-reps'
           >
             <RemoveCircleRoundedIcon fontSize='large' />
           </IconButton>
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <LogInput placeholder='0' onChange={handleChangeReps} value={reps} />
+          <LogInput placeholder='0' ariaLabel='reps' onChange={handleChangeReps} value={reps} />
         </Grid>
         <Grid item xs={4} sx={{ display: 'flex' }}>
-          <IconButton sx={{ marginRight: 'auto' }} onClick={handleIncreaseReps}>
+          <IconButton
+            sx={{ marginRight: 'auto' }}
+            onClick={handleIncreaseReps}
+            data-testid='increase-reps'
+            disabled={reps && reps >= 99 ? true : false}
+          >
             <AddCircleRoundedIcon fontSize='large' />
           </IconButton>
         </Grid>
