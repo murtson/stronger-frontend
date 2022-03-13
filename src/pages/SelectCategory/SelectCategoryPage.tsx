@@ -10,11 +10,11 @@ const SelectCategoryPage: React.FC = () => {
   const isLoading = useSelector((state: RootState) => state.content.loading);
 
   return (
-    <>
+    <React.Fragment>
       <SelectCategoryHeader />
       <SearchField />
       <CategoryList categories={categories} isLoading={isLoading} />
-    </>
+    </React.Fragment>
   );
 };
 

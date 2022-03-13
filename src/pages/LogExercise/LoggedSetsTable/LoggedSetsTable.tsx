@@ -1,12 +1,35 @@
 import { Box, Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 import { Set } from '../../../interfaces/Set';
 
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  '& td, & th': {
+    border: 0,
+  },
+  '&.MuiTableRow-root.Mui-selected': {
+    backgroundColor: theme.palette.info.light,
+    '&:hover': {
+      backgroundColor: theme.palette.info.light,
+    },
+  },
+}));
+
 interface Props {
   loggedSets: Set[];
+  selectedSetIndex?: number | null;
+  handleSelectedIndex: (index: number) => void;
 }
 
-const LoggedSetsTable: React.FC<Props> = ({ loggedSets }) => {
+const LoggedSetsTable: React.FC<Props> = ({
+  loggedSets,
+  selectedSetIndex,
+  handleSelectedIndex,
+}) => {
+  if (loggedSets.length === 0) return null;
   return (
     <Box>
       <Table>
@@ -20,14 +43,10 @@ const LoggedSetsTable: React.FC<Props> = ({ loggedSets }) => {
         </TableHead>
         <TableBody>
           {loggedSets.map((row, index) => (
-            <TableRow
-              className='TableRow'
+            <StyledTableRow
+              selected={selectedSetIndex === index ? true : false}
+              onClick={() => handleSelectedIndex(index)}
               key={index}
-              sx={{
-                '& td, & th': {
-                  border: 0,
-                },
-              }}
             >
               <TableCell align='center'>
                 <Typography variant='subtitle1'>{index + 1}</Typography>
@@ -59,7 +78,7 @@ const LoggedSetsTable: React.FC<Props> = ({ loggedSets }) => {
                   reps
                 </Typography>
               </TableCell>
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>

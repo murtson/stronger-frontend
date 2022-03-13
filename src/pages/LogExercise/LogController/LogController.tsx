@@ -1,47 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { Box, Grid, Typography, IconButton, Divider } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircle';
 import LogInput from './LogInput/LogInput';
+import { Set } from '../../../interfaces/Set';
+import { EditData } from '../../../interfaces/EditData';
+
+const toFixedWeight = (number: number) => {
+  return Number(number.toFixed(2));
+};
+
+const toFixedReps = (number: number) => {
+  return Number(number.toFixed(0));
+};
 
 const weightIncrement = 2.5;
 const repsIncrement = 1;
-
 interface Props {
-  handleSaveButton: (set: { weight: number; reps: number }) => void;
+  handleSaveButton: (set: Set) => void;
+  handleUpdateButton: (selectedSetIndex: number, updatedSet: Set) => void;
+  handleDeleteButton: (selectedSetIndex: number) => void;
+  editData: EditData;
 }
 
-const LogController: React.FC<Props> = ({ handleSaveButton }) => {
+const LogController: React.FC<Props> = ({
+  editData,
+  handleSaveButton,
+  handleUpdateButton,
+  handleDeleteButton,
+}) => {
   const [weight, setWeight] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
+  const { selectedSetIndex } = editData;
+
+  useEffect(() => {
+    if (selectedSetIndex === null) return;
+    setWeight(editData.weight);
+    setReps(editData.reps);
+  }, [editData]);
 
   const handleIncreaseWeight = () => {
     if (!weight) return setWeight(weightIncrement);
     const newWeight = weight + weightIncrement;
     if (newWeight > 9999) return setWeight(9999);
-    setWeight(newWeight);
+    setWeight(toFixedWeight(newWeight));
   };
 
   const handleDecreaseWeight = () => {
     if (!weight) return;
     const newWeight = weight - weightIncrement;
     if (newWeight < 0) return setWeight(0);
-    setWeight(newWeight);
+    setWeight(toFixedWeight(newWeight));
   };
 
   const handleIncreaseReps = () => {
     if (!reps) return setReps(repsIncrement);
     const newReps = reps + repsIncrement;
     if (newReps > 99) return setReps(99);
-    else setReps(newReps);
+    else setReps(toFixedReps(newReps));
   };
 
   const handleDecreaseReps = () => {
     if (!reps) return;
     const newReps = reps - repsIncrement;
     if (newReps < 0) return setReps(0);
-    setReps(newReps);
+    setReps(toFixedReps(newReps));
   };
 
   const handleClearButton = () => {
@@ -55,7 +79,7 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
     const isNegativeNumber = Number(value) < 0;
     const isNotTooLarge = Number(value) > 9999;
     if (isNotANumber || isNegativeNumber || isNotTooLarge) return;
-    setWeight(Number(value));
+    setWeight(toFixedWeight(Number(value)));
   };
 
   const handleChangeReps = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,11 +88,22 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
     const isNegativeNumber = Number(value) < 0;
     const isNotTooLarge = Number(value) > 99;
     if (isNotANumber || isNegativeNumber || isNotTooLarge) return;
-    setReps(Number(value));
+    setReps(toFixedReps(Number(value)));
+  };
+
+  const onDeleteButtonClick = () => {
+    handleDeleteButton(selectedSetIndex as number);
   };
 
   const onSaveButtonClick = () => {
     handleSaveButton({ weight: weight ? weight : 0, reps: reps ? reps : 0 });
+  };
+
+  const onUpdateButtonClick = () => {
+    handleUpdateButton(selectedSetIndex as number, {
+      weight: weight ? weight : 0,
+      reps: reps ? reps : 0,
+    });
   };
 
   return (
@@ -138,19 +173,41 @@ const LogController: React.FC<Props> = ({ handleSaveButton }) => {
       </Grid>
       <Grid container spacing={2} sx={{ mt: { xs: 2, md: 3 }, mb: { xs: 0, md: 2 } }}>
         <Grid item xs={6}>
-          <LoadingButton
-            fullWidth
-            variant='contained'
-            color='secondary'
-            onClick={handleClearButton}
-          >
-            Clear
-          </LoadingButton>
+          {selectedSetIndex === null ? (
+            <LoadingButton
+              fullWidth
+              variant='contained'
+              color='secondary'
+              onClick={handleClearButton}
+            >
+              Clear
+            </LoadingButton>
+          ) : (
+            <LoadingButton
+              fullWidth
+              variant='contained'
+              color='error'
+              onClick={onDeleteButtonClick}
+            >
+              Delete
+            </LoadingButton>
+          )}
         </Grid>
         <Grid item xs={6}>
-          <LoadingButton fullWidth variant='contained' color='success' onClick={onSaveButtonClick}>
-            Save
-          </LoadingButton>
+          {selectedSetIndex === null ? (
+            <LoadingButton
+              fullWidth
+              variant='contained'
+              color='success'
+              onClick={onSaveButtonClick}
+            >
+              Save
+            </LoadingButton>
+          ) : (
+            <LoadingButton fullWidth variant='contained' color='info' onClick={onUpdateButtonClick}>
+              Update
+            </LoadingButton>
+          )}
         </Grid>
       </Grid>
     </Box>

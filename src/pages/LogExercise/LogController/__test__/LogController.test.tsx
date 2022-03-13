@@ -3,15 +3,30 @@ import userEvent from '@testing-library/user-event';
 import LogController from '../LogController';
 
 describe('LogController', () => {
-  test('LogController has correct initial values and functionality', () => {
-    render(<LogController handleSaveButton={jest.fn()} />);
+  const mockEditData = {
+    selectedSetIndex: null,
+    weight: null,
+    reps: null,
+  };
 
-    // weight input should initially be empty
+  beforeEach(() => {
+    render(
+      <LogController
+        editData={mockEditData}
+        handleSaveButton={jest.fn()}
+        handleUpdateButton={jest.fn()}
+        handleDeleteButton={jest.fn()}
+      />
+    );
+  });
+
+  test('LogController has correct initial values and functionality', () => {
+    // WeightInput should initially be empty
     const weightInput = screen.getByLabelText('weight');
     expect(weightInput).toHaveValue(null);
     expect(weightInput).toHaveTextContent('');
 
-    // reps input should initially be empty
+    // RepsInput should initially be empty
     const repsInput = screen.getByLabelText('reps');
     expect(repsInput).toHaveValue(null);
     expect(repsInput).toHaveTextContent('');
@@ -31,8 +46,7 @@ describe('LogController', () => {
     expect(increaseRepsButton).toBeEnabled();
   });
 
-  test("LogInput's value updates correctly when interacting with buttons", () => {
-    render(<LogController handleSaveButton={jest.fn()} />);
+  test("LogInput's value updates correctly when interacting with increment/decrement buttons", () => {
     const decreaseWeightButton = screen.getByTestId('decrease-weight');
     const decreaseRepsButton = screen.getByTestId('decrease-reps');
     const increaseWeightButton = screen.getByTestId('increase-weight');
@@ -64,40 +78,107 @@ describe('LogController', () => {
   });
 
   test("LogInput's value updates correctly when interacting with the input itself", () => {
-    render(<LogController handleSaveButton={jest.fn()} />);
-
-    // weight input do not accept negative values
+    // WeightInput do not accept negative values
     userEvent.clear(screen.getByLabelText('weight'));
     userEvent.type(screen.getByLabelText('weight'), '-21');
     expect(screen.getByLabelText('weight')).toHaveValue(null);
 
-    // weight input do not accept alphabetical characters
+    // WeightInput do not accept alphabetical characters
     userEvent.clear(screen.getByLabelText('weight'));
     userEvent.type(screen.getByLabelText('weight'), 'Ninety Nine');
     expect(screen.getByLabelText('weight')).toHaveValue(null);
 
-    // weight input do not accept numbers larger than 9999
+    // WeightInput do not accept numbers larger than 9999
     userEvent.clear(screen.getByLabelText('weight'));
     userEvent.type(screen.getByLabelText('weight'), '9999999');
     expect(screen.getByLabelText('weight')).toHaveValue(9999);
 
-    // reps input do not accept negative values
+    // WeightInput should not accept numbers starting with 0
+    userEvent.clear(screen.getByLabelText('weight'));
+    userEvent.type(screen.getByLabelText('weight'), '0');
+    expect(screen.getByLabelText('weight')).toHaveValue(null);
+
+    // RepsInput do not accept negative values
     userEvent.clear(screen.getByLabelText('reps'));
     userEvent.type(screen.getByLabelText('reps'), '-21');
     expect(screen.getByLabelText('reps')).toHaveValue(null);
 
-    // reps input do not accept alphabetical characters
+    // RepsInput do not accept alphabetical characters
     userEvent.clear(screen.getByLabelText('reps'));
     userEvent.type(screen.getByLabelText('reps'), 'Ninety Nine');
     expect(screen.getByLabelText('reps')).toHaveValue(null);
 
-    // reps input do not accept numbers larger than 99
+    // RepsInput do not accept numbers larger than 99
     userEvent.clear(screen.getByLabelText('reps'));
     userEvent.type(screen.getByLabelText('reps'), '9999999');
     expect(screen.getByLabelText('reps')).toHaveValue(99);
+
+    // RepsInput should not accept numbers starting with 0
+    userEvent.clear(screen.getByLabelText('reps'));
+    userEvent.type(screen.getByLabelText('reps'), '0');
+    expect(screen.getByLabelText('reps')).toHaveValue(null);
   });
 
-  test("LogInput's value updates correctly when interacting with both the buttons and input", () => {
-    // TODO:
+  test("LogInput's value updates correctly when interacting with both the increment/decrement buttons and input", () => {
+    const decreaseWeightButton = screen.getByTestId('decrease-weight');
+    const decreaseRepsButton = screen.getByTestId('decrease-reps');
+    const increaseWeightButton = screen.getByTestId('increase-weight');
+    const increaseRepsButton = screen.getByTestId('increase-reps');
+
+    // WeightInput have correct value after interaction
+    userEvent.clear(screen.getByLabelText('weight'));
+    userEvent.type(screen.getByLabelText('weight'), '22.5');
+    userEvent.click(increaseWeightButton);
+    expect(screen.getByLabelText('weight')).toHaveValue(25);
+    userEvent.click(decreaseWeightButton);
+    expect(screen.getByLabelText('weight')).toHaveValue(22.5);
+
+    // RepsInput have correct value after interaction
+    userEvent.clear(screen.getByLabelText('reps'));
+    userEvent.type(screen.getByLabelText('reps'), '20');
+    userEvent.click(increaseRepsButton);
+    expect(screen.getByLabelText('reps')).toHaveValue(21);
+    userEvent.click(decreaseRepsButton);
+    expect(screen.getByLabelText('reps')).toHaveValue(20);
+  });
+
+  test("increment/decrement-buttons are disabled on LogInput's end values", () => {
+    // set WeightInput to max value and expect increase weight button to be disabled
+    userEvent.clear(screen.getByLabelText('weight'));
+    userEvent.type(screen.getByLabelText('weight'), '9999');
+    expect(screen.getByTestId('increase-weight')).toBeDisabled();
+    expect(screen.getByTestId('decrease-weight')).toBeEnabled();
+
+    // clear WeightInput and expect decrease weight button to be disabled
+    userEvent.clear(screen.getByLabelText('weight'));
+    expect(screen.getByTestId('increase-weight')).toBeEnabled();
+    expect(screen.getByTestId('decrease-weight')).toBeDisabled();
+
+    // set RepsInput to max value and expect increase reps button to be disabled
+    userEvent.clear(screen.getByLabelText('reps'));
+    userEvent.type(screen.getByLabelText('reps'), '99');
+    expect(screen.getByTestId('increase-reps')).toBeDisabled();
+    expect(screen.getByTestId('decrease-reps')).toBeEnabled();
+
+    // clear RepsInput and expect decrease reps button to be disabled
+    userEvent.clear(screen.getByLabelText('reps'));
+    expect(screen.getByTestId('increase-reps')).toBeEnabled();
+    expect(screen.getByTestId('decrease-reps')).toBeDisabled();
+  });
+
+  test('clicking ClearButton resets LogInput values', () => {
+    // find and type values in Weight- and RepsInput
+    userEvent.clear(screen.getByLabelText('weight'));
+    userEvent.type(screen.getByLabelText('weight'), '100');
+    userEvent.clear(screen.getByLabelText('reps'));
+    userEvent.type(screen.getByLabelText('reps'), '10');
+
+    // find and click clearButton
+    const clearButton = screen.getByRole('button', { name: /clear$/i });
+    userEvent.click(clearButton);
+
+    // expect input values to be null
+    expect(screen.getByLabelText('weight')).toHaveValue(null);
+    expect(screen.getByLabelText('reps')).toHaveValue(null);
   });
 });

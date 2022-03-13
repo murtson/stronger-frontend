@@ -30,7 +30,7 @@ test('should display categories while not loading', async () => {
 
   // expect categories list to be displayed and consist of 9 categories
   const categoriesList = screen.getAllByRole('listitem');
-  expect(categoriesList).toHaveLength(9);
+  expect(categoriesList).toHaveLength(exerciseCategories.length);
 
   // expect 'exercise categories' heading and 'add exercise' button to be present
   const listHeading = screen.getByText(/exercise categories/i);
