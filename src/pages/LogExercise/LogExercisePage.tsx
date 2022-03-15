@@ -51,6 +51,7 @@ const initialEditDataState: EditData = { selectedSetIndex: null, weight: null, r
 
 const LogExercisePage: React.FC = () => {
   const theme = useTheme();
+  let navigate = useNavigate();
   const [loggedSets, setLoggedSets] = useState<Set[]>([]);
   const [editData, setEditData] = useState<EditData>(initialEditDataState);
 
@@ -78,6 +79,10 @@ const LogExercisePage: React.FC = () => {
       const { weight, reps } = loggedSets[selectedSetIndex];
       setEditData({ selectedSetIndex, weight, reps });
     }
+  };
+
+  const handleFinishExercise = () => {
+    navigate('/workout/exercises');
   };
 
   return (
@@ -119,7 +124,7 @@ const LogExercisePage: React.FC = () => {
               borderTop: `1px solid ${theme.palette.neutral.main}`,
             }}
           >
-            <Button variant='contained' sx={{ width: 300 }}>
+            <Button variant='contained' sx={{ width: 300 }} onClick={handleFinishExercise}>
               Finish Exercise
             </Button>
           </Box>
