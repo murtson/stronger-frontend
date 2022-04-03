@@ -4,8 +4,8 @@ import { Box, Grid, Typography, IconButton, Divider } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircle';
 import LogInput from './LogInput/LogInput';
-import { Set } from '../../../interfaces/Set';
-import { EditData } from '../../../interfaces/EditData';
+import { Set } from '../../../ts/interfaces/Set';
+import { EditData } from '../../../ts/interfaces/EditData';
 
 const toFixedWeight = (number: number) => {
   return Number(number.toFixed(2));

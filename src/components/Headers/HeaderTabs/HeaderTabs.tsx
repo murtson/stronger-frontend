@@ -21,7 +21,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
 
 const StyledTab = styled((props: { label: string; value: string }) => <Tab {...props} />)(
   ({ theme }) => ({
-    fontSize: 18,
+    fontSize: 16,
     textTransform: 'none',
     [theme.breakpoints.down('md')]: {
       fontSize: 16,

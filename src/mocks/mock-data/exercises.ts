@@ -1,5 +1,5 @@
-import { CategoryColors } from '../../enums/colors';
-import { LogType } from '../../enums/logTypes';
+import { CategoryColors } from '../../ts/enums/colors';
+import { LogType } from '../../ts/enums/logTypes';
 
 export const exercises = [
   // ------------- CHEST --------------

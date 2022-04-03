@@ -1,27 +1,18 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { ExerciseCategory } from '../../interfaces/ExerciseCategory';
-import { Exercise } from '../../interfaces/Exercise';
-import { request, GraphQLClient, gql } from 'graphql-request';
-import { GET_EXERCISE_CATEGORIES, GET_ALL_EXERCISES } from '../../graphql/queries';
+import { ExerciseCategory } from '../../ts/interfaces/ExerciseCategory';
+import { Exercise } from '../../ts/interfaces/Exercise';
+import axios from 'axios';
 
-const client = new GraphQLClient(process.env.REACT_APP_BACKEND_URI as string, { headers: {} });
+const baseURL = 'http://localhost:4000/api/v1';
 
 export const getExerciseCategories = createAsyncThunk('content/getExerciseCategories', async () => {
-  try {
-    const response = await client.request(GET_EXERCISE_CATEGORIES);
-    return response.exerciseCategories;
-  } catch (err) {
-    return err;
-  }
+  const response = await axios.get(`${baseURL}/categories`);
+  return response.data;
 });
 
 export const getAllExercises = createAsyncThunk('content/getAllExercises', async () => {
-  try {
-    const response = await client.request(GET_ALL_EXERCISES);
-    return response.exercises;
-  } catch (err) {
-    return err;
-  }
+  const response = await axios.get(`${baseURL}/exercises`);
+  return response.data;
 });
 
 interface ContentState {
@@ -52,6 +43,7 @@ export const contentSlice = createSlice({
     });
     builder.addCase(getExerciseCategories.rejected, (state, action) => {
       state.loading = false;
+      state.error = action.error;
     });
     builder.addCase(getAllExercises.pending, (state) => {
       state.loading = true;
@@ -62,6 +54,7 @@ export const contentSlice = createSlice({
     });
     builder.addCase(getAllExercises.rejected, (state, action) => {
       state.loading = false;
+      state.error = action.error;
     });
   },
 });

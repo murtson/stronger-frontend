@@ -1,9 +1,9 @@
-import { CategoryColors } from '../../enums/colors';
+import { CategoryColors } from '../../ts/enums/colors';
 
 export const exerciseCategories = [
   {
     id: '1',
-    type: 'Chest',
+    name: 'Chest',
     color: CategoryColors.CHEST_COLOR,
     _count: {
       exercises: 11,
@@ -11,7 +11,7 @@ export const exerciseCategories = [
   },
   {
     id: '2',
-    type: 'Shoulder',
+    name: 'Shoulder',
     color: CategoryColors.SHOULDER_COLOR,
     _count: {
       exercises: 15,
@@ -19,7 +19,7 @@ export const exerciseCategories = [
   },
   {
     id: '3',
-    type: 'Triceps',
+    name: 'Triceps',
     color: CategoryColors.TRICEPS_COLOR,
     _count: {
       exercises: 12,
@@ -27,7 +27,7 @@ export const exerciseCategories = [
   },
   {
     id: '4',
-    type: 'Back',
+    name: 'Back',
     color: CategoryColors.BACK_COLOR,
     _count: {
       exercises: 18,
@@ -35,7 +35,7 @@ export const exerciseCategories = [
   },
   {
     id: '5',
-    type: 'Biceps',
+    name: 'Biceps',
     color: CategoryColors.BICEPS_COLOR,
     _count: {
       exercises: 11,
@@ -43,7 +43,7 @@ export const exerciseCategories = [
   },
   {
     id: '6',
-    type: 'Legs',
+    name: 'Legs',
     color: CategoryColors.LEGS_COLOR,
     _count: {
       exercises: 15,
@@ -51,7 +51,7 @@ export const exerciseCategories = [
   },
   {
     id: '7',
-    type: 'Calves',
+    name: 'Calves',
     color: CategoryColors.CALVES_COLOR,
     _count: {
       exercises: 5,
@@ -59,7 +59,7 @@ export const exerciseCategories = [
   },
   {
     id: '8',
-    type: 'Abs',
+    name: 'Abs',
     color: CategoryColors.ABS_COLOR,
     _count: {
       exercises: 9,
@@ -67,7 +67,7 @@ export const exerciseCategories = [
   },
   {
     id: '9',
-    type: 'Cardio',
+    name: 'Cardio',
     color: CategoryColors.CARDIO_COLOR,
     _count: {
       exercises: 8,

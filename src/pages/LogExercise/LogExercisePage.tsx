@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../redux/store';
+import { logExerciseSet } from '../../redux/slices/workoutSlice';
 
 import { useTheme } from '@mui/material';
 import { Divider, Box, Typography, IconButton, Button } from '@mui/material';
@@ -9,8 +12,8 @@ import LogExerciseHeader from './LogExerciseHeader/LogExerciseHeader';
 import LogController from './LogController/LogController';
 import LoggedSetsTable from './LoggedSetsTable/LoggedSetsTable';
 
-import { Set } from '../../interfaces/Set';
-import { EditData } from '../../interfaces/EditData';
+import { Set } from '../../ts/interfaces/Set';
+import { EditData } from '../../ts/interfaces/EditData';
 
 const styles = {
   controllerContainer: {
@@ -52,11 +55,19 @@ const initialEditDataState: EditData = { selectedSetIndex: null, weight: null, r
 const LogExercisePage: React.FC = () => {
   const theme = useTheme();
   let navigate = useNavigate();
+  const { id } = useParams();
+  const currentExercise = useSelector((state: RootState) => state.content.exercises).find(
+    (exercise) => exercise.id.toString() === id?.toString()
+  );
+  const dispatch = useDispatch<AppDispatch>();
   const [loggedSets, setLoggedSets] = useState<Set[]>([]);
   const [editData, setEditData] = useState<EditData>(initialEditDataState);
 
   const handleSaveButton = (set: Set) => {
-    setLoggedSets([...loggedSets, set]);
+    if (!currentExercise) return;
+    const newLoggedSets = [...loggedSets, set];
+    setLoggedSets(newLoggedSets);
+    dispatch(logExerciseSet({ exercise: currentExercise, sets: newLoggedSets }));
   };
 
   const handleUpdateButton = (selectedSetIndex: number, updatedSet: Set) => {
@@ -92,7 +103,7 @@ const LogExercisePage: React.FC = () => {
       </Snackbar> */}
       <LogExerciseHeader />
       <Box sx={styles.controllerContainer}>
-        <Typography variant='subtitle1'>Barbell Bench Press</Typography>
+        <Typography variant='subtitle1'>{currentExercise?.name}</Typography>
         <IconButton>
           <InfoOutlinedIcon sx={{ color: 'text.primary' }} />
         </IconButton>

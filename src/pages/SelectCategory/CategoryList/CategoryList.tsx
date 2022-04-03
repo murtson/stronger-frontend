@@ -14,7 +14,7 @@ import {
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
 
-import { ExerciseCategory } from '../../../interfaces/ExerciseCategory';
+import { ExerciseCategory } from '../../../ts/interfaces/ExerciseCategory';
 
 interface Props {
   categories: ExerciseCategory[];
@@ -78,7 +78,7 @@ const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
                         }}
                       />
                     </ListItemAvatar>
-                    <ListItemText primary={category.type}></ListItemText>
+                    <ListItemText primary={category.name}></ListItemText>
                     <ListItemIcon sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <NavigateNextIcon />
                     </ListItemIcon>

@@ -20,7 +20,7 @@ const SideTab = styled(
   )
 )(({ theme }) => ({
   minHeight: '42px',
-  fontSize: 16,
+
   marginLeft: '8px',
   marginRight: '8px',
   marginBottom: '16px',
@@ -136,7 +136,7 @@ const SideNavigation: React.FC = () => {
         onClick={handleClick}
         variant='contained'
         fullWidth
-        sx={{ fontSize: 16, borderRadius: 2, maxWidth: 275 }}
+        sx={{ borderRadius: 2, maxWidth: 275 }}
       >
         New workout
       </Button>

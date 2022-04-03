@@ -20,7 +20,7 @@ const SelectExercisesPage: React.FC = () => {
     <>
       <SelectExerciseHeader />
       <SearchField />
-      <ExerciseList categoryExercises={exercises} isLoading={isLoading} category={category?.type} />
+      <ExerciseList categoryExercises={exercises} isLoading={isLoading} category={category?.name} />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { Box, Grid, Typography, IconButton, Stack } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
-import { Exercise } from '../../../interfaces/Exercise';
+import { Exercise } from '../../../ts/interfaces/Exercise';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const LogExerciseHeader: React.FC = () => {

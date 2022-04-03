@@ -4,7 +4,7 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/store';
-import { incrementDate, decrementDate } from '../../redux/features/workoutSlice';
+import { incrementDate, decrementDate } from '../../redux/slices/workoutSlice';
 
 const Datepicker: React.FC = () => {
   const { selectedDate } = useSelector((state: RootState) => state.workout);
@@ -16,10 +16,6 @@ const Datepicker: React.FC = () => {
       sx={{
         marginTop: { md: '25px' },
         borderRadius: { xs: 0, md: 2 },
-        // borderTop: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
-        // borderRight: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
-        // borderLeft: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
-        // borderBottom: { xs: `1px solid ${theme.palette.neutral.main}` },
         height: 55,
         padding: 1,
         borderBox: 'box-fit',

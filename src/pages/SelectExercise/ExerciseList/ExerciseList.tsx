@@ -14,7 +14,7 @@ import {
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
 
-import { Exercise } from '../../../interfaces/Exercise';
+import { Exercise } from '../../../ts/interfaces/Exercise';
 
 interface Props {
   categoryExercises: Exercise[];

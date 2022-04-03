@@ -1,7 +1,7 @@
 import { Box, Table, TableHead, TableRow, TableCell, TableBody, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-import { Set } from '../../../interfaces/Set';
+import { Set } from '../../../ts/interfaces/Set';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:hover': {

@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import contentReducer from './features/contentSlice';
-import workoutReducer from './features/workoutSlice';
-import { getExerciseCategories, getAllExercises } from './features/contentSlice';
+import contentReducer from './slices/contentSlice';
+import workoutReducer from './slices/workoutSlice';
+import { getExerciseCategories, getAllExercises } from './slices/contentSlice';
+import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
@@ -15,3 +16,4 @@ store.dispatch(getAllExercises());
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
