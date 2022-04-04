@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import WorkoutHeader from '../../components/Headers/WorkoutHeader/WorkoutHeader';
 import DatePicker from '../../components/Datepicker/DatePicker';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState, useAppDispatch } from '../../redux/store';
+import { AppDispatch, RootState } from '../../redux/store';
 import { getWorkout, resetCurrentExercise } from '../../redux/slices/workoutSlice';
 
 function WorkoutPage() {

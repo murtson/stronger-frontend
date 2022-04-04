@@ -3,6 +3,6 @@ import { Set } from './Set';
 
 export interface ExerciseSet {
   setId: string;
-  exercises: Exercise;
+  exercise: Exercise;
   sets: Set[];
 }

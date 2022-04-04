@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import AppLayout from './layout/AppLayout/AppLayout';
-import WorkoutPage from './pages/Workout/WorkoutPage';
-import ExercisesView from './views/WorkoutPageViews/ExercisesView/ExercisesView';
-import OverviewView from './views/WorkoutPageViews/OverviewView/OverviewView';
-import HomePage from './pages/Home/HomePage';
+import WorkoutPage from './pages/workout/WorkoutPage';
+import ExercisesView from './pages/workout/views/exercises/ExercisesView';
+import OverviewView from './pages/workout/views/overview/OverviewView';
+import HomePage from './pages/home/HomePage';
 import StatsView from './views/HomePageViews/StatsView/StatsView';
 import MusclesView from './views/HomePageViews/MusclesView/MusclesView';
-import ProfilePage from './pages/Profile/ProfilePage';
+import ProfilePage from './pages/profile/ProfilePage';
 
 import LogLayout from './layout/LogLayout/LogLayout';
-import SelectCategoryPage from './pages/SelectCategory/SelectCategoryPage';
-import SelectExercisesPage from './pages/SelectExercise/SelectExercisesPage';
-import LogExercisePage from './pages/LogExercise/LogExercisePage';
+import SelectCategoryPage from './pages/select-category/SelectCategoryPage';
+import SelectExercisesPage from './pages/select-exercise/SelectExercisesPage';
+import LogExercisePage from './pages/log-exercise/LogExercisePage';
 
 function App() {
   return (

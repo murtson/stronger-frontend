@@ -21,7 +21,7 @@ export const mainTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['Roboto', 'sans-serif'].join(','),
+    fontFamily: ['IBM Plex Sans', 'sans-serif'].join(','),
     subtitle1: {
       // fontSize: 14,
       fontWeight: 500,

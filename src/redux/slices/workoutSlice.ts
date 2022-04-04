@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { SelectedDate } from '../../ts/interfaces/SelectedDate';
 import {
   incrementByOneDay,
@@ -130,12 +130,11 @@ export const workoutSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(createWorkoutSet.fulfilled, (state, action) => {
-      const exerciseSet = action.payload.exercises[0];
-      const workout = action.payload;
+      const { updatedWorkout, newSet } = action.payload;
       state.loading = false;
       state.error = null;
-      state.currentWorkout = workout;
-      state.currentExercise = exerciseSet;
+      state.currentWorkout = updatedWorkout;
+      state.currentExercise = newSet;
     });
     builder.addCase(createWorkoutSet.rejected, (state, action) => {
       state.loading = false;
