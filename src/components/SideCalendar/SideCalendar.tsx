@@ -16,7 +16,7 @@ function SideCalendar() {
         // boxShadow: '0px 2px 4px  rgba(0,0,0,0.2)',
       }}
     >
-      <Typography variant='h6' align='center' sx={{ fontWeight: 600, lineHeight: 1.25 }}>
+      <Typography variant='subtitle1' align='center' sx={{ fontWeight: 600, lineHeight: 1.25 }}>
         Calendar
       </Typography>
     </Box>

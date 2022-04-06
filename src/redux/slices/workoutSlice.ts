@@ -4,6 +4,7 @@ import {
   incrementByOneDay,
   decrementByOneDay,
 } from '../../services/DatePickerService/DatePickerService';
+import * as WorkoutService from '../../services/WorkoutService/WorkoutService';
 import dayjs from 'dayjs';
 import { RootState } from '../store';
 import axios from 'axios';
@@ -11,8 +12,17 @@ import { Exercise } from '../../ts/interfaces/Exercise';
 import { Workout } from '../../ts/interfaces/Workout';
 import { ExerciseSet } from '../../ts/interfaces/ExerciseSet';
 import { Set } from '../../ts/interfaces/Set';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 const baseURL = 'http://localhost:4000/api/v1';
+
+export const getAllWorkouts = createAsyncThunk(
+  'workout/getAllWorkouts',
+  async (_, { getState }) => {
+    const workouts = await axios.get(`${baseURL}/user-workout`);
+    return workouts.data;
+  }
+);
 
 export const getWorkout = createAsyncThunk('workout/getWorkout', async (_, { getState }) => {
   const appState = getState() as RootState;
@@ -25,16 +35,16 @@ export const logExerciseSet = createAsyncThunk(
   'workout/logExerciseSet',
   async (args: { exercise: Exercise; sets: Set[] }, { getState, dispatch }) => {
     const appState = getState() as RootState;
-    const { currentWorkout, currentExercise } = appState.workout;
+    const { currentWorkout, editingExercise } = appState.workout;
     // if no workout exists, create new workout
     if (!currentWorkout) return dispatch(createWorkout(args));
     // add new set to existing workout
-    else if (!currentExercise) return dispatch(createWorkoutSet(args));
+    else if (!editingExercise) return dispatch(createWorkoutSet(args));
     // we are editing an existing set on an existing workout
     else {
       const input = {
         workoutId: currentWorkout._id,
-        setId: currentExercise.setId,
+        setId: editingExercise.setId,
         sets: args.sets,
       };
       return dispatch(updateWorkoutSets(input));
@@ -83,7 +93,8 @@ interface WorkoutState {
   error: null | {};
   selectedDate: SelectedDate;
   currentWorkout: null | Workout;
-  currentExercise: null | ExerciseSet;
+  editingExercise: null | ExerciseSet;
+  userWorkouts: null | Workout[];
 }
 
 const initialState: WorkoutState = {
@@ -94,15 +105,19 @@ const initialState: WorkoutState = {
     displayValue: 'Today',
   },
   currentWorkout: null,
-  currentExercise: null,
+  editingExercise: null,
+  userWorkouts: null,
 };
 
 export const workoutSlice = createSlice({
   name: 'workout',
   initialState,
   reducers: {
-    resetCurrentExercise: (state) => {
-      state.currentExercise = null;
+    setEditingExercise: (state, action: PayloadAction<ExerciseSet>) => {
+      state.editingExercise = action.payload;
+    },
+    resetEditingExercise: (state) => {
+      state.editingExercise = null;
     },
     incrementDate: (state) => {
       state.selectedDate = incrementByOneDay(state.selectedDate);
@@ -120,7 +135,7 @@ export const workoutSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.currentWorkout = updatedWorkout;
-      state.currentExercise = updatedExerciseSet;
+      state.editingExercise = updatedExerciseSet;
     });
     builder.addCase(updateWorkoutSets.rejected, (state, action) => {
       state.loading = false;
@@ -134,7 +149,7 @@ export const workoutSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.currentWorkout = updatedWorkout;
-      state.currentExercise = newSet;
+      state.editingExercise = newSet;
     });
     builder.addCase(createWorkoutSet.rejected, (state, action) => {
       state.loading = false;
@@ -149,13 +164,12 @@ export const workoutSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.currentWorkout = workout;
-      state.currentExercise = exerciseSet;
+      state.editingExercise = exerciseSet;
     });
     builder.addCase(createWorkout.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error;
     });
-
     builder.addCase(getWorkout.pending, (state) => {
       state.loading = true;
     });
@@ -168,10 +182,23 @@ export const workoutSlice = createSlice({
       state.loading = false;
       state.error = action.error;
     });
+    builder.addCase(getAllWorkouts.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getAllWorkouts.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.userWorkouts = WorkoutService.sortByDate(action.payload);
+    });
+    builder.addCase(getAllWorkouts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    });
   },
 });
 
 // action creators are generated for each case reducer function
-export const { incrementDate, decrementDate, resetCurrentExercise } = workoutSlice.actions;
+export const { incrementDate, decrementDate, resetEditingExercise, setEditingExercise } =
+  workoutSlice.actions;
 
 export default workoutSlice.reducer;

@@ -5,14 +5,14 @@ import WorkoutHeader from '../../components/Headers/WorkoutHeader/WorkoutHeader'
 import DatePicker from '../../components/Datepicker/DatePicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { getWorkout, resetCurrentExercise } from '../../redux/slices/workoutSlice';
+import { getWorkout, resetEditingExercise } from '../../redux/slices/workoutSlice';
 
-function WorkoutPage() {
-  const { currentWorkout, selectedDate } = useSelector((state: RootState) => state.workout);
+const WorkoutPage: React.FC = () => {
+  const { selectedDate } = useSelector((state: RootState) => state.workout);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(resetCurrentExercise());
+    dispatch(resetEditingExercise());
   }, []);
 
   useEffect(() => {
@@ -33,6 +33,6 @@ function WorkoutPage() {
       <Outlet />
     </Box>
   );
-}
+};
 
 export default WorkoutPage;

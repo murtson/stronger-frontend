@@ -56,40 +56,46 @@ const LogExercisePage: React.FC = () => {
   const theme = useTheme();
   let navigate = useNavigate();
   const { id } = useParams();
-  const currentExercise = useSelector((state: RootState) => state.content.exercises).find(
+  const loggingExercise = useSelector((state: RootState) => state.content.exercises).find(
     (exercise) => exercise.id.toString() === id?.toString()
   );
+  const { editingExercise, loading, error } = useSelector((state: RootState) => state.workout);
   const dispatch = useDispatch<AppDispatch>();
   const [loggedSets, setLoggedSets] = useState<Set[]>([]);
   const [editData, setEditData] = useState<EditData>(initialEditDataState);
 
+  useEffect(() => {
+    if (!editingExercise) return;
+    setLoggedSets(editingExercise.sets);
+  }, [editingExercise]);
+
   const handleSaveButton = (set: Set) => {
-    if (!currentExercise) return;
+    if (!loggingExercise) return;
     const newLoggedSets = [...loggedSets, set];
-    setLoggedSets(newLoggedSets);
-    dispatch(logExerciseSet({ exercise: currentExercise, sets: newLoggedSets }));
+    dispatch(logExerciseSet({ exercise: loggingExercise, sets: newLoggedSets }));
   };
 
   const handleUpdateButton = (selectedSetIndex: number, updatedSet: Set) => {
+    if (!loggingExercise) return;
     const newLoggedSets = [...loggedSets];
     newLoggedSets[selectedSetIndex] = updatedSet;
-    setLoggedSets(newLoggedSets);
+    dispatch(logExerciseSet({ exercise: loggingExercise, sets: newLoggedSets }));
     setEditData(initialEditDataState);
   };
 
   const handleDeleteButton = (selectedSetIndex: number) => {
+    if (!loggingExercise) return;
     const newLoggedSets = [...loggedSets];
     newLoggedSets.splice(selectedSetIndex, 1);
-    setLoggedSets(newLoggedSets);
+    dispatch(logExerciseSet({ exercise: loggingExercise, sets: newLoggedSets }));
     setEditData(initialEditDataState);
   };
 
   const handleSelectSet = (selectedSetIndex: number) => {
-    if (selectedSetIndex === editData.selectedSetIndex) return setEditData(initialEditDataState);
-    else {
-      const { weight, reps } = loggedSets[selectedSetIndex];
-      setEditData({ selectedSetIndex, weight, reps });
-    }
+    const clickSameSet = selectedSetIndex === editData.selectedSetIndex;
+    if (clickSameSet) return setEditData(initialEditDataState);
+    const { weight, reps } = loggedSets[selectedSetIndex];
+    setEditData({ selectedSetIndex, weight, reps });
   };
 
   const handleFinishExercise = () => {
@@ -103,7 +109,7 @@ const LogExercisePage: React.FC = () => {
       </Snackbar> */}
       <LogExerciseHeader />
       <Box sx={styles.controllerContainer}>
-        <Typography variant='subtitle1'>{currentExercise?.name}</Typography>
+        <Typography variant='subtitle1'>{loggingExercise?.name}</Typography>
         <IconButton>
           <InfoOutlinedIcon sx={{ color: 'text.primary' }} />
         </IconButton>
@@ -113,6 +119,7 @@ const LogExercisePage: React.FC = () => {
         handleSaveButton={handleSaveButton}
         handleUpdateButton={handleUpdateButton}
         handleDeleteButton={handleDeleteButton}
+        loading={loading}
       />
       <Divider sx={{ border: { md: 0 } }} />
       <Box sx={styles.setsAndButtonContainer}>

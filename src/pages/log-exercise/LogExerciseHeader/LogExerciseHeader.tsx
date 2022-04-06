@@ -20,7 +20,6 @@ const LogExerciseHeader: React.FC = () => {
         // backgroundColor: { xs: 'white', md: 'transparent' },
         // padding: { xs: 1, md: '8px 0' },
         padding: { xs: 1, md: '16px 0' },
-
         boxSizing: 'border-box',
         marginBottom: 0,
       }}

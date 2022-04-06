@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, Divider } from '@mui/material';
 import React from 'react';
 import { ExerciseSet } from '../../../../../../ts/interfaces/ExerciseSet';
 import { ExerciseCategory } from '../../../../../../ts/interfaces/ExerciseCategory';

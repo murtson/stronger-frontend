@@ -12,7 +12,9 @@ const NoLoggedExercise: React.FC = () => {
         justifyContent: 'center',
       }}
     >
-      <Typography variant='subtitle1'>You have no logged workout for this date</Typography>
+      <Typography variant='subtitle1' sx={{ color: 'text.secondary' }}>
+        Workout Log Empty
+      </Typography>
     </Box>
   );
 };

@@ -6,6 +6,7 @@ import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircle';
 import LogInput from './LogInput/LogInput';
 import { Set } from '../../../ts/interfaces/Set';
 import { EditData } from '../../../ts/interfaces/EditData';
+import { LocalDining } from '@mui/icons-material';
 
 const toFixedWeight = (number: number) => {
   return Number(number.toFixed(2));
@@ -22,6 +23,7 @@ interface Props {
   handleUpdateButton: (selectedSetIndex: number, updatedSet: Set) => void;
   handleDeleteButton: (selectedSetIndex: number) => void;
   editData: EditData;
+  loading: boolean;
 }
 
 const LogController: React.FC<Props> = ({
@@ -29,6 +31,7 @@ const LogController: React.FC<Props> = ({
   handleSaveButton,
   handleUpdateButton,
   handleDeleteButton,
+  loading,
 }) => {
   const [weight, setWeight] = useState<number | null>(null);
   const [reps, setReps] = useState<number | null>(null);
@@ -179,6 +182,7 @@ const LogController: React.FC<Props> = ({
               variant='contained'
               color='secondary'
               onClick={handleClearButton}
+              loading={loading}
             >
               Clear
             </LoadingButton>
@@ -188,6 +192,7 @@ const LogController: React.FC<Props> = ({
               variant='contained'
               color='error'
               onClick={onDeleteButtonClick}
+              loading={loading}
             >
               Delete
             </LoadingButton>
@@ -200,11 +205,18 @@ const LogController: React.FC<Props> = ({
               variant='contained'
               color='success'
               onClick={onSaveButtonClick}
+              loading={loading}
             >
               Save
             </LoadingButton>
           ) : (
-            <LoadingButton fullWidth variant='contained' color='info' onClick={onUpdateButtonClick}>
+            <LoadingButton
+              fullWidth
+              variant='contained'
+              color='info'
+              onClick={onUpdateButtonClick}
+              loading={loading}
+            >
               Update
             </LoadingButton>
           )}

@@ -16,6 +16,7 @@ describe('LogController', () => {
         handleSaveButton={jest.fn()}
         handleUpdateButton={jest.fn()}
         handleDeleteButton={jest.fn()}
+        loading={false}
       />
     );
   });

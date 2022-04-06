@@ -32,7 +32,7 @@ const AppLayout: React.FC = () => {
       ) : null}
       <Grid
         container
-        maxWidth='lg'
+        maxWidth='xl'
         sx={{
           position: 'relative',
           display: 'flex',

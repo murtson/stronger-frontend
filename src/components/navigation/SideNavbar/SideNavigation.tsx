@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Stack, Typography, Button, Tabs, Tab } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box, Stack, Typography, Button, Tabs, Tab, Divider } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
 import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
@@ -48,6 +48,7 @@ type PageTabValues = '/stats' | '/exercises' | '';
 type IconPosition = 'top' | 'start' | 'end' | 'bottom';
 
 const SideNavigation: React.FC = () => {
+  const theme = useTheme();
   const [value, setValue] = useState('workout');
   let navigate = useNavigate();
   let location = useLocation();
@@ -90,7 +91,7 @@ const SideNavigation: React.FC = () => {
           width: '100%',
           backgroundColor: 'white',
           paddingBottom: 2,
-          paddingTop: 2,
+          overflow: 'hidden',
           borderRadius: 2,
           boxSizing: 'border-box',
           borderStyle: 'solid',
@@ -99,7 +100,16 @@ const SideNavigation: React.FC = () => {
           // boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
         }}
       >
-        <Typography variant='h6' sx={{ paddingLeft: 2.5, marginBottom: 2 }}>
+        <Typography
+          variant='subtitle1'
+          sx={{
+            paddingLeft: 2.5,
+            py: 2,
+            mb: 2,
+            // backgroundColor: '#f6f8fa',
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          }}
+        >
           Navigation
         </Typography>
 

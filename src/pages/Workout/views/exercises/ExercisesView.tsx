@@ -1,7 +1,7 @@
 import React from 'react';
 import LoggedExercise from './logged-exercise/LoggedExercise';
-import { Box, Typography } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
+import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { useAppDispatch, RootState } from '../../../../redux/store';
 import SkeletonLoggedSet from '../../../../components/Loaders/skeleton-logged-set/SkeletonLoggedSet';
 import NoLoggedExercise from './no-logged-exercise/NoLoggedExercise';
