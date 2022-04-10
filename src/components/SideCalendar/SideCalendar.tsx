@@ -5,7 +5,6 @@ function SideCalendar() {
   return (
     <Box
       sx={{
-        height: 325,
         backgroundColor: 'white',
         boxSizing: 'border-box',
         padding: 3,
@@ -13,12 +12,20 @@ function SideCalendar() {
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: 'divider',
-        // boxShadow: '0px 2px 4px  rgba(0,0,0,0.2)',
       }}
     >
-      <Typography variant='subtitle1' align='center' sx={{ fontWeight: 600, lineHeight: 1.25 }}>
-        Calendar
-      </Typography>
+      <Typography
+        variant='subtitle1'
+        align='center'
+        sx={{ fontWeight: 600, lineHeight: 1.25 }}
+      ></Typography>
+      <Box
+        sx={{
+          backgroundColor: 'white',
+          borderRadius: 2,
+          height: 325,
+        }}
+      ></Box>
     </Box>
   );
 }

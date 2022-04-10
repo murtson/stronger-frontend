@@ -1,9 +1,35 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Box, Grid, Typography, Button, Divider, IconButton } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Grid, Typography, ListItemButton } from '@mui/material';
 import { Workout } from '../../../ts/interfaces/Workout';
 import { format, parseISO } from 'date-fns';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import * as WorkoutService from '../../../services/WorkoutService/WorkoutService';
+import { useAppDispatch } from '../../../redux/store';
+import { setSelectedDate } from '../../../redux/slices/workoutSlice';
+
+const styles = {
+  root: {
+    my: 1,
+    px: 1,
+  },
+  dateBox: {
+    height: '100%',
+    backgroundColor: 'grey.300',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    borderRadius: 1,
+    width: 45,
+    boxSizing: 'border-box',
+  },
+  iconGrid: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+};
 
 interface Props {
   data: Workout;
@@ -12,40 +38,24 @@ interface Props {
 const HistoryWorkout: React.FC<Props> = ({ data }) => {
   const [exerciseCategories, setExerciseCategories] = useState<{ id: number; color: string }[]>([]);
   const date = parseISO(data.time.createdAt);
+  const dispatch = useAppDispatch();
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     const categories = WorkoutService.getWorkoutExerciseCategories(data);
     setExerciseCategories(categories);
   }, []);
 
+  const handleClick = (date: string) => {
+    dispatch(setSelectedDate(date));
+  };
+
   return (
-    <Fragment>
-      <Grid
-        container
-        sx={{
-          display: 'flex',
-          px: 1,
-          py: 2,
-          '&:hover': {
-            backgroundColor: 'neutral.light',
-          },
-          cursor: 'pointer',
-        }}
-      >
+    <ListItemButton sx={styles.root} onClick={() => handleClick(data.time.createdAt)}>
+      <Grid container>
         <Grid item xs={3}>
-          <Box
-            sx={{
-              height: '100%',
-              backgroundColor: 'grey.200',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              borderRadius: 1,
-              width: 45,
-              boxSizing: 'border-box',
-            }}
-          >
+          <Box sx={styles.dateBox}>
             <Typography variant='subtitle2'>{format(date, 'MMM')}</Typography>
             <Typography variant='subtitle2'>{format(date, 'd')}</Typography>
           </Box>
@@ -70,16 +80,11 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
             </Typography>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={2}
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
-        >
+        <Grid item xs={2} sx={styles.iconGrid}>
           <NavigateNextIcon sx={{ color: 'text.secondary' }} />
         </Grid>
       </Grid>
-      <Divider sx={{ '&:last-of-type': { borderBottomWidth: { xs: 1, md: 0 } } }} />
-    </Fragment>
+    </ListItemButton>
   );
 };
 

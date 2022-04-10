@@ -1,11 +1,32 @@
 import React, { useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Button, Divider, List } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAppDispatch, RootState } from '../../redux/store';
 import { getAllWorkouts } from '../../redux/slices/workoutSlice';
-import HistoryWorkout from './history-workout/HistoryWorkout';
-import * as WorkoutService from '../../services/WorkoutService/WorkoutService';
+import HistoryWorkout from './HistoryWorkout/HistoryWorkout';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
+const styles = {
+  root: {
+    minHeight: 350,
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+  },
+  titleContainer: {
+    display: 'flex',
+    backgroundColor: 'grey.100',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    px: 1,
+  },
+  title: {
+    fontWeight: 600,
+    lineHeight: 1.25,
+    py: 2,
+    color: 'text.secondary',
+  },
+};
 
 const SideHistory: React.FC = () => {
   const theme = useTheme();
@@ -17,38 +38,23 @@ const SideHistory: React.FC = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        minHeight: 350,
-        backgroundColor: 'white',
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-        borderRadius: 2,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: 'divider',
-      }}
-    >
-      <Typography
-        variant='subtitle1'
-        align='center'
-        sx={{
-          fontWeight: 600,
-          lineHeight: 1.25,
-          py: 2,
-          backgroundColor: 'grey.200',
-          borderBottom: `1px solid ${theme.palette.divider}`,
-        }}
-      >
-        Workout History
-      </Typography>
-      <Box>
+    <Box sx={styles.root}>
+      <Box sx={styles.titleContainer}>
+        <Typography variant='subtitle1' align='left' sx={styles.title}>
+          Recent workouts
+        </Typography>
+        <Box>
+          <Button>View more</Button>
+        </Box>
+      </Box>
+      <Divider sx={{ mx: 1 }} />
+      <List>
         {userWorkouts ? (
           userWorkouts.map((workout) => <HistoryWorkout key={workout._id} data={workout} />)
         ) : (
           <div>no workouts</div>
         )}
-      </Box>
+      </List>
     </Box>
   );
 };

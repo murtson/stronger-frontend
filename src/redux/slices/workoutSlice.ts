@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { SelectedDate } from '../../ts/interfaces/SelectedDate';
-import {
-  incrementByOneDay,
-  decrementByOneDay,
-} from '../../services/DatePickerService/DatePickerService';
+import * as DatePickerService from '../../services/DatePickerService/DatePickerService';
 import * as WorkoutService from '../../services/WorkoutService/WorkoutService';
 import dayjs from 'dayjs';
 import { RootState } from '../store';
@@ -120,10 +117,17 @@ export const workoutSlice = createSlice({
       state.editingExercise = null;
     },
     incrementDate: (state) => {
-      state.selectedDate = incrementByOneDay(state.selectedDate);
+      state.selectedDate = DatePickerService.incrementByOneDay(state.selectedDate);
     },
     decrementDate: (state) => {
-      state.selectedDate = decrementByOneDay(state.selectedDate);
+      state.selectedDate = DatePickerService.decrementByOneDay(state.selectedDate);
+    },
+    setSelectedDate: (state, action: PayloadAction<string>) => {
+      const newDate = {
+        value: action.payload,
+        displayValue: DatePickerService.formatDisplayDate(action.payload),
+      };
+      state.selectedDate = newDate;
     },
   },
   extraReducers: (builder) => {
@@ -198,7 +202,12 @@ export const workoutSlice = createSlice({
 });
 
 // action creators are generated for each case reducer function
-export const { incrementDate, decrementDate, resetEditingExercise, setEditingExercise } =
-  workoutSlice.actions;
+export const {
+  incrementDate,
+  decrementDate,
+  setSelectedDate,
+  resetEditingExercise,
+  setEditingExercise,
+} = workoutSlice.actions;
 
 export default workoutSlice.reducer;

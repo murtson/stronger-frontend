@@ -103,6 +103,7 @@ const SideNavigation: React.FC = () => {
         <Typography
           variant='subtitle1'
           sx={{
+            fontWeight: 600,
             paddingLeft: 2.5,
             py: 2,
             mb: 2,

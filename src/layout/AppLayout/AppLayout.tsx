@@ -41,17 +41,17 @@ const AppLayout: React.FC = () => {
         }}
       >
         {isMediumAndUpScreen ? (
-          <Grid item md={4} lg={3}>
+          <Grid item md={4} lg={3.5}>
             <SideNavigation />
           </Grid>
         ) : null}
-        <Grid item xs={12} md={7} lg={6} sx={{ display: 'flex' }}>
+        <Grid item xs={12} md={7} lg={5} sx={{ display: 'flex' }}>
           <Outlet />
           {isMediumAndUpScreen ? null : <BottomNavbar />}
           {isMediumAndUpScreen ? null : <AppSpeedDial />}
         </Grid>
         {isLargerAndUpScreen ? (
-          <Grid item lg={3}>
+          <Grid item lg={3.5}>
             <Stack spacing={3} sx={{ marginLeft: 4, marginRight: 4, marginTop: '150px' }}>
               <SideCalendar />
               <SideHistory />

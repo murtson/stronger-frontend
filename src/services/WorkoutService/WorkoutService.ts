@@ -5,7 +5,7 @@ import parseISO from 'date-fns/parseISO';
 export const sortByDate = (workouts: Workout[]) => {
   const newWorkouts = [...workouts];
   newWorkouts.sort((a, b) => {
-    return getUnixTime(parseISO(a.time.createdAt)) - getUnixTime(parseISO(b.time.createdAt));
+    return getUnixTime(parseISO(b.time.createdAt)) - getUnixTime(parseISO(a.time.createdAt));
   });
   return newWorkouts;
 };
