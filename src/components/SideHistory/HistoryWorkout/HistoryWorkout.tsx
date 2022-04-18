@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Grid, Typography, ListItemButton } from '@mui/material';
+import { Box, Grid, Typography, ListItemButton, Chip } from '@mui/material';
 import { Workout } from '../../../ts/interfaces/Workout';
 import { format, parseISO } from 'date-fns';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -39,7 +39,6 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
   const [exerciseCategories, setExerciseCategories] = useState<{ id: number; color: string }[]>([]);
   const date = parseISO(data.time.createdAt);
   const dispatch = useAppDispatch();
-
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -61,7 +60,7 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
           </Box>
         </Grid>
         <Grid item xs={7}>
-          <Box sx={{ mb: 1 }}>
+          <Box sx={{ mb: 2 }}>
             <Box sx={{ display: 'flex', gap: '5px', mb: 0.5 }}>
               {exerciseCategories.map((category) => (
                 <Box
@@ -74,10 +73,15 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
               <Typography variant='subtitle2'>Chest Shoulder</Typography>
             </Box>
           </Box>
-          <Box>
-            <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography noWrap={true} variant='subtitle2' sx={{ color: 'text.secondary' }}>
               {data.exercises.length} exercises
             </Typography>
+            <Chip
+              label={data.isCompleted ? 'completed' : 'in progress'}
+              color={data.isCompleted ? 'success' : 'primary'}
+              sx={{ height: 24, ml: 1.5, width: 100 }}
+            />
           </Box>
         </Grid>
         <Grid item xs={2} sx={styles.iconGrid}>

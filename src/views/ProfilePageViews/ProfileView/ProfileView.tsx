@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import ProfileInfo from '../../../components/ProfileInfo/ProfileInfo';
+import ProfileInfo from '../../../pages/ProfilePage/ProfileInfo/ProfileInfo';
 
 const ProfileView: React.FC = () => {
   return (

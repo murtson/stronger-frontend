@@ -11,7 +11,7 @@ import { ExerciseSet } from '../../ts/interfaces/ExerciseSet';
 import { Set } from '../../ts/interfaces/Set';
 import { PayloadAction } from '@reduxjs/toolkit';
 
-const baseURL = 'http://localhost:4000/api/v1';
+const baseURL = 'http://192.168.1.177:4000/api/v1';
 
 export const getAllWorkouts = createAsyncThunk(
   'workout/getAllWorkouts',
@@ -34,9 +34,9 @@ export const logExerciseSet = createAsyncThunk(
     const appState = getState() as RootState;
     const { currentWorkout, editingExercise } = appState.workout;
     // if no workout exists, create new workout
-    if (!currentWorkout) return dispatch(createWorkout(args));
+    if (!currentWorkout) dispatch(createWorkout(args));
     // add new set to existing workout
-    else if (!editingExercise) return dispatch(createWorkoutSet(args));
+    else if (!editingExercise) dispatch(createWorkoutSet(args));
     // we are editing an existing set on an existing workout
     else {
       const input = {
@@ -44,7 +44,7 @@ export const logExerciseSet = createAsyncThunk(
         setId: editingExercise.setId,
         sets: args.sets,
       };
-      return dispatch(updateWorkoutSets(input));
+      dispatch(updateWorkoutSets(input));
     }
   }
 );
@@ -84,6 +84,25 @@ export const updateWorkoutSets = createAsyncThunk(
     return workout.data;
   }
 );
+
+export const completeWorkout = createAsyncThunk(
+  'workout/completeWorkout',
+  async (_, { getState }) => {
+    const appState = getState() as RootState;
+    const { currentWorkout } = appState.workout;
+    if (!currentWorkout) return;
+    const workout = await axios.post(`${baseURL}/user-workout/complete/${currentWorkout._id}`);
+    return workout.data;
+  }
+);
+
+export const deleteWorkout = createAsyncThunk('workout/deleteWorkout', async (_, { getState }) => {
+  const appState = getState() as RootState;
+  const { currentWorkout } = appState.workout;
+  if (!currentWorkout) return;
+  const workout = await axios.post(`${baseURL}/user-workout/delete/${currentWorkout._id}`);
+  return workout.data;
+});
 
 interface WorkoutState {
   loading: boolean;
@@ -195,6 +214,30 @@ export const workoutSlice = createSlice({
       state.userWorkouts = WorkoutService.sortByDate(action.payload);
     });
     builder.addCase(getAllWorkouts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    });
+    builder.addCase(completeWorkout.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(completeWorkout.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.currentWorkout = action.payload;
+    });
+    builder.addCase(completeWorkout.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    });
+    builder.addCase(deleteWorkout.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(deleteWorkout.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.currentWorkout = action.payload;
+    });
+    builder.addCase(deleteWorkout.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error;
     });

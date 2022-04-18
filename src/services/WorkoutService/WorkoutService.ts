@@ -23,3 +23,22 @@ export const getWorkoutExerciseCategories = (workout: Workout) => {
 
   return categories;
 };
+
+export const getNumberOfSets = (workout: Workout | null) => {
+  if (!workout) return '0 sets';
+  let numOfSets = 0;
+  let stringFormat = 'set';
+  workout.exercises.forEach((exerciseSet) => {
+    numOfSets += exerciseSet.sets.length;
+  });
+  if (numOfSets > 1) stringFormat = 'sets';
+  return `${numOfSets} ${stringFormat}`;
+};
+
+export const getNumberOfExercises = (workout: Workout | null) => {
+  if (!workout) return '0 exercises';
+  let stringFormat = 'exercise';
+  const numOfExercises = workout.exercises.length;
+  if (numOfExercises > 1) stringFormat = 'exercises';
+  return `${numOfExercises} ${stringFormat}`;
+};

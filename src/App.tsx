@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 import AppLayout from './layout/AppLayout/AppLayout';
 import WorkoutPage from './pages/WorkoutPage/WorkoutPage';
-import ExercisesView from './pages/WorkoutPage/views/exercises/ExercisesView';
-import OverviewView from './pages/WorkoutPage/views/overview/OverviewView';
+import ExercisesView from './pages/WorkoutPage/views/ExercisesView/ExercisesView';
+import OverviewView from './pages/WorkoutPage/views/OverviewView/OverviewView';
 import HomePage from './pages/HomePage/HomePage';
 import StatsView from './views/HomePageViews/StatsView/StatsView';
 import MusclesView from './views/HomePageViews/MusclesView/MusclesView';

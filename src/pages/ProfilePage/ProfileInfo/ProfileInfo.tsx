@@ -61,7 +61,7 @@ const ProfileInfo: React.FC = () => {
           </Typography>
         </Grid>
         <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-          <Button variant='contained' sx={{ flex: 0, borderRadius: 2, minWidth: { md: '200px' } }}>
+          <Button variant='contained' sx={{ flex: 0, minWidth: { md: '200px' } }}>
             Edit your profile
           </Button>
         </Grid>

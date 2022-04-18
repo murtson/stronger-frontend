@@ -1,5 +1,5 @@
 import React from 'react';
-import LoggedExercise from './logged-exercise/LoggedExercise';
+import LoggedExercise from './LoggedExercise/LoggedExercise';
 import { Box, List } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useAppDispatch, RootState } from '../../../../redux/store';
@@ -12,11 +12,12 @@ const styles = {
     flex: 1,
     backgroundColor: 'white',
     flexDirection: 'column',
-    margin: { xs: 0, md: '24px 0' },
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'divider',
+    boxShadow: { xs: 'none', md: '0 1px 2px rgba(0, 0, 0, 0.2)' },
     borderRadius: { xs: 0, md: 2 },
+    mb: { xs: 0, md: 2 },
+    borderStyle: 'solid',
+    borderWidth: { xs: 1, md: 0 },
+    borderColor: 'divider',
     overflow: 'hidden',
   },
 };

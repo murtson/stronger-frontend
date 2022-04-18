@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Stack, Typography, Button, Tabs, Tab, Divider } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { Box, Typography, Button, Tabs, Tab, Divider } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { styled } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../../redux/store';
+import { completeWorkout, deleteWorkout } from '../../../redux/slices/workoutSlice';
 import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
+
+import DeleteWorkoutDialog from '../../dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
+import CompleteWorkoutDialog from '../../dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
 
 const SideTabs = styled(Tabs)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -19,12 +26,9 @@ const SideTab = styled(
     <Tab {...props} />
   )
 )(({ theme }) => ({
-  minHeight: '42px',
-
-  marginLeft: '8px',
-  marginRight: '8px',
-  marginBottom: '16px',
-  borderRadius: '8px',
+  minHeight: '46px',
+  marginBottom: theme.spacing(2),
+  borderRadius: '50px',
   textTransform: 'none',
   justifyContent: 'flex-start',
 
@@ -47,14 +51,28 @@ type PageValues = 'home' | 'workout' | 'profile';
 type PageTabValues = '/stats' | '/exercises' | '';
 type IconPosition = 'top' | 'start' | 'end' | 'bottom';
 
+const styles = {
+  root: {
+    maxWidth: 250,
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 2,
+    boxSizing: 'border-box',
+    p: 2,
+    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+    // borderWidth: { xs: 1, md: 0 },
+    // borderColor: 'divider',
+    // borderStyle: 'solid',
+  },
+};
+
 const SideNavigation: React.FC = () => {
-  const theme = useTheme();
-  const [value, setValue] = useState('workout');
   let navigate = useNavigate();
   let location = useLocation();
 
+  const [value, setValue] = useState('workout');
+
   useEffect(() => {
-    // Perhaps do something with Typescript?
     const pathname = location.pathname.split('/');
     setValue(pathname[1]);
   }, [location]);
@@ -68,89 +86,32 @@ const SideNavigation: React.FC = () => {
     navigate(`${newValue}${subRoute}`);
   };
 
-  const handleClick = (event: React.SyntheticEvent) => {
-    navigate('/log/category');
-  };
-
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
-        marginRight: 4,
-        marginLeft: 4,
-        marginTop: { xs: '125px', md: '150px' },
-        height: 325,
-      }}
-    >
-      <Box
-        sx={{
-          maxWidth: 275,
-          width: '100%',
-          backgroundColor: 'white',
-          paddingBottom: 2,
-          overflow: 'hidden',
-          borderRadius: 2,
-          boxSizing: 'border-box',
-          borderStyle: 'solid',
-          borderWidth: 1,
-          borderColor: 'divider',
-          // boxShadow: '0 2px 1px 0 rgb(0 0 0 / 10%)',
-        }}
+    <Box sx={styles.root}>
+      <Typography variant='h6' sx={{ color: 'primary.main', mb: 2, pl: 2 }}>
+        Stronger
+      </Typography>
+      <SideTabs
+        value={value}
+        onChange={handleChange}
+        centered
+        variant='fullWidth'
+        orientation='vertical'
       >
-        <Typography
-          variant='subtitle1'
-          sx={{
-            fontWeight: 600,
-            paddingLeft: 2.5,
-            py: 2,
-            mb: 2,
-            // backgroundColor: '#f6f8fa',
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          }}
-        >
-          Navigation
-        </Typography>
-
-        <Stack spacing={5} sx={{ paddingTop: 0 }}>
-          <SideTabs
-            value={value}
-            onChange={handleChange}
-            centered
-            variant='fullWidth'
-            orientation='vertical'
-          >
-            <SideTab
-              label='Home'
-              value='home'
-              icon={<DonutSmallOutlinedIcon />}
-              iconPosition='start'
-            />
-            <SideTab
-              label='Workout'
-              value='workout'
-              icon={<WhatshotOutlinedIcon />}
-              iconPosition='start'
-            />
-            <SideTab
-              label='Profile'
-              value='profile'
-              icon={<AccountCircleOutlinedIcon />}
-              iconPosition='start'
-            />
-          </SideTabs>
-        </Stack>
-      </Box>
-      <Button
-        onClick={handleClick}
-        variant='contained'
-        fullWidth
-        sx={{ borderRadius: 2, maxWidth: 275 }}
-      >
-        New workout
-      </Button>
+        <SideTab label='Home' value='home' icon={<DonutSmallOutlinedIcon />} iconPosition='start' />
+        <SideTab
+          label='Workout'
+          value='workout'
+          icon={<WhatshotOutlinedIcon />}
+          iconPosition='start'
+        />
+        <SideTab
+          label='Profile'
+          value='profile'
+          icon={<AccountCircleOutlinedIcon />}
+          iconPosition='start'
+        />
+      </SideTabs>
     </Box>
   );
 };

@@ -3,7 +3,7 @@ import { ExerciseCategory } from '../../ts/interfaces/ExerciseCategory';
 import { Exercise } from '../../ts/interfaces/Exercise';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:4000/api/v1';
+const baseURL = 'http://192.168.1.177:4000/api/v1';
 
 export const getExerciseCategories = createAsyncThunk('content/getExerciseCategories', async () => {
   const response = await axios.get(`${baseURL}/categories`);

@@ -1,4 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, IconButton, Paper } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import React from 'react';
 
 function SideCalendar() {
@@ -7,18 +9,27 @@ function SideCalendar() {
       sx={{
         backgroundColor: 'white',
         boxSizing: 'border-box',
-        padding: 3,
+        padding: 1,
         borderRadius: 2,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: 'divider',
+
+        // borderWidth: 1,
+        // borderStyle: 'solid',
+        // borderColor: 'divider',
+        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
       }}
     >
-      <Typography
-        variant='subtitle1'
-        align='center'
-        sx={{ fontWeight: 600, lineHeight: 1.25 }}
-      ></Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <IconButton>
+          <NavigateBeforeIcon />
+        </IconButton>
+        <Typography variant='subtitle1' align='center'>
+          April 2022
+        </Typography>
+        <IconButton>
+          <NavigateNextIcon />
+        </IconButton>
+      </Box>
+
       <Box
         sx={{
           backgroundColor: 'white',

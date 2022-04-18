@@ -5,20 +5,28 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/store';
 import { incrementDate, decrementDate } from '../../redux/slices/workoutSlice';
+import { useTheme } from '@mui/material';
 
 const Datepicker: React.FC = () => {
   const { selectedDate } = useSelector((state: RootState) => state.workout);
   const dispatch = useDispatch<AppDispatch>();
+  const theme = useTheme();
 
   return (
     <Grid
       container
       sx={{
-        marginTop: { md: '25px' },
-        borderRadius: { xs: 0, md: 2 },
-        height: 55,
-        padding: 1,
+        padding: 0.5,
         borderBox: 'box-fit',
+        my: { xs: 0.5, md: 1 },
+
+        // borderRadius: 2,
+        // boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+        // backgroundColor: { xs: 'transparent', md: 'white' },
+        // border: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
+
+        // borderTop: `1px solid ${theme.palette.divider}`,
+        // borderBottom: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Grid

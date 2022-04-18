@@ -46,26 +46,29 @@ export const mainTheme = createTheme({
     info: {
       light: '#C2E9FF',
       main: '#3DABE8',
-      contrastText: 'white',
+      contrastText: '#FFFFFF',
     },
     primary: {
-      light: 'rgb(229 242 255)',
-      main: '#007FFF',
+      light: '#d7ebff',
+      main: '#1b82eb',
+      dark: '#095db3',
+      contrastText: '#FFFFFF',
     },
     warning: {
       main: '#F95555',
     },
     success: {
-      main: '#3FD2A0',
-      contrastText: 'white',
+      main: '#32cf92',
+      contrastText: '#FFFFFF',
     },
     error: {
       main: '#F95555',
     },
     neutral: {
       light: '#f5f5f5',
-      main: '#dbdee5',
-      dark: '#757d91',
+      main: '#e0e0e0',
+      dark: '#9e9e9e',
+      contrastText: '#000000',
     },
   },
 });

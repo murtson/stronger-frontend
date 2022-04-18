@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ExerciseSet } from '../../../../../ts/interfaces/ExerciseSet';
 import { ListItemButton } from '@mui/material';
-import LoggedExerciseHeader from './header/LoggedExerciseHeader';
-import LoggedExerciseBody from './body/LoggedExerciseBody';
+import LoggedExerciseHeader from './LoggedExerciseHeader/LoggedExerciseHeader';
+import LoggedExerciseBody from './LoggedExerciseBody/LoggedExerciseBody';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAppDispatch, RootState } from '../../../../../redux/store';
 import { setEditingExercise } from '../../../../../redux/slices/workoutSlice';
@@ -33,7 +33,6 @@ export const LoggedExercise: React.FC<props> = ({ exerciseSet, setIndex }) => {
   return (
     <ListItemButton onClick={handleClick} sx={styles.root} divider>
       <LoggedExerciseHeader setIndex={setIndex} exerciseSet={exerciseSet} />
-
       <LoggedExerciseBody exerciseSet={exerciseSet} />
     </ListItemButton>
   );

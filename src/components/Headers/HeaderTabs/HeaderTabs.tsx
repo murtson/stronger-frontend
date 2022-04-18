@@ -4,17 +4,11 @@ import { Tab, Tabs } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.divider}`,
-  color: 'white',
-  [theme.breakpoints.up('md')]: {
-    borderBottom: 'none',
-  },
   '& .MuiTabs-indicator': {
-    backgroundColor: 'primary.main',
-    height: '2px',
+    height: '3px',
 
     [theme.breakpoints.up('md')]: {
-      height: '2px',
+      height: '3px',
     },
   },
 }));
@@ -22,26 +16,22 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
 const StyledTab = styled((props: { label: string; value: string }) => <Tab {...props} />)(
   ({ theme }) => ({
     fontSize: 16,
-    textTransform: 'none',
-    [theme.breakpoints.down('md')]: {
-      fontSize: 16,
-    },
     fontWeight: 500,
-    color: theme.palette.text.secondary,
+    textTransform: 'none',
+    // color: theme.palette.neutral.contrastText,
+    opacity: 0.6,
     '&.Mui-selected': {
-      // color: theme.palette.text.primary,
-    },
-    '&.Mui-focusVisible': {
-      backgroundColor: '#d1eaff',
+      opacity: 1,
     },
   })
 );
 
 interface Props {
   tabs: { label: string; value: string }[];
+  colorTheme?: 'success' | 'primary' | 'neutral';
 }
 
-const HeaderTabs: React.FC<Props> = ({ tabs }) => {
+const HeaderTabs: React.FC<Props> = ({ tabs, colorTheme = 'neutral' }) => {
   const [value, setValue] = useState(tabs[0].value);
   let navigate = useNavigate();
   let location = useLocation();
@@ -61,9 +51,29 @@ const HeaderTabs: React.FC<Props> = ({ tabs }) => {
   };
 
   return (
-    <StyledTabs value={value} onChange={handleChange} centered variant='fullWidth'>
+    <StyledTabs
+      value={value}
+      onChange={handleChange}
+      centered
+      variant='fullWidth'
+      sx={{
+        '& .MuiTabs-indicator': {
+          backgroundColor: colorTheme === 'neutral' ? 'primary.main' : `${colorTheme}.contrastText`,
+        },
+      }}
+    >
       {tabs.map((tab, index) => (
-        <StyledTab key={index} label={tab.label} value={tab.value} />
+        <StyledTab
+          key={index}
+          label={tab.label}
+          value={tab.value}
+          sx={{
+            color: `${colorTheme}.contrastText`,
+            '&.Mui-selected': {
+              color: colorTheme === 'neutral' ? 'primary.main' : `${colorTheme}.contrastText`,
+            },
+          }}
+        />
       ))}
     </StyledTabs>
   );
