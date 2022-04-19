@@ -37,6 +37,7 @@ const styles = {
     position: 'relative',
     pb: '75px',
     backgroundColor: 'white',
+    boxShadow: { xs: 0, md: 1 },
   },
   finishButtonContainer: {
     position: 'absolute',
@@ -123,12 +124,7 @@ const LogExercisePage: React.FC = () => {
       />
       <Divider sx={{ border: { md: 0 } }} />
       <Box sx={styles.setsAndButtonContainer}>
-        <Box
-          sx={{
-            ...styles.loggedSetsContainer,
-            border: { xs: 0, md: `1px solid ${theme.palette.neutral.main}` },
-          }}
-        >
+        <Box sx={styles.loggedSetsContainer}>
           {loggedSets.length > 0 ? (
             <LoggedSetsTable
               loggedSets={loggedSets}

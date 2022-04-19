@@ -34,7 +34,7 @@ const ExercisesView: React.FC = () => {
       ) : !currentWorkout ? (
         <NoLoggedExercise />
       ) : (
-        <List sx={{ p: 0 }}>
+        <List sx={{ p: 0, pb: 1 }}>
           {currentWorkout.exercises.map((exercise, index) => (
             <LoggedExercise key={exercise.setId} exerciseSet={exercise} setIndex={index} />
           ))}

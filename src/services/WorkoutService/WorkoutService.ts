@@ -26,11 +26,10 @@ export const getWorkoutExerciseCategories = (workout: Workout) => {
 
 export const getNumberOfSets = (workout: Workout | null) => {
   if (!workout) return '0 sets';
-  let numOfSets = 0;
   let stringFormat = 'set';
-  workout.exercises.forEach((exerciseSet) => {
-    numOfSets += exerciseSet.sets.length;
-  });
+  const numOfSets = workout.exercises.reduce((acc, currentExerciseSet) => {
+    return acc + currentExerciseSet.sets.length;
+  }, 0);
   if (numOfSets > 1) stringFormat = 'sets';
   return `${numOfSets} ${stringFormat}`;
 };

@@ -16,6 +16,27 @@ import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList'
 
 import { Exercise } from '../../../ts/interfaces/Exercise';
 
+const styles = {
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    py: 1,
+    px: { xs: 2, md: 0 },
+  },
+  body: {
+    backgroundColor: 'white',
+    flex: { xs: 1, md: 'initial' },
+    borderRadius: { xs: 0, md: 2 },
+    borderStyle: 'solid',
+    borderWidth: { xs: 1, md: 0 },
+    borderColor: 'divider',
+    mb: { xs: 0, md: 2 },
+    boxShadow: { xs: 0, md: 1 },
+    overflow: 'hidden',
+  },
+};
+
 interface Props {
   categoryExercises: Exercise[];
   isLoading: boolean;
@@ -31,33 +52,13 @@ const ExerciseList: React.FC<Props> = ({ categoryExercises, isLoading, category 
 
   return (
     <React.Fragment>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingTop: 1,
-          paddingBottom: 1,
-          paddingLeft: { xs: 2, md: 0 },
-          paddingRight: { xs: 2, md: 0 },
-        }}
-      >
+      <Box sx={styles.header}>
         <Typography variant='subtitle1' sx={{ color: 'text.secondary' }}>
           {category} exercises
         </Typography>
         <Button>+ ADD EXERCISE</Button>
       </Box>
-      <Box
-        sx={{
-          backgroundColor: 'white',
-          flex: { xs: 1, md: 0 },
-          borderRadius: { xs: 0, md: 2 },
-          borderStyle: 'solid',
-          borderWidth: 1,
-          borderColor: 'divider',
-          marginBottom: { xs: 0, md: 2 },
-        }}
-      >
+      <Box sx={styles.body}>
         {isLoading ? (
           <SkeletonList numberOfLoaders={9} />
         ) : (

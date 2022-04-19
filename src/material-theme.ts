@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import { Shadows } from '@mui/material/styles/shadows';
 import { createBreakpoints } from '@mui/system';
 const breakpoints = createBreakpoints({});
 
@@ -39,6 +40,14 @@ export const mainTheme = createTheme({
       // },
     },
   },
+  shadows: [
+    'none',
+    '0 1px 2px rgba(0, 0, 0, 0.2)',
+    '0 2px 4px rgba(0, 0, 0, 0.2)',
+    '0 2px 8px rgba(0, 0, 0, 0.2)',
+    '0 2px 16px rgba(0, 0, 0, 0.2)',
+    ...Array(20).fill('none'),
+  ] as Shadows,
   palette: {
     secondary: {
       main: '#7A7EFF',

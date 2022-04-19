@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -13,8 +13,27 @@ import {
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
-
 import { ExerciseCategory } from '../../../ts/interfaces/ExerciseCategory';
+
+const styles = {
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    py: 1,
+    px: { xs: 2, md: 0 },
+  },
+  body: {
+    backgroundColor: 'white',
+    flex: { xs: 1, md: 'initial' },
+    borderRadius: { xs: 0, md: 2 },
+    boxShadow: { xs: 0, md: 1 },
+    borderStyle: 'solid',
+    borderWidth: { xs: 1, md: 0 },
+    borderColor: 'divider',
+    overflow: 'hidden',
+  },
+};
 
 interface Props {
   categories: ExerciseCategory[];
@@ -30,32 +49,13 @@ const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
 
   return (
     <React.Fragment>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingTop: 1,
-          paddingBottom: 1,
-          paddingLeft: { xs: 2, md: 0 },
-          paddingRight: { xs: 2, md: 0 },
-        }}
-      >
+      <Box sx={styles.header}>
         <Typography variant='subtitle1' sx={{ color: 'text.secondary' }}>
           Exercise categories
         </Typography>
         <Button>+ ADD EXERCISE</Button>
       </Box>
-      <Box
-        sx={{
-          backgroundColor: 'white',
-          flex: { xs: 1, md: 0 },
-          borderRadius: { xs: 0, md: 2 },
-          borderStyle: 'solid',
-          borderWidth: 1,
-          borderColor: 'divider',
-        }}
-      >
+      <Box sx={styles.body}>
         {isLoading ? (
           <SkeletonList numberOfLoaders={9} />
         ) : (

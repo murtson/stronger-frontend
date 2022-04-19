@@ -15,7 +15,7 @@ function SideCalendar() {
         // borderWidth: 1,
         // borderStyle: 'solid',
         // borderColor: 'divider',
-        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+        boxShadow: 1,
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

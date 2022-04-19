@@ -28,7 +28,7 @@ const styles = {
     borderWidth: { xs: 0, md: 0 },
     borderColor: 'divider',
     borderStyle: 'solid',
-    boxShadow: { xs: 'none', md: '0 1px 2px rgba(0, 0, 0, 0.2)' },
+    boxShadow: { xs: 'none', md: 1 },
   },
   gridContainer: {
     pl: 2,
@@ -63,7 +63,7 @@ const WorkoutHeader: React.FC = () => {
 
   const renderStatusIcon = () => {
     if (!currentWorkout) {
-      return <CircleOutlinedIcon sx={{ color: `neutral.contrastText`, mr: 0.5 }} />;
+      return <CircleOutlinedIcon sx={{ color: `text.secondary`, mr: 0.5 }} />;
     } else if (currentWorkout.isCompleted) {
       return <CheckCircleOutlineIcon sx={{ color: `success.contrastText`, mr: 0.5 }} />;
     } else {
@@ -94,7 +94,11 @@ const WorkoutHeader: React.FC = () => {
           </Grid>
           <Grid item xs={2} sx={styles.moreOptionsGrid}>
             <IconButton>
-              <MoreVertIcon sx={{ color: `${colorTheme}.contrastText` }} />
+              <MoreVertIcon
+                sx={{
+                  color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+                }}
+              />
             </IconButton>
           </Grid>
           <Grid item xs={6} sx={{ pt: 1 }}>
@@ -103,7 +107,7 @@ const WorkoutHeader: React.FC = () => {
               variant='subtitle1'
               sx={{
                 fontWeight: 600,
-                color: `${colorTheme}.contrastText`,
+                color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
               }}
             >
               {!currentWorkout ? 'No Workout' : 'Custom Workout'}
@@ -117,7 +121,11 @@ const WorkoutHeader: React.FC = () => {
             <Typography
               noWrap={true}
               variant='subtitle2'
-              sx={{ fontWeight: 600, mr: 1, color: `${colorTheme}.contrastText` }}
+              sx={{
+                fontWeight: 600,
+                mr: 1,
+                color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+              }}
             >
               {getNumberOfExercises(currentWorkout)}
             </Typography>
@@ -125,7 +133,11 @@ const WorkoutHeader: React.FC = () => {
             <Typography
               noWrap={true}
               variant='subtitle2'
-              sx={{ fontWeight: 600, pr: 1, color: `${colorTheme}.contrastText` }}
+              sx={{
+                fontWeight: 600,
+                pr: 1,
+                color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+              }}
             >
               {getNumberOfSets(currentWorkout)}
             </Typography>

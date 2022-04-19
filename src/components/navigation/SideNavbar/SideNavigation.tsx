@@ -59,7 +59,7 @@ const styles = {
     borderRadius: 2,
     boxSizing: 'border-box',
     p: 2,
-    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+    boxShadow: 1,
     // borderWidth: { xs: 1, md: 0 },
     // borderColor: 'divider',
     // borderStyle: 'solid',
