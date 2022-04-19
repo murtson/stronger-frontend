@@ -20,7 +20,6 @@ export const getWorkoutExerciseCategories = (workout: Workout) => {
     if (isAlreadyIncluded) return;
     categories.push({ id: exerciseSet.exercise.categoryId, color: exerciseSet.exercise.color });
   });
-
   return categories;
 };
 

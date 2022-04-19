@@ -12,8 +12,8 @@ const ProfileInfo: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         height: { md: 325 },
-        marginTop: { xs: 'none', md: 3 },
         borderRadius: 2,
+        boxShadow: { xs: 0, md: 1 },
       }}
     >
       <Box
@@ -29,10 +29,7 @@ const ProfileInfo: React.FC = () => {
         sx={{
           position: 'relative',
           padding: { xs: 2, md: 4 },
-          borderTop: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
-          borderRight: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
-          borderLeft: { xs: 'none', md: `1px solid ${theme.palette.divider}` },
-          borderBottom: { xs: `1px solid ${theme.palette.divider}` },
+          borderBottom: { xs: `1px solid ${theme.palette.divider}`, md: 'none' },
           backgroundColor: 'white',
 
           borderRadius: { xs: 0, md: '0 0 8px 8px' },

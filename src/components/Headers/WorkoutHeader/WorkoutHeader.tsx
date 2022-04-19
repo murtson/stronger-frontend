@@ -1,5 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Grid, Typography, IconButton, Stack, Divider } from '@mui/material';
+import React, { useState, useEffect, Fragment } from 'react';
+import {
+  Box,
+  Grid,
+  Typography,
+  IconButton,
+  Stack,
+  Divider,
+  Skeleton,
+  LinearProgress,
+} from '@mui/material';
 import HeaderTabs from '../HeaderTabs/HeaderTabs';
 import MoreVertIcon from '@mui/icons-material/MoreHoriz';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -45,7 +54,7 @@ const styles = {
 const WorkoutHeader: React.FC = () => {
   const [colorTheme, setColorTheme] = useState<'success' | 'primary' | 'neutral'>('neutral');
   const [statusText, setStatustext] = useState<'completed' | 'in progress' | ''>('');
-  const { currentWorkout } = useSelector((state: RootState) => state.workout);
+  const { currentWorkout, loading } = useSelector((state: RootState) => state.workout);
   const theme = useTheme();
 
   useEffect(() => {
@@ -72,7 +81,7 @@ const WorkoutHeader: React.FC = () => {
   };
 
   return (
-    <>
+    <Fragment>
       <Stack
         sx={{
           ...styles.root,
@@ -81,19 +90,29 @@ const WorkoutHeader: React.FC = () => {
       >
         <Grid container sx={styles.gridContainer}>
           <Grid item xs={10} sx={{ display: 'flex', alignItems: 'center' }}>
-            {renderStatusIcon()}
-            <Typography
-              variant='subtitle2'
-              sx={{
-                color: `${colorTheme}.contrastText`,
-                fontWeight: 600,
-              }}
-            >
-              {statusText}
-            </Typography>
+            {loading ? (
+              <Skeleton
+                variant='circular'
+                animation='wave'
+                sx={{ bgcolor: `${colorTheme}.dark`, width: 20, height: 20 }}
+              />
+            ) : (
+              <Fragment>
+                {renderStatusIcon()}
+                <Typography
+                  variant='subtitle2'
+                  sx={{
+                    color: `${colorTheme}.contrastText`,
+                    fontWeight: 600,
+                  }}
+                >
+                  {statusText}
+                </Typography>
+              </Fragment>
+            )}
           </Grid>
           <Grid item xs={2} sx={styles.moreOptionsGrid}>
-            <IconButton>
+            <IconButton disabled={loading}>
               <MoreVertIcon
                 sx={{
                   color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
@@ -102,16 +121,24 @@ const WorkoutHeader: React.FC = () => {
             </IconButton>
           </Grid>
           <Grid item xs={6} sx={{ pt: 1 }}>
-            <Typography
-              noWrap={true}
-              variant='subtitle1'
-              sx={{
-                fontWeight: 600,
-                color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
-              }}
-            >
-              {!currentWorkout ? 'No Workout' : 'Custom Workout'}
-            </Typography>
+            {loading ? (
+              <Skeleton
+                variant='rectangular'
+                animation='wave'
+                sx={{ borderRadius: 1, width: 150, height: 18, bgcolor: `${colorTheme}.dark` }}
+              />
+            ) : (
+              <Typography
+                noWrap={true}
+                variant='subtitle1'
+                sx={{
+                  fontWeight: 600,
+                  color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+                }}
+              >
+                {!currentWorkout ? 'No Workout' : 'Custom Workout'}
+              </Typography>
+            )}
           </Grid>
           <Grid
             item
@@ -127,7 +154,11 @@ const WorkoutHeader: React.FC = () => {
                 color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
               }}
             >
-              {getNumberOfExercises(currentWorkout)}
+              {loading ? (
+                <Skeleton variant='text' width={60} animation='wave' />
+              ) : (
+                getNumberOfExercises(currentWorkout)
+              )}
             </Typography>
 
             <Typography
@@ -139,14 +170,19 @@ const WorkoutHeader: React.FC = () => {
                 color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
               }}
             >
-              {getNumberOfSets(currentWorkout)}
+              {loading ? (
+                <Skeleton variant='text' animation='wave' width={60} />
+              ) : (
+                getNumberOfSets(currentWorkout)
+              )}
             </Typography>
           </Grid>
         </Grid>
         <HeaderTabs tabs={tabsArray} colorTheme={colorTheme} />
       </Stack>
+
       <Divider sx={{ display: { xs: 'block', md: 'none' } }} />
-    </>
+    </Fragment>
   );
 };
 

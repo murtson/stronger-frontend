@@ -11,6 +11,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import LogExerciseHeader from './LogExerciseHeader/LogExerciseHeader';
 import LogController from './LogController/LogController';
 import LoggedSetsTable from './LoggedSetsTable/LoggedSetsTable';
+import Snackbar from '../../components/Snackbar/Snackbar';
 
 import { Set } from '../../ts/interfaces/Set';
 import { EditData } from '../../ts/interfaces/EditData';
@@ -64,16 +65,23 @@ const LogExercisePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [loggedSets, setLoggedSets] = useState<Set[]>([]);
   const [editData, setEditData] = useState<EditData>(initialEditDataState);
+  const [snackbarType, setSnackbarType] = useState<'info' | 'error' | 'success'>('info');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarText, setSnackbarText] = useState('');
 
   useEffect(() => {
     if (!editingExercise) return;
     setLoggedSets(editingExercise.sets);
+    if (!snackbarText) return;
+    setSnackbarOpen(true);
   }, [editingExercise]);
 
   const handleSaveButton = (set: Set) => {
     if (!loggingExercise) return;
     const newLoggedSets = [...loggedSets, set];
     dispatch(logExerciseSet({ exercise: loggingExercise, sets: newLoggedSets }));
+    setSnackbarType('success');
+    setSnackbarText('set saved');
   };
 
   const handleUpdateButton = (selectedSetIndex: number, updatedSet: Set) => {
@@ -82,6 +90,8 @@ const LogExercisePage: React.FC = () => {
     newLoggedSets[selectedSetIndex] = updatedSet;
     dispatch(logExerciseSet({ exercise: loggingExercise, sets: newLoggedSets }));
     setEditData(initialEditDataState);
+    setSnackbarType('info');
+    setSnackbarText('set updated');
   };
 
   const handleDeleteButton = (selectedSetIndex: number) => {
@@ -90,6 +100,8 @@ const LogExercisePage: React.FC = () => {
     newLoggedSets.splice(selectedSetIndex, 1);
     dispatch(logExerciseSet({ exercise: loggingExercise, sets: newLoggedSets }));
     setEditData(initialEditDataState);
+    setSnackbarType('error');
+    setSnackbarText('set removed');
   };
 
   const handleSelectSet = (selectedSetIndex: number) => {
@@ -105,9 +117,13 @@ const LogExercisePage: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-      {/* <Snackbar open={snackbarOpen} snackbarType={snackbarType} onClose={handleSnackbarClose}>
+      <Snackbar
+        open={snackbarOpen}
+        snackbarType={snackbarType}
+        onClose={() => setSnackbarOpen(false)}
+      >
         {snackbarText}
-      </Snackbar> */}
+      </Snackbar>
       <LogExerciseHeader />
       <Box sx={styles.controllerContainer}>
         <Typography variant='subtitle1'>{loggingExercise?.name}</Typography>

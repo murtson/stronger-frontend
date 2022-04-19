@@ -10,9 +10,10 @@ const OverviewView: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        margin: { xs: 0, md: '24px 0' },
+        mb: { xs: 0, md: 2 },
+        boxShadow: { xs: 0, md: 1 },
         borderStyle: 'solid',
-        borderWidth: 1,
+        borderWidth: { xs: 1, md: 0 },
         borderColor: 'divider',
         borderRadius: { xs: 0, md: 2 },
       }}
