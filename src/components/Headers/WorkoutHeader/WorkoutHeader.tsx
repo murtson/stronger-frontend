@@ -125,7 +125,13 @@ const WorkoutHeader: React.FC = () => {
               <Skeleton
                 variant='rectangular'
                 animation='wave'
-                sx={{ borderRadius: 1, width: 150, height: 18, bgcolor: `${colorTheme}.dark` }}
+                sx={{
+                  borderRadius: 1,
+                  width: 150,
+                  height: 15,
+                  mt: 1,
+                  bgcolor: `${colorTheme}.dark`,
+                }}
               />
             ) : (
               <Typography

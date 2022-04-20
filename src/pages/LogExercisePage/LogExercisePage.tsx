@@ -65,9 +65,12 @@ const LogExercisePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [loggedSets, setLoggedSets] = useState<Set[]>([]);
   const [editData, setEditData] = useState<EditData>(initialEditDataState);
-  const [snackbarType, setSnackbarType] = useState<'info' | 'error' | 'success'>('info');
+  const [snackbarType, setSnackbarType] = useState<'info' | 'error' | 'success'>('success');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarText, setSnackbarText] = useState('');
+  const [snackbarText, setSnackbarText] = useState<
+    'set saved' | 'set updated' | 'set removed' | ''
+  >('');
+  // TODO: perhaps implement useReducer here instead of all the states
 
   useEffect(() => {
     if (!editingExercise) return;
