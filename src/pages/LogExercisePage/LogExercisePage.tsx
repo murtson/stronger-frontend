@@ -39,6 +39,7 @@ const styles = {
     pb: '75px',
     backgroundColor: 'white',
     boxShadow: { xs: 0, md: 1 },
+    userSelect: 'none',
   },
   finishButtonContainer: {
     position: 'absolute',
@@ -73,8 +74,8 @@ const LogExercisePage: React.FC = () => {
   // TODO: perhaps implement useReducer here instead of all the states
 
   useEffect(() => {
-    if (!editingExercise) return;
-    setLoggedSets(editingExercise.sets);
+    // if (!editingExercise) return;
+    setLoggedSets(!editingExercise ? [] : editingExercise.sets);
     if (!snackbarText) return;
     setSnackbarOpen(true);
   }, [editingExercise]);

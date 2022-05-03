@@ -1,32 +1,42 @@
+import axios, { AxiosResponse } from 'axios';
+import { formatISO } from 'date-fns';
+
+// redux
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { SelectedDate } from '../../ts/interfaces/SelectedDate';
-import * as DatePickerService from '../../services/DatePickerService/DatePickerService';
-import * as WorkoutService from '../../services/WorkoutService/WorkoutService';
-import dayjs from 'dayjs';
 import { RootState } from '../store';
-import axios from 'axios';
+import { PayloadAction } from '@reduxjs/toolkit';
+import {
+  updateWorkoutInCalendar,
+  pushToCalendarWorkouts,
+  deleteFromCalendarWorkouts,
+} from './calendarSlice';
+
+// services
+import * as ApiService from '../../services/ApiService/ApiService';
+
+// interfaces & types
+import { SelectedDate } from '../../ts/interfaces/SelectedDate';
 import { Exercise } from '../../ts/interfaces/Exercise';
 import { Workout } from '../../ts/interfaces/Workout';
 import { ExerciseSet } from '../../ts/interfaces/ExerciseSet';
 import { Set } from '../../ts/interfaces/Set';
-import { PayloadAction } from '@reduxjs/toolkit';
+import {
+  incrementByOneDay,
+  decrementByOneDay,
+  formatDisplayDate,
+} from '../../services/DatePickerService/DatePickerService';
 
-const baseURL = 'http://192.168.1.177:4000/api/v1';
-
-export const getAllWorkouts = createAsyncThunk(
-  'workout/getAllWorkouts',
-  async (_, { getState }) => {
-    const workouts = await axios.get(`${baseURL}/user-workout`);
-    return workouts.data;
+export const getWorkout = createAsyncThunk(
+  'workout/getWorkout',
+  async (_, { getState, dispatch }) => {
+    const appState = getState() as RootState;
+    const { selectedDate } = appState.workout;
+    const response = await ApiService.getWorkout(selectedDate.value);
+    const { message, workout } = response.data;
+    if (message !== 'not found') dispatch(updateWorkoutInCalendar(response.data));
+    return message !== 'found' ? null : workout;
   }
 );
-
-export const getWorkout = createAsyncThunk('workout/getWorkout', async (_, { getState }) => {
-  const appState = getState() as RootState;
-  const { selectedDate } = appState.workout;
-  const workout = await axios.get(`${baseURL}/user-workout/${selectedDate.value}`);
-  return !workout.data ? null : workout.data;
-});
 
 export const logExerciseSet = createAsyncThunk(
   'workout/logExerciseSet',
@@ -51,14 +61,12 @@ export const logExerciseSet = createAsyncThunk(
 
 export const createWorkout = createAsyncThunk(
   'workout/createWorkout',
-  async (args: { exercise: Exercise; sets: Set[] }, { getState }) => {
+  async (args: { exercise: Exercise; sets: Set[] }, { getState, dispatch }) => {
     const appState = getState() as RootState;
     const { selectedDate } = appState.workout;
-    const workout = await axios.post(`${baseURL}/user-workout/create`, {
-      ...args,
-      createdAt: selectedDate.value,
-    });
-    return workout.data;
+    const response = await ApiService.createWorkout(args, selectedDate.value);
+    dispatch(pushToCalendarWorkouts(response.data));
+    return response.data;
   }
 );
 
@@ -67,21 +75,17 @@ export const createWorkoutSet = createAsyncThunk(
   async (args: { exercise: Exercise; sets: Set[] }, { getState }) => {
     const appState = getState() as RootState;
     const { currentWorkout } = appState.workout;
-    const updatedWorkout = await axios.post(
-      `${baseURL}/user-workout/${currentWorkout?._id}/set`,
-      args
-    );
-    return updatedWorkout.data;
+    if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
+    const response = await ApiService.createWorkoutSet(args, currentWorkout._id);
+    return response.data;
   }
 );
 
 export const updateWorkoutSets = createAsyncThunk(
   'workout/updateWorkoutSets',
   async (args: { workoutId: string; setId: string; sets: Set[] }, thunkAPI) => {
-    const workout = await axios.put(`${baseURL}/user-workout/${args.workoutId}/set/${args.setId}`, {
-      sets: args.sets,
-    });
-    return workout.data;
+    const response = await ApiService.updateWorkoutSets(args);
+    return response.data;
   }
 );
 
@@ -90,19 +94,24 @@ export const completeWorkout = createAsyncThunk(
   async (_, { getState }) => {
     const appState = getState() as RootState;
     const { currentWorkout } = appState.workout;
-    if (!currentWorkout) return;
-    const workout = await axios.post(`${baseURL}/user-workout/complete/${currentWorkout._id}`);
-    return workout.data;
+    if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
+    const response = await ApiService.completeWorkout(currentWorkout._id);
+    return response.data;
   }
 );
 
-export const deleteWorkout = createAsyncThunk('workout/deleteWorkout', async (_, { getState }) => {
-  const appState = getState() as RootState;
-  const { currentWorkout } = appState.workout;
-  if (!currentWorkout) return;
-  const workout = await axios.post(`${baseURL}/user-workout/delete/${currentWorkout._id}`);
-  return workout.data;
-});
+export const deleteWorkout = createAsyncThunk(
+  'workout/deleteWorkout',
+  async (_, { getState, dispatch }) => {
+    const appState = getState() as RootState;
+    const { currentWorkout } = appState.workout;
+    if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
+    const response = await ApiService.deleteWorkout(currentWorkout._id);
+    const deletedWorkoutId = response.data;
+    dispatch(deleteFromCalendarWorkouts(deletedWorkoutId));
+    return deletedWorkoutId;
+  }
+);
 
 interface WorkoutState {
   loading: boolean;
@@ -110,43 +119,43 @@ interface WorkoutState {
   selectedDate: SelectedDate;
   currentWorkout: null | Workout;
   editingExercise: null | ExerciseSet;
-  userWorkouts: null | Workout[];
 }
+
+const initialDate = formatISO(new Date());
 
 const initialState: WorkoutState = {
   loading: false,
   error: null,
   selectedDate: {
-    value: dayjs().toJSON(),
+    value: initialDate,
     displayValue: 'Today',
   },
   currentWorkout: null,
   editingExercise: null,
-  userWorkouts: null,
 };
 
 export const workoutSlice = createSlice({
   name: 'workout',
   initialState,
   reducers: {
+    incrementDate: (state) => {
+      state.selectedDate = incrementByOneDay(state.selectedDate);
+    },
+    decrementDate: (state) => {
+      state.selectedDate = decrementByOneDay(state.selectedDate);
+    },
+    setSelectedDate: (state, action: PayloadAction<string>) => {
+      const newDate = {
+        value: action.payload,
+        displayValue: formatDisplayDate(action.payload),
+      };
+      state.selectedDate = newDate;
+    },
     setEditingExercise: (state, action: PayloadAction<ExerciseSet>) => {
       state.editingExercise = action.payload;
     },
     resetEditingExercise: (state) => {
       state.editingExercise = null;
-    },
-    incrementDate: (state) => {
-      state.selectedDate = DatePickerService.incrementByOneDay(state.selectedDate);
-    },
-    decrementDate: (state) => {
-      state.selectedDate = DatePickerService.decrementByOneDay(state.selectedDate);
-    },
-    setSelectedDate: (state, action: PayloadAction<string>) => {
-      const newDate = {
-        value: action.payload,
-        displayValue: DatePickerService.formatDisplayDate(action.payload),
-      };
-      state.selectedDate = newDate;
     },
   },
   extraReducers: (builder) => {
@@ -154,11 +163,10 @@ export const workoutSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(updateWorkoutSets.fulfilled, (state, action) => {
-      const { updatedExerciseSet, updatedWorkout } = action.payload;
       state.loading = false;
       state.error = null;
-      state.currentWorkout = updatedWorkout;
-      state.editingExercise = updatedExerciseSet;
+      state.currentWorkout = action.payload.updatedWorkout;
+      state.editingExercise = action.payload.updatedExerciseSet;
     });
     builder.addCase(updateWorkoutSets.rejected, (state, action) => {
       state.loading = false;
@@ -168,11 +176,10 @@ export const workoutSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(createWorkoutSet.fulfilled, (state, action) => {
-      const { updatedWorkout, newSet } = action.payload;
       state.loading = false;
       state.error = null;
-      state.currentWorkout = updatedWorkout;
-      state.editingExercise = newSet;
+      state.currentWorkout = action.payload.updatedWorkout;
+      state.editingExercise = action.payload.newExerciseSet;
     });
     builder.addCase(createWorkoutSet.rejected, (state, action) => {
       state.loading = false;
@@ -205,18 +212,6 @@ export const workoutSlice = createSlice({
       state.loading = false;
       state.error = action.error;
     });
-    builder.addCase(getAllWorkouts.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(getAllWorkouts.fulfilled, (state, action) => {
-      state.loading = false;
-      state.error = null;
-      state.userWorkouts = WorkoutService.sortByDate(action.payload);
-    });
-    builder.addCase(getAllWorkouts.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error;
-    });
     builder.addCase(completeWorkout.pending, (state) => {
       state.loading = true;
     });
@@ -232,10 +227,10 @@ export const workoutSlice = createSlice({
     builder.addCase(deleteWorkout.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(deleteWorkout.fulfilled, (state, action) => {
+    builder.addCase(deleteWorkout.fulfilled, (state) => {
       state.loading = false;
       state.error = null;
-      state.currentWorkout = action.payload;
+      state.currentWorkout = null;
     });
     builder.addCase(deleteWorkout.rejected, (state, action) => {
       state.loading = false;
@@ -246,11 +241,11 @@ export const workoutSlice = createSlice({
 
 // action creators are generated for each case reducer function
 export const {
+  resetEditingExercise,
+  setEditingExercise,
   incrementDate,
   decrementDate,
   setSelectedDate,
-  resetEditingExercise,
-  setEditingExercise,
 } = workoutSlice.actions;
 
 export default workoutSlice.reducer;

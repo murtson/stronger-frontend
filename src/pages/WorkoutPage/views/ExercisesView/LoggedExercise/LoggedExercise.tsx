@@ -12,6 +12,7 @@ const styles = {
   root: {
     px: 0,
     py: 2,
+
     display: 'block',
   },
 };

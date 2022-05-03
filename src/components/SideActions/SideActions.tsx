@@ -36,11 +36,13 @@ const SideActions = () => {
   let location = useLocation();
 
   const handleCompleteWorkout = () => {
+    if (loading) return;
     setCompleteDialogOpen(false);
     dispatch(completeWorkout());
   };
 
   const handleDeleteWorkout = () => {
+    if (loading) return;
     setDeleteDialogOpen(false);
     dispatch(deleteWorkout());
   };
@@ -101,7 +103,6 @@ const SideActions = () => {
                   Add to workout
                 </Button>
                 <LoadingButton
-                  loading={loading}
                   onClick={() => setCompleteDialogOpen(true)}
                   variant='contained'
                   fullWidth
@@ -115,7 +116,6 @@ const SideActions = () => {
             )}
             <Divider sx={{ mb: 2 }} />
             <LoadingButton
-              loading={loading}
               onClick={() => setDeleteDialogOpen(true)}
               variant='contained'
               fullWidth

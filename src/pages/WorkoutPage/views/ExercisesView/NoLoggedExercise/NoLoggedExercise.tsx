@@ -10,11 +10,22 @@ const NoLoggedExercise: React.FC = () => {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
       }}
     >
-      <Typography variant='subtitle1' sx={{ color: 'text.secondary' }}>
-        Workout Log Empty
-      </Typography>
+      <Box sx={{ maxWidth: 480, px: { xs: 2, md: 0 } }}>
+        <Typography
+          variant='subtitle1'
+          textAlign={'center'}
+          sx={{ color: 'text.primary', mb: 1, fontWeight: 600 }}
+        >
+          Rest day perhaps?
+        </Typography>
+        <Typography variant='subtitle2' textAlign={'center'} sx={{ color: 'text.secondary' }}>
+          There is no workout saved for this date. Tap the 'New workout' or "Copy another workout"
+          button to log a new workout.
+        </Typography>
+      </Box>
     </Box>
   );
 };

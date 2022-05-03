@@ -37,7 +37,7 @@ const styles = {
     borderWidth: { xs: 0, md: 0 },
     borderColor: 'divider',
     borderStyle: 'solid',
-    boxShadow: { xs: 'none', md: 1 },
+    boxShadow: { xs: 0, md: 1 },
   },
   gridContainer: {
     pl: 2,
@@ -90,26 +90,18 @@ const WorkoutHeader: React.FC = () => {
       >
         <Grid container sx={styles.gridContainer}>
           <Grid item xs={10} sx={{ display: 'flex', alignItems: 'center' }}>
-            {loading ? (
-              <Skeleton
-                variant='circular'
-                animation='wave'
-                sx={{ bgcolor: `${colorTheme}.dark`, width: 20, height: 20 }}
-              />
-            ) : (
-              <Fragment>
-                {renderStatusIcon()}
-                <Typography
-                  variant='subtitle2'
-                  sx={{
-                    color: `${colorTheme}.contrastText`,
-                    fontWeight: 600,
-                  }}
-                >
-                  {statusText}
-                </Typography>
-              </Fragment>
-            )}
+            <Fragment>
+              {renderStatusIcon()}
+              <Typography
+                variant='subtitle2'
+                sx={{
+                  color: `${colorTheme}.contrastText`,
+                  fontWeight: 600,
+                }}
+              >
+                {statusText}
+              </Typography>
+            </Fragment>
           </Grid>
           <Grid item xs={2} sx={styles.moreOptionsGrid}>
             <IconButton disabled={loading}>
@@ -121,19 +113,7 @@ const WorkoutHeader: React.FC = () => {
             </IconButton>
           </Grid>
           <Grid item xs={6} sx={{ pt: 1 }}>
-            {loading ? (
-              <Skeleton
-                variant='rectangular'
-                animation='wave'
-                sx={{
-                  borderRadius: 1,
-                  width: 150,
-                  height: 15,
-                  mt: 1,
-                  bgcolor: `${colorTheme}.dark`,
-                }}
-              />
-            ) : (
+            {
               <Typography
                 noWrap={true}
                 variant='subtitle1'
@@ -142,9 +122,9 @@ const WorkoutHeader: React.FC = () => {
                   color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
                 }}
               >
-                {!currentWorkout ? 'No Workout' : 'Custom Workout'}
+                {!currentWorkout ? 'No workout' : 'Custom workout'}
               </Typography>
-            )}
+            }
           </Grid>
           <Grid
             item
@@ -160,11 +140,7 @@ const WorkoutHeader: React.FC = () => {
                 color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
               }}
             >
-              {loading ? (
-                <Skeleton variant='text' width={60} animation='wave' />
-              ) : (
-                getNumberOfExercises(currentWorkout)
-              )}
+              {getNumberOfExercises(currentWorkout)}
             </Typography>
 
             <Typography
@@ -176,11 +152,7 @@ const WorkoutHeader: React.FC = () => {
                 color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
               }}
             >
-              {loading ? (
-                <Skeleton variant='text' animation='wave' width={60} />
-              ) : (
-                getNumberOfSets(currentWorkout)
-              )}
+              {getNumberOfSets(currentWorkout)}
             </Typography>
           </Grid>
         </Grid>

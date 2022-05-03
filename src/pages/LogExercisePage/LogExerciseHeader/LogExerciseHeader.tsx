@@ -16,6 +16,7 @@ const LogExerciseHeader: React.FC = () => {
         display: 'flex',
         justifyContent: 'flex-start',
         flexDirection: 'column',
+        userSelect: 'none',
         // borderBottom: { xs: `1px solid ${theme.palette.divider}`, md: 'none' },
         // backgroundColor: { xs: 'white', md: 'transparent' },
         // padding: { xs: 1, md: '8px 0' },

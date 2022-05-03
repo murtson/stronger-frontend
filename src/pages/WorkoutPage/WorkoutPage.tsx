@@ -6,7 +6,6 @@ import DatePicker from '../../components/Datepicker/DatePicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getWorkout, resetEditingExercise } from '../../redux/slices/workoutSlice';
-import WorkoutStatus from './WorkoutStatus/WorkoutStatus';
 import { useTheme } from '@mui/material';
 
 const WorkoutPage: React.FC = () => {
@@ -33,7 +32,6 @@ const WorkoutPage: React.FC = () => {
         // borderRight: `1px solid ${theme.palette.divider}`,
       }}
     >
-      {/* <WorkoutStatus /> */}
       <WorkoutHeader />
       <DatePicker />
       <Outlet />

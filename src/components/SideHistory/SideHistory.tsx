@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button, Divider, List } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAppDispatch, RootState } from '../../redux/store';
-import { getAllWorkouts } from '../../redux/slices/workoutSlice';
 import HistoryWorkout from './HistoryWorkout/HistoryWorkout';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
+import { getWorkouts } from '../../services/ApiService/ApiService';
+import { Workout } from '../../ts/interfaces/Workout';
 
 const styles = {
   root: {
@@ -31,11 +33,20 @@ const styles = {
 const SideHistory: React.FC = () => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
-  const { userWorkouts } = useSelector((state: RootState) => state.workout);
+  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const { currentWorkout } = useSelector((state: RootState) => state.workout);
 
   useEffect(() => {
-    dispatch(getAllWorkouts());
-  }, []);
+    const getHistoryWorkouts = async () => {
+      try {
+        const response = await getWorkouts(1, 5);
+        setWorkouts(response.data.workouts);
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+    getHistoryWorkouts();
+  }, [currentWorkout]);
 
   return (
     <Box sx={styles.root}>
@@ -47,10 +58,10 @@ const SideHistory: React.FC = () => {
           <Button>View more</Button>
         </Box>
       </Box>
-      <Divider sx={{ mx: 1 }} />
-      <List>
-        {userWorkouts ? (
-          userWorkouts.map((workout) => <HistoryWorkout key={workout._id} data={workout} />)
+      <Divider sx={{ mx: 1, userSelect: 'none' }} />
+      <List sx={{ userSelect: 'none' }}>
+        {workouts ? (
+          workouts.map((workout) => <HistoryWorkout key={workout._id} data={workout} />)
         ) : (
           <div>no workouts</div>
         )}

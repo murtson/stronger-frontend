@@ -62,7 +62,7 @@ const SkeletonLoggedSet: React.FC<Props> = ({ numberOfLoaders }) => {
                 backgroundColor: 'grey.300',
                 marginLeft: 2,
                 borderRadius: 1,
-                mb: 1,
+                mb: 1.5,
               }}
               variant='rectangular'
               animation='wave'
@@ -74,7 +74,7 @@ const SkeletonLoggedSet: React.FC<Props> = ({ numberOfLoaders }) => {
                 backgroundColor: 'grey.300',
                 marginLeft: 2,
                 borderRadius: 1,
-                mb: 1,
+                mb: 1.5,
               }}
               variant='rectangular'
               animation='wave'
@@ -86,7 +86,7 @@ const SkeletonLoggedSet: React.FC<Props> = ({ numberOfLoaders }) => {
                 backgroundColor: 'grey.300',
                 marginLeft: 2,
                 borderRadius: 1,
-                mb: 1,
+                mb: 1.5,
               }}
               variant='rectangular'
               animation='wave'
