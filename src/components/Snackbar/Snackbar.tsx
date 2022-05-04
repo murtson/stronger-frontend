@@ -3,6 +3,7 @@ import { Snackbar, Alert, Typography } from '@mui/material';
 const styles = {
   snackbar: {
     minWidth: 350,
+    userSelect: 'none',
   },
   alert: {
     textAlign: 'center',

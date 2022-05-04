@@ -14,11 +14,16 @@ import SelectCategoryPage from './pages/SelectCategoryPage/SelectCategoryPage';
 import SelectExercisesPage from './pages/SelectExercisePage/SelectExercisesPage';
 import LogExercisePage from './pages/LogExercisePage/LogExercisePage';
 
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+
 function App() {
   return (
     <div className='App' style={{ backgroundColor: '#f5f5f5' }}>
       <Router>
         <Routes>
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/login' element={<LoginPage />} />
           <Route path='/' element={<AppLayout />}>
             <Route path='' element={<Navigate replace to='workout' />} />
             <Route path='home' element={<HomePage />}>

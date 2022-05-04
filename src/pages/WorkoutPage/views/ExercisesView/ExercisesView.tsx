@@ -29,7 +29,7 @@ const ExercisesView: React.FC = () => {
 
   return (
     <Box sx={styles.root}>
-      { !currentWorkout ? (
+      {!currentWorkout ? (
         <NoLoggedExercise />
       ) : (
         <List sx={{ p: 0, pb: 0.5 }}>

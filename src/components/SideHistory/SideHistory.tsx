@@ -1,12 +1,14 @@
+// general
 import React, { useEffect, useState } from 'react';
+// mui & components
 import { Box, Typography, Button, Divider, List } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { useSelector, useDispatch } from 'react-redux';
-import { useAppDispatch, RootState } from '../../redux/store';
 import HistoryWorkout from './HistoryWorkout/HistoryWorkout';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-
+// redux
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+// services
 import { getWorkouts } from '../../services/ApiService/ApiService';
+// interfaces
 import { Workout } from '../../ts/interfaces/Workout';
 
 const styles = {
@@ -31,8 +33,6 @@ const styles = {
 };
 
 const SideHistory: React.FC = () => {
-  const theme = useTheme();
-  const dispatch = useAppDispatch();
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const { currentWorkout } = useSelector((state: RootState) => state.workout);
 

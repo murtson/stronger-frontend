@@ -42,11 +42,7 @@ const LoggedExerciseHeader: React.FC<Props> = ({ setIndex, exerciseSet }) => {
           </Typography>
         </Box>
       </Box>
-      <Box>
-        <IconButton>
-          <MoreHorizIcon />
-        </IconButton>
-      </Box>
+      <Box></Box>
     </Box>
   );
 };

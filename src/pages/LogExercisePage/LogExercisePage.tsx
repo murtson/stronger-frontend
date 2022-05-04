@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+// general
+import React, { useState, useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../redux/store';
-import { logExerciseSet } from '../../redux/slices/workoutSlice';
-
+// mui & components
 import { useTheme } from '@mui/material';
 import { Divider, Box, Typography, IconButton, Button } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-
 import LogExerciseHeader from './LogExerciseHeader/LogExerciseHeader';
 import LogController from './LogController/LogController';
 import LoggedSetsTable from './LoggedSetsTable/LoggedSetsTable';
 import Snackbar from '../../components/Snackbar/Snackbar';
-
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../redux/store';
+import { logExerciseSet } from '../../redux/slices/workoutSlice';
+// interfaces
 import { Set } from '../../ts/interfaces/Set';
-import { EditData } from '../../ts/interfaces/EditData';
+import { LogExercisePageEditData } from '../../ts/interfaces/LogExercisePageEditData';
 
 const styles = {
   controllerContainer: {
@@ -53,7 +54,11 @@ const styles = {
   },
 };
 
-const initialEditDataState: EditData = { selectedSetIndex: null, weight: null, reps: null };
+const initialEditDataState: LogExercisePageEditData = {
+  selectedSetIndex: null,
+  weight: null,
+  reps: null,
+};
 
 const LogExercisePage: React.FC = () => {
   const theme = useTheme();
@@ -65,7 +70,7 @@ const LogExercisePage: React.FC = () => {
   const { editingExercise, loading, error } = useSelector((state: RootState) => state.workout);
   const dispatch = useDispatch<AppDispatch>();
   const [loggedSets, setLoggedSets] = useState<Set[]>([]);
-  const [editData, setEditData] = useState<EditData>(initialEditDataState);
+  const [editData, setEditData] = useState(initialEditDataState);
   const [snackbarType, setSnackbarType] = useState<'info' | 'error' | 'success'>('success');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarText, setSnackbarText] = useState<

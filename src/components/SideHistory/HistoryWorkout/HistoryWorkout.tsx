@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// general
+import React from 'react';
+// mui
 import { Box, Grid, Typography, ListItemButton, Chip } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+// services & libs
+import { getWorkoutExerciseCategories } from '../../../services/WorkoutService/WorkoutService';
 import { Workout } from '../../../ts/interfaces/Workout';
 import { format, parseISO } from 'date-fns';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import * as WorkoutService from '../../../services/WorkoutService/WorkoutService';
+// redux
 import { useAppDispatch } from '../../../redux/store';
 import { setSelectedDate } from '../../../redux/slices/workoutSlice';
 
@@ -36,18 +39,21 @@ interface Props {
 }
 
 const HistoryWorkout: React.FC<Props> = ({ data }) => {
-  const [exerciseCategories, setExerciseCategories] = useState<{ id: number; color: string }[]>([]);
   const date = parseISO(data.time.createdAt);
   const dispatch = useAppDispatch();
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    const categories = WorkoutService.getWorkoutExerciseCategories(data);
-    setExerciseCategories(categories);
-  }, []);
 
   const handleClick = (date: string) => {
     dispatch(setSelectedDate(date));
+  };
+
+  const renderExerciseCategories = () => {
+    const categories = getWorkoutExerciseCategories(data);
+    return categories.map((category) => (
+      <Box
+        key={category.id}
+        sx={{ width: 20, height: 3, borderRadius: 2, backgroundColor: category.color }}
+      ></Box>
+    ));
   };
 
   return (
@@ -61,14 +67,7 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
         </Grid>
         <Grid item xs={7}>
           <Box sx={{ mb: 2 }}>
-            <Box sx={{ display: 'flex', gap: '5px', mb: 0.5 }}>
-              {exerciseCategories.map((category) => (
-                <Box
-                  key={category.id}
-                  sx={{ width: 20, height: 3, borderRadius: 2, backgroundColor: category.color }}
-                ></Box>
-              ))}
-            </Box>
+            <Box sx={{ display: 'flex', gap: '5px', mb: 0.5 }}>{renderExerciseCategories()}</Box>
             <Box>
               <Typography variant='subtitle2'>Chest Shoulder</Typography>
             </Box>

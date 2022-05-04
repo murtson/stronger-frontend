@@ -1,12 +1,14 @@
+// general
 import React, { useState, useEffect } from 'react';
+// mui & components
 import { LoadingButton } from '@mui/lab';
 import { Box, Grid, Typography, IconButton, Divider } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircle';
 import LogInput from './LogInput/LogInput';
+// interfaces
 import { Set } from '../../../ts/interfaces/Set';
-import { EditData } from '../../../ts/interfaces/EditData';
-import { LocalDining } from '@mui/icons-material';
+import { LogExercisePageEditData } from '../../../ts/interfaces/LogExercisePageEditData';
 
 const toFixedWeight = (number: number) => {
   return Number(number.toFixed(2));
@@ -22,7 +24,7 @@ interface Props {
   handleSaveButton: (set: Set) => void;
   handleUpdateButton: (selectedSetIndex: number, updatedSet: Set) => void;
   handleDeleteButton: (selectedSetIndex: number) => void;
-  editData: EditData;
+  editData: LogExercisePageEditData;
   loading: boolean;
 }
 

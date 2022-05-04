@@ -23,7 +23,8 @@ const styles = {
   root: {
     backgroundColor: 'white',
     boxSizing: 'border-box',
-    py: { md: 1, xl: 3 },
+    pb: { md: 1, xl: 3 },
+    pt: { md: 1, xl: 2 },
     px: { xs: 1, xl: 3 },
     borderRadius: 2,
     boxShadow: 1,
