@@ -2,8 +2,8 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import HomeHeader from '../../components/Headers/HomeHeader/HomeHeader';
-import DateIntervalSelector from '../../components/DateIntervalSelector/DateIntervalSelector';
+import HomeHeader from './HomeHeader/HomeHeader';
+import DateIntervalSelector from './DateIntervalSelector/DateIntervalSelector';
 
 const HomePage: React.FC = () => {
   return (

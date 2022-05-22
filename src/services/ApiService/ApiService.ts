@@ -5,11 +5,13 @@ import { Workout } from '../../ts/interfaces/Workout';
 import { Exercise } from '../../ts/interfaces/Exercise';
 import { Set } from '../../ts/interfaces/Set';
 import { ExerciseSet } from '../../ts/interfaces/ExerciseSet';
+import { User } from '../../ts/interfaces/User';
 
-const baseURL = 'http://192.168.1.177:4000/api/v1';
+const baseURL = 'http://localhost:4000/api/v1';
+
+axios.defaults.withCredentials = true;
 
 // workout API
-
 export const getWorkout = async (date: string) => {
   try {
     return await axios.get<{
@@ -103,4 +105,39 @@ export const getWorkoutsBetweenIntervals = async (startDate: string, endDate: st
   }
 };
 
+// auth API
+
+interface AuthResponse {
+  user: User | null;
+  isLoggedIn: boolean;
+}
+
+export const registerUser = async (userData: {
+  firstname: string;
+  lastname: string;
+  password: string;
+  email: string;
+}) => {
+  try {
+    return await axios.post<AuthResponse>(`${baseURL}/auth/register`, userData);
+  } catch (e: any) {
+    throw new Error(e);
+  }
+};
+
+export const loginUser = async (userData: { email: string; password: string }) => {
+  try {
+    return await axios.post<AuthResponse>(`${baseURL}/auth/login`, userData);
+  } catch (e: any) {
+    throw new Error(e);
+  }
+};
+
+export const checkAuthStatus = async () => {
+  try {
+    return await axios.get<AuthResponse>(`${baseURL}/auth/status`);
+  } catch (e: any) {
+    throw new Error(e);
+  }
+};
 // content API

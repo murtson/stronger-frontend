@@ -65,7 +65,7 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
             <Typography variant='subtitle2'>{format(date, 'd')}</Typography>
           </Box>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={7.5}>
           <Box sx={{ mb: 2 }}>
             <Box sx={{ display: 'flex', gap: '5px', mb: 0.5 }}>{renderExerciseCategories()}</Box>
             <Box>
@@ -83,7 +83,7 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
             />
           </Box>
         </Grid>
-        <Grid item xs={2} sx={styles.iconGrid}>
+        <Grid item xs={1.5} sx={styles.iconGrid}>
           <NavigateNextIcon sx={{ color: 'text.secondary' }} />
         </Grid>
       </Grid>

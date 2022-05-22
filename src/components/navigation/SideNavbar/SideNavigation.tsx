@@ -60,9 +60,6 @@ const styles = {
     boxSizing: 'border-box',
     p: 2,
     boxShadow: 1,
-    // borderWidth: { xs: 1, md: 0 },
-    // borderColor: 'divider',
-    // borderStyle: 'solid',
   },
 };
 

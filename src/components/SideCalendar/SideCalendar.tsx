@@ -23,22 +23,21 @@ const styles = {
   root: {
     backgroundColor: 'white',
     boxSizing: 'border-box',
-    pb: { md: 1, xl: 3 },
-    pt: { md: 1, xl: 2 },
-    px: { xs: 1, xl: 3 },
+    p: { xs: 1, lg: 2 },
     borderRadius: 2,
     boxShadow: 1,
+    height: 415,
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    mb: 1.5,
+    mb: 1,
   },
   weekRow: {
     display: 'flex',
     justifyContent: 'space-between',
-    gap: 1,
+    gap: 0.5,
   },
   dayAndCategoriesContainer: {
     userSelect: 'none',

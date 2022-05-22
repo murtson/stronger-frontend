@@ -40,20 +40,20 @@ const AppLayout: React.FC = () => {
       {/* {isMediumAndUpScreen ? <AppHeader /> : null} */}
       <Grid container maxWidth='xl' sx={styles.gridContainer}>
         {isMediumAndUpScreen ? (
-          <Grid item md={4} lg={3.5}>
+          <Grid item md={4} lg={3.25} xl={3}>
             <Box sx={styles.leftSideGrid}>
               <SideNavigation />
               <SideActions />
             </Box>
           </Grid>
         ) : null}
-        <Grid item xs={12} md={7} lg={5} sx={{ display: 'flex' }}>
+        <Grid item xs={12} md={7} lg={5.5} xl={6} sx={{ display: 'flex' }}>
           <Outlet />
           {isMediumAndUpScreen ? null : <BottomNavbar />}
           {isMediumAndUpScreen ? null : <AppSpeedDial />}
         </Grid>
         {isLargerAndUpScreen ? (
-          <Grid item lg={3.5}>
+          <Grid item lg={3.25} xl={3}>
             <Stack spacing={3} sx={{ marginLeft: 4, marginRight: 4 }}>
               <SideCalendar />
               <SideHistory />

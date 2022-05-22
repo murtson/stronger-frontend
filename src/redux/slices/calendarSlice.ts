@@ -30,8 +30,6 @@ export const getWorkoutsFromCalendarDates = createAsyncThunk(
 );
 
 interface CalendarState {
-  loading: boolean;
-  error: null | {};
   calendarWorkouts: Workout[];
   currentCalendar: {
     month: string;
@@ -39,6 +37,8 @@ interface CalendarState {
     lastDayOfMonth: string;
     calendar: Calendar;
   };
+  loading: boolean;
+  error: null | {};
 }
 
 const currentDate = new Date();

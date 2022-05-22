@@ -1,10 +1,14 @@
 // general
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // mui & components
-import { Box, Typography, TextField, Stack, Grid, Divider } from '@mui/material';
+import { Box, Typography, TextField, Stack, Grid, Divider, Link } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import GoogleIcon from '@mui/icons-material/Google';
+// redux
+import { useSelector } from 'react-redux';
+import { useAppDispatch, RootState } from '../../redux/store';
+import { loginUser } from '../../redux/slices/authSlice';
 
 const styles = {
   root: {
@@ -22,7 +26,6 @@ const styles = {
     borderRadius: 2,
     bgcolor: '#ffffff',
     display: 'flex',
-
     flexDirection: 'column',
     justifyContent: 'center',
   },
@@ -33,6 +36,15 @@ const styles = {
 };
 
 const LoginPage: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useAppDispatch();
+
+  const handleLogIn = () => {
+    dispatch(loginUser({ email, password }));
+  };
+
   return (
     <Box sx={styles.root}>
       <Box sx={styles.registerContainer}>
@@ -48,29 +60,45 @@ const LoginPage: React.FC = () => {
             Welcome back! Enter your credentials to access your account.
           </Typography>
           <Stack spacing={2} sx={{ my: 4 }}>
-            <TextField id='email' label='Email' variant='outlined'></TextField>
-            <TextField id='password' label='Password' variant='outlined'></TextField>
+            <TextField
+              id='email'
+              label='Email'
+              variant='outlined'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></TextField>
+            <TextField
+              id='password'
+              label='Password'
+              variant='outlined'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></TextField>
             <Typography variant='subtitle2' textAlign={'right'} sx={{ color: 'primary.main' }}>
               Forgot password?
             </Typography>
-            <LoadingButton variant='contained'>Login</LoadingButton>
+            <LoadingButton variant='contained' size='large' onClick={handleLogIn}>
+              Login
+            </LoadingButton>
             <Divider>
               <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
                 OR
               </Typography>
             </Divider>
-            <LoadingButton variant='outlined' startIcon={<GoogleIcon />}>
+            <LoadingButton variant='outlined' size='large' startIcon={<GoogleIcon />}>
               Log in with Google
             </LoadingButton>
           </Stack>
-          <Typography variant='subtitle2' textAlign={'center'}>
-            <Box component={'span'} sx={{ color: 'text.secondary' }}>
-              Don't have an account?{' '}
-            </Box>
-            <Box component={'span'} sx={{ color: 'primary.main' }}>
-              Sign up
-            </Box>
-          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5 }}>
+            <Typography variant='subtitle2' textAlign={'center'} sx={{ color: 'text.secondary' }}>
+              Don't have an account?
+            </Typography>
+            <Link component={RouterLink} to='/register'>
+              <Typography align='center' variant='subtitle2'>
+                Sign up
+              </Typography>
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Box>

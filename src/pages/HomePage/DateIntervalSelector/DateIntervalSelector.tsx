@@ -6,7 +6,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 
   gap: theme.spacing(2),
   [theme.breakpoints.down('md')]: {
-    gap: theme.spacing(0),
+    gap: theme.spacing(1),
   },
   '& .MuiToggleButtonGroup-grouped': {
     border: 0,
@@ -15,15 +15,15 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 
     [theme.breakpoints.up('md')]: {},
     [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing(1),
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      marginBottom: theme.spacing(1),
+      // marginTop: theme.spacing(1),
+      // marginLeft: theme.spacing(1),
+      // marginRight: theme.spacing(1),
+      // marginBottom: theme.spacing(1),
     },
     '&.Mui-selected': {
       color: 'white',
       backgroundColor: theme.palette.primary.main,
-      boxShadow: 'none',
+      boxShadow: theme.shadows[1],
       '&:hover': {
         color: 'white',
         backgroundColor: theme.palette.primary.main,
@@ -66,8 +66,9 @@ const DateIntervalSelector: React.FC = () => {
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        margin: { md: '24.5px 0' },
-        height: 55,
+        height: 48,
+        my: { xs: 1 },
+        mx: { xs: 1, md: 0 },
         borderRadius: { xs: 0, md: 2 },
       }}
     >

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
-import HeaderTabs from '../HeaderTabs/HeaderTabs';
+import HeaderTabs from '../../../components/Headers/HeaderTabs/HeaderTabs';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const tabsArray = [
@@ -12,10 +12,13 @@ const HomeHeader: React.FC = () => {
   return (
     <Box
       sx={{
-        height: { xs: 100, md: 125 },
+        height: { xs: 150, md: 150 },
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'white',
+        boxShadow: { xs: 0, md: 1 },
+        borderRadius: { xs: 0, md: 2 },
+        overflow: 'hidden',
       }}
     >
       <Grid
@@ -30,9 +33,10 @@ const HomeHeader: React.FC = () => {
             alignItems: 'flex-start',
           }}
         >
-          <Typography variant='h6' sx={{ lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}>
-            Home
-          </Typography>
+          <Typography
+            variant='subtitle1'
+            sx={{ lineHeight: 1.25, paddingTop: { xs: 1, sm: 2 } }}
+          ></Typography>
         </Grid>
         <Grid
           item

@@ -23,10 +23,10 @@ interface ContentState {
 }
 
 const initialState: ContentState = {
-  categories: [],
-  exercises: [],
   loading: false,
   error: null,
+  categories: [],
+  exercises: [],
 };
 
 export const contentSlice = createSlice({

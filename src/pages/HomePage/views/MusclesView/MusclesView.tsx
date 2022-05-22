@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 
-const StatsView: React.FC = () => {
+const MusclesView: React.FC = () => {
   return (
     <Box
       sx={{
@@ -10,18 +10,19 @@ const StatsView: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        marginBottom: { xs: 0, md: '25px' },
+        mb: { xs: 0, md: 2 },
+        boxShadow: { xs: 0, md: 1 },
         borderStyle: 'solid',
-        borderWidth: 1,
+        borderWidth: { xs: 1, md: 0 },
         borderColor: 'divider',
         borderRadius: { xs: 0, md: 2 },
       }}
     >
-      <Typography variant='h6' sx={{ color: 'text.secondary' }}>
-        Stats coming soon...
+      <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
+        Muscles coming soon...
       </Typography>
     </Box>
   );
 };
 
-export default StatsView;
+export default MusclesView;

@@ -114,11 +114,11 @@ export const deleteWorkout = createAsyncThunk(
 );
 
 interface WorkoutState {
-  loading: boolean;
-  error: null | {};
   selectedDate: SelectedDate;
   currentWorkout: null | Workout;
   editingExercise: null | ExerciseSet;
+  loading: boolean;
+  error: null | {};
 }
 
 const initialDate = formatISO(new Date());

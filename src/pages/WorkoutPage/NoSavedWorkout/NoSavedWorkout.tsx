@@ -2,15 +2,23 @@ import React from 'react';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
-const NoLoggedExercise: React.FC = () => {
+const NoSavedWorkout: React.FC = () => {
   return (
     <Box
       sx={{
         display: 'flex',
         flex: 1,
+        backgroundColor: 'white',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column',
+        boxShadow: { xs: 0, md: 1 },
+        borderRadius: { xs: 0, md: 2 },
+        mb: { xs: 0, md: 2 },
+        borderStyle: 'solid',
+        borderWidth: { xs: 1, md: 0 },
+        borderColor: 'divider',
+        overflow: 'hidden',
       }}
     >
       <Box sx={{ maxWidth: 480, px: { xs: 2, md: 0 } }}>
@@ -30,4 +38,4 @@ const NoLoggedExercise: React.FC = () => {
   );
 };
 
-export default NoLoggedExercise;
+export default NoSavedWorkout;

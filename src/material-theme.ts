@@ -18,6 +18,10 @@ export const mainTheme = createTheme({
           lineHeight: 2.1,
           borderRadius: 5,
         },
+        sizeLarge: {
+          paddingTop: '12px',
+          paddingBottom: '12px',
+        },
       },
     },
   },

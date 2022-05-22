@@ -1,17 +1,31 @@
+// general
 import React, { useEffect } from 'react';
-import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+// mui & components
+import { Box } from '@mui/material';
 import WorkoutHeader from '../../components/Headers/WorkoutHeader/WorkoutHeader';
 import DatePicker from '../../components/Datepicker/DatePicker';
+import WorkoutPageError from './WorkoutPageError/WorkoutPageError';
+import NoSavedWorkout from './NoSavedWorkout/NoSavedWorkout';
+// redux
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getWorkout, resetEditingExercise } from '../../redux/slices/workoutSlice';
-import { useTheme } from '@mui/material';
+
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    paddingBottom: { xs: '56px', md: 0 },
+  },
+};
 
 const WorkoutPage: React.FC = () => {
-  const { selectedDate } = useSelector((state: RootState) => state.workout);
+  const { selectedDate, currentWorkout, error, loading } = useSelector(
+    (state: RootState) => state.workout
+  );
   const dispatch = useDispatch<AppDispatch>();
-  const theme = useTheme();
 
   useEffect(() => {
     dispatch(resetEditingExercise());
@@ -22,19 +36,16 @@ const WorkoutPage: React.FC = () => {
   }, [selectedDate]);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-        paddingBottom: { xs: '56px', md: 0 },
-        // borderLeft: `1px solid ${theme.palette.divider}`,
-        // borderRight: `1px solid ${theme.palette.divider}`,
-      }}
-    >
+    <Box sx={styles.root}>
       <WorkoutHeader />
       <DatePicker />
-      <Outlet />
+      {error ? (
+        <WorkoutPageError loading={loading} handleRetryClick={() => dispatch(getWorkout())} />
+      ) : !currentWorkout ? (
+        <NoSavedWorkout />
+      ) : (
+        <Outlet />
+      )}
     </Box>
   );
 };
