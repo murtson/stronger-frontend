@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material';
 import { Shadows } from '@mui/material/styles/shadows';
 import { createBreakpoints } from '@mui/system';
+
 const breakpoints = createBreakpoints({});
 
 export const mainTheme = createTheme({
@@ -28,7 +29,6 @@ export const mainTheme = createTheme({
   typography: {
     fontFamily: ['Inter', 'sans-serif'].join(','),
     subtitle1: {
-      // fontSize: 14,
       fontWeight: 500,
       // [breakpoints.up('md')]: {
       //   fontSize: 16,
@@ -36,15 +36,11 @@ export const mainTheme = createTheme({
       // },
     },
     subtitle2: {
-      // fontSize: 14,
       fontWeight: 500,
-
-      // [breakpoints.up('md')]: {
-      //   fontSize: 16,
-      // },
     },
   },
   shadows: [
+    'none',
     'none',
     '0 1px 2px rgba(0, 0, 0, 0.2)',
     '0 2px 4px rgba(0, 0, 0, 0.2)',

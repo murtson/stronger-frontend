@@ -1,25 +1,13 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {
-  Box,
-  Grid,
-  Typography,
-  IconButton,
-  Stack,
-  Divider,
-  Skeleton,
-  LinearProgress,
-} from '@mui/material';
-import HeaderTabs from '../HeaderTabs/HeaderTabs';
+import { Box, Grid, Typography, IconButton, Stack, Divider, Skeleton, LinearProgress } from '@mui/material';
+import HeaderTabs from '../../../components/Headers/HeaderTabs/HeaderTabs';
 import MoreVertIcon from '@mui/icons-material/MoreHoriz';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import {
-  getNumberOfSets,
-  getNumberOfExercises,
-} from '../../../services/WorkoutService/WorkoutService';
+import { getNumberOfSets, getNumberOfExercises } from '../../../services/WorkoutService/WorkoutService';
 import { useTheme } from '@mui/material';
 
 const tabsArray = [
@@ -34,7 +22,7 @@ const styles = {
     justifyContent: 'space-between',
     backgroundColor: 'white',
     borderRadius: { xs: 0, md: 2 },
-    borderWidth: { xs: 0, md: 0 },
+    borderWidth: { xs: 0, md: 1 },
     borderColor: 'divider',
     borderStyle: 'solid',
     boxShadow: { xs: 0, md: 1 },
@@ -126,11 +114,7 @@ const WorkoutHeader: React.FC = () => {
               </Typography>
             }
           </Grid>
-          <Grid
-            item
-            xs={6}
-            sx={{ pt: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
-          >
+          <Grid item xs={6} sx={{ pt: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
             <Typography
               noWrap={true}
               variant='subtitle2'

@@ -23,25 +23,19 @@ export const getWorkout = async (date: string) => {
   }
 };
 
-export const createWorkout = async (
-  data: { exercise: Exercise; sets: Set[] },
-  createdAt: string
-) => {
+export const createWorkout = async (data: { exercise: Exercise; sets: Set[]; createdAt: string }) => {
   try {
     return await axios.post<Workout>(`${baseURL}/user-workout/create`, {
       exercise: data.exercise,
       sets: data.sets,
-      createdAt,
+      createdAt: data.createdAt,
     });
   } catch (e: any) {
     throw new Error(e);
   }
 };
 
-export const createWorkoutSet = async (
-  data: { exercise: Exercise; sets: Set[] },
-  workoutID: string
-) => {
+export const createWorkoutSet = async (data: { exercise: Exercise; sets: Set[] }, workoutID: string) => {
   try {
     return await axios.post<{
       updatedWorkout: Workout;
@@ -52,16 +46,12 @@ export const createWorkoutSet = async (
   }
 };
 
-export const updateWorkoutSets = async (data: {
-  workoutId: string;
-  setId: string;
-  sets: Set[];
-}) => {
+export const updateWorkoutSets = async (data: { workoutId: string; setId: string; sets: Set[] }) => {
   try {
     return await axios.put<{ updatedWorkout: Workout; updatedExerciseSet: ExerciseSet }>(
       `${baseURL}/user-workout/${data.workoutId}/set/${data.setId}`,
       {
-        sets: data.sets,
+        updatedSets: data.sets,
       }
     );
   } catch (e: any) {
@@ -97,9 +87,7 @@ export const getWorkouts = async (page: number, perPage: number) => {
 
 export const getWorkoutsBetweenIntervals = async (startDate: string, endDate: string) => {
   try {
-    return await axios.get<Workout[]>(
-      `${baseURL}/user-workout/?startDate=${startDate}&endDate=${endDate}`
-    );
+    return await axios.get<Workout[]>(`${baseURL}/user-workout/?startDate=${startDate}&endDate=${endDate}`);
   } catch (e: any) {
     throw new Error(e);
   }

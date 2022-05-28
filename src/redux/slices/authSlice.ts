@@ -8,7 +8,6 @@ export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async (args: { firstname: string; lastname: string; password: string; email: string }) => {
     const response = await ApiService.registerUser(args);
-    console.log(response);
     return response.data;
   }
 );
@@ -51,6 +50,8 @@ export const contentSlice = createSlice({
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.loading = false;
       state.error = null;
+      state.user = action.payload.user;
+      state.isAuth = action.payload.isLoggedIn;
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.loading = false;

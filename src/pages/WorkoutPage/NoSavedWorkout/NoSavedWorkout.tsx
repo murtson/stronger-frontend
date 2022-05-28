@@ -16,7 +16,7 @@ const NoSavedWorkout: React.FC = () => {
         borderRadius: { xs: 0, md: 2 },
         mb: { xs: 0, md: 2 },
         borderStyle: 'solid',
-        borderWidth: { xs: 1, md: 0 },
+        borderWidth: 1,
         borderColor: 'divider',
         overflow: 'hidden',
       }}
@@ -30,8 +30,8 @@ const NoSavedWorkout: React.FC = () => {
           Rest day perhaps?
         </Typography>
         <Typography variant='subtitle2' textAlign={'center'} sx={{ color: 'text.secondary' }}>
-          There is no workout saved for this date. Tap the 'New workout' or "Copy another workout"
-          button to log a new workout.
+          There is no workout saved for this date. Tap the 'New workout' or "Copy another workout" button to
+          log a new workout.
         </Typography>
       </Box>
     </Box>

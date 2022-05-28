@@ -1,19 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
 import { formatISO } from 'date-fns';
-
 // redux
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { PayloadAction } from '@reduxjs/toolkit';
-import {
-  updateWorkoutInCalendar,
-  pushToCalendarWorkouts,
-  deleteFromCalendarWorkouts,
-} from './calendarSlice';
-
+import { updateWorkoutInCalendar, pushToCalendarWorkouts, deleteFromCalendarWorkouts } from './calendarSlice';
 // services
 import * as ApiService from '../../services/ApiService/ApiService';
-
 // interfaces & types
 import { SelectedDate } from '../../ts/interfaces/SelectedDate';
 import { Exercise } from '../../ts/interfaces/Exercise';
@@ -26,17 +19,14 @@ import {
   formatDisplayDate,
 } from '../../services/DatePickerService/DatePickerService';
 
-export const getWorkout = createAsyncThunk(
-  'workout/getWorkout',
-  async (_, { getState, dispatch }) => {
-    const appState = getState() as RootState;
-    const { selectedDate } = appState.workout;
-    const response = await ApiService.getWorkout(selectedDate.value);
-    const { message, workout } = response.data;
-    if (message !== 'not found') dispatch(updateWorkoutInCalendar(response.data));
-    return message !== 'found' ? null : workout;
-  }
-);
+export const getWorkout = createAsyncThunk('workout/getWorkout', async (_, { getState, dispatch }) => {
+  const appState = getState() as RootState;
+  const { selectedDate } = appState.workout;
+  const response = await ApiService.getWorkout(selectedDate.value);
+  const { message, workout } = response.data;
+  if (message !== 'not found') dispatch(updateWorkoutInCalendar(response.data));
+  return message !== 'found' ? null : workout;
+});
 
 export const logExerciseSet = createAsyncThunk(
   'workout/logExerciseSet',
@@ -64,7 +54,8 @@ export const createWorkout = createAsyncThunk(
   async (args: { exercise: Exercise; sets: Set[] }, { getState, dispatch }) => {
     const appState = getState() as RootState;
     const { selectedDate } = appState.workout;
-    const response = await ApiService.createWorkout(args, selectedDate.value);
+    const createWorkoutInput = { ...args, createdAt: selectedDate.value };
+    const response = await ApiService.createWorkout(createWorkoutInput);
     dispatch(pushToCalendarWorkouts(response.data));
     return response.data;
   }
@@ -89,29 +80,23 @@ export const updateWorkoutSets = createAsyncThunk(
   }
 );
 
-export const completeWorkout = createAsyncThunk(
-  'workout/completeWorkout',
-  async (_, { getState }) => {
-    const appState = getState() as RootState;
-    const { currentWorkout } = appState.workout;
-    if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
-    const response = await ApiService.completeWorkout(currentWorkout._id);
-    return response.data;
-  }
-);
+export const completeWorkout = createAsyncThunk('workout/completeWorkout', async (_, { getState }) => {
+  const appState = getState() as RootState;
+  const { currentWorkout } = appState.workout;
+  if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
+  const response = await ApiService.completeWorkout(currentWorkout._id);
+  return response.data;
+});
 
-export const deleteWorkout = createAsyncThunk(
-  'workout/deleteWorkout',
-  async (_, { getState, dispatch }) => {
-    const appState = getState() as RootState;
-    const { currentWorkout } = appState.workout;
-    if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
-    const response = await ApiService.deleteWorkout(currentWorkout._id);
-    const deletedWorkoutId = response.data;
-    dispatch(deleteFromCalendarWorkouts(deletedWorkoutId));
-    return deletedWorkoutId;
-  }
-);
+export const deleteWorkout = createAsyncThunk('workout/deleteWorkout', async (_, { getState, dispatch }) => {
+  const appState = getState() as RootState;
+  const { currentWorkout } = appState.workout;
+  if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
+  const response = await ApiService.deleteWorkout(currentWorkout._id);
+  const deletedWorkoutId = response.data;
+  dispatch(deleteFromCalendarWorkouts(deletedWorkoutId));
+  return deletedWorkoutId;
+});
 
 interface WorkoutState {
   selectedDate: SelectedDate;
@@ -240,12 +225,7 @@ export const workoutSlice = createSlice({
 });
 
 // action creators are generated for each case reducer function
-export const {
-  resetEditingExercise,
-  setEditingExercise,
-  incrementDate,
-  decrementDate,
-  setSelectedDate,
-} = workoutSlice.actions;
+export const { resetEditingExercise, setEditingExercise, incrementDate, decrementDate, setSelectedDate } =
+  workoutSlice.actions;
 
 export default workoutSlice.reducer;

@@ -16,7 +16,7 @@ const styles = {
     borderRadius: { xs: 0, md: 2 },
     mb: { xs: 0, md: 2 },
     borderStyle: 'solid',
-    borderWidth: { xs: 1, md: 0 },
+    borderWidth: { xs: 1, md: 1 },
     borderColor: 'divider',
     overflow: 'hidden',
   },

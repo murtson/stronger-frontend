@@ -11,6 +11,9 @@ const styles = {
     overflow: 'hidden',
     boxShadow: { xs: 0, md: 1 },
     height: { xs: 275, md: 350, lg: 415 },
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'divider',
   },
   header: {
     flex: 1,

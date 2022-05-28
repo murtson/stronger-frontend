@@ -4,14 +4,14 @@ import { Box, Typography, Button, Tabs, Tab, Divider } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../../redux/store';
-import { completeWorkout, deleteWorkout } from '../../../redux/slices/workoutSlice';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { completeWorkout, deleteWorkout } from '../../redux/slices/workoutSlice';
 import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 
-import DeleteWorkoutDialog from '../../dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
-import CompleteWorkoutDialog from '../../dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
+import DeleteWorkoutDialog from '../dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
+import CompleteWorkoutDialog from '../dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
 
 const SideTabs = styled(Tabs)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -21,11 +21,9 @@ const SideTabs = styled(Tabs)(({ theme }) => ({
     display: 'none',
   },
 }));
-const SideTab = styled(
-  (props: { label: string; value: string; icon: any; iconPosition: IconPosition }) => (
-    <Tab {...props} />
-  )
-)(({ theme }) => ({
+const SideTab = styled((props: { label: string; value: string; icon: any; iconPosition: IconPosition }) => (
+  <Tab {...props} />
+))(({ theme }) => ({
   minHeight: '46px',
   marginBottom: theme.spacing(2),
   borderRadius: '50px',
@@ -58,6 +56,9 @@ const styles = {
     backgroundColor: 'white',
     borderRadius: 2,
     boxSizing: 'border-box',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'divider',
     p: 2,
     boxShadow: 1,
   },
@@ -88,26 +89,10 @@ const SideNavigation: React.FC = () => {
       <Typography variant='h6' sx={{ color: 'primary.main', mb: 2, pl: 2 }}>
         Stronger
       </Typography>
-      <SideTabs
-        value={value}
-        onChange={handleChange}
-        centered
-        variant='fullWidth'
-        orientation='vertical'
-      >
+      <SideTabs value={value} onChange={handleChange} centered variant='fullWidth' orientation='vertical'>
         <SideTab label='Home' value='home' icon={<DonutSmallOutlinedIcon />} iconPosition='start' />
-        <SideTab
-          label='Workout'
-          value='workout'
-          icon={<WhatshotOutlinedIcon />}
-          iconPosition='start'
-        />
-        <SideTab
-          label='Profile'
-          value='profile'
-          icon={<AccountCircleOutlinedIcon />}
-          iconPosition='start'
-        />
+        <SideTab label='Workout' value='workout' icon={<WhatshotOutlinedIcon />} iconPosition='start' />
+        <SideTab label='Profile' value='profile' icon={<AccountCircleOutlinedIcon />} iconPosition='start' />
       </SideTabs>
     </Box>
   );

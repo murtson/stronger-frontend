@@ -5,8 +5,8 @@ import { Grid, Stack, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import BottomNavbar from '../../components/Navigation/BottomNavbar/BottomNavbar';
-import SideNavigation from '../../components/Navigation/SideNavbar/SideNavigation';
+import BottomNavbar from '../../components/BottomNavbar/BottomNavbar';
+import SideNavigation from '../../components/SideNavbar/SideNavigation';
 import SideCalendar from '../../components/SideCalendar/SideCalendar';
 import SideHistory from '../../components/SideHistory/SideHistory';
 import AppSpeedDial from '../../components/Buttons/SpeedDial/SpeedDial';

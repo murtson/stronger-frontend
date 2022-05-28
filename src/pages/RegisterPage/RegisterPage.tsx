@@ -58,11 +58,7 @@ const RegisterPage: React.FC = () => {
           <Typography variant='h5' textAlign={'center'} sx={{ fontWeight: 500, pb: 1.5 }}>
             Create your account
           </Typography>
-          <Typography
-            variant='subtitle1'
-            textAlign={'center'}
-            sx={{ fontWeight: 500, color: 'text.secondary' }}
-          >
+          <Typography variant='subtitle1' textAlign={'center'} sx={{ fontWeight: 500, color: 'text.secondary' }}>
             Ready to become stronger? Enter your details down below to get started.
           </Typography>
           <Stack spacing={2} sx={{ my: 4 }}>
@@ -105,15 +101,10 @@ const RegisterPage: React.FC = () => {
             <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
               By signing up, you agree to our Terms & Conditions and Privacy Policy
             </Typography>
-            <LoadingButton
-              variant='contained'
-              size='large'
-              loading={loading}
-              onClick={handleSignupClick}
-            >
+            <LoadingButton variant='contained' size='large' loading={loading} onClick={handleSignupClick}>
               Sign up
             </LoadingButton>
-            <Divider>
+            {/* <Divider>
               <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
                 OR
               </Typography>
@@ -125,7 +116,7 @@ const RegisterPage: React.FC = () => {
               startIcon={<GoogleIcon />}
             >
               Sign up with Google
-            </LoadingButton>
+            </LoadingButton> */}
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5 }}>
             <Typography variant='subtitle2' textAlign={'center'} sx={{ color: 'text.secondary' }}>

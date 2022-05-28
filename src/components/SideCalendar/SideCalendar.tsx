@@ -26,6 +26,9 @@ const styles = {
     p: { xs: 1, lg: 2 },
     borderRadius: 2,
     boxShadow: 1,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'divider',
     height: 415,
   },
   header: {
@@ -125,8 +128,7 @@ const SideCalendar: React.FC = () => {
 
   const getTextColor = (day: string) => {
     const isNotWithinMonth =
-      isBefore(parseISO(day), parseISO(firstDayOfMonth)) ||
-      isAfter(parseISO(day), parseISO(lastDayOfMonth));
+      isBefore(parseISO(day), parseISO(firstDayOfMonth)) || isAfter(parseISO(day), parseISO(lastDayOfMonth));
     const isSameAsCurrentDate = isSameDay(parseISO(day), currentDate);
     if (isSameAsCurrentDate) return '#ffffff';
     else if (isNotWithinMonth) return 'neutral.dark';

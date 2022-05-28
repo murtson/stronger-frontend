@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 // mui & components
 import { Box } from '@mui/material';
-import WorkoutHeader from '../../components/Headers/WorkoutHeader/WorkoutHeader';
+import WorkoutHeader from './WorkoutHeader/WorkoutHeader';
 import DatePicker from '../../components/Datepicker/DatePicker';
 import WorkoutPageError from './WorkoutPageError/WorkoutPageError';
 import NoSavedWorkout from './NoSavedWorkout/NoSavedWorkout';
@@ -22,9 +22,7 @@ const styles = {
 };
 
 const WorkoutPage: React.FC = () => {
-  const { selectedDate, currentWorkout, error, loading } = useSelector(
-    (state: RootState) => state.workout
-  );
+  const { selectedDate, currentWorkout, error, loading } = useSelector((state: RootState) => state.workout);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {

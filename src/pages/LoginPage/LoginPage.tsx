@@ -52,11 +52,7 @@ const LoginPage: React.FC = () => {
           <Typography variant='h5' textAlign={'center'} sx={{ fontWeight: 500, pb: 2 }}>
             Log in
           </Typography>
-          <Typography
-            variant='subtitle1'
-            textAlign={'center'}
-            sx={{ fontWeight: 500, color: 'text.secondary' }}
-          >
+          <Typography variant='subtitle1' textAlign={'center'} sx={{ fontWeight: 500, color: 'text.secondary' }}>
             Welcome back! Enter your credentials to access your account.
           </Typography>
           <Stack spacing={2} sx={{ my: 4 }}>
@@ -80,14 +76,14 @@ const LoginPage: React.FC = () => {
             <LoadingButton variant='contained' size='large' onClick={handleLogIn}>
               Login
             </LoadingButton>
-            <Divider>
+            {/* <Divider>
               <Typography variant='subtitle2' sx={{ color: 'text.secondary' }}>
                 OR
               </Typography>
             </Divider>
             <LoadingButton variant='outlined' size='large' startIcon={<GoogleIcon />}>
               Log in with Google
-            </LoadingButton>
+            </LoadingButton> */}
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 0.5 }}>
             <Typography variant='subtitle2' textAlign={'center'} sx={{ color: 'text.secondary' }}>
