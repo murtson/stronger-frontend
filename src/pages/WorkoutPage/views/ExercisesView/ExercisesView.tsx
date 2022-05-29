@@ -1,3 +1,4 @@
+// general
 import React from 'react';
 // mui & components
 import LoggedExercise from './LoggedExercise/LoggedExercise';
@@ -5,19 +6,16 @@ import { Box, List, Divider } from '@mui/material';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
+// constants
+import { contentBorderStyle } from '../../../../constants/styles';
 
 const styles = {
   root: {
+    ...contentBorderStyle,
     display: 'flex',
     flex: 1,
     backgroundColor: 'white',
     flexDirection: 'column',
-    boxShadow: { xs: 0, md: 1 },
-    borderRadius: { xs: 0, md: 2 },
-    mb: { xs: 0, md: 2 },
-    borderStyle: 'solid',
-    borderWidth: { xs: 1, md: 1 },
-    borderColor: 'divider',
     overflow: 'hidden',
   },
 };

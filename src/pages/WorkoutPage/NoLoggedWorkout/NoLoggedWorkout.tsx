@@ -1,23 +1,22 @@
+// general
 import React from 'react';
+// mui & components
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
+// constants
+import { contentBorderStyle } from '../../../constants/styles';
 
 const NoSavedWorkout: React.FC = () => {
   return (
     <Box
       sx={{
+        ...contentBorderStyle,
         display: 'flex',
         flex: 1,
         backgroundColor: 'white',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: { xs: 0, md: 1 },
-        borderRadius: { xs: 0, md: 2 },
-        mb: { xs: 0, md: 2 },
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: 'divider',
         overflow: 'hidden',
       }}
     >

@@ -7,15 +7,14 @@ import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useSelector } from 'react-redux';
-import { completeWorkout, deleteWorkout } from '../../redux/slices/workoutSlice';
-import { RootState, useAppDispatch } from '../../redux/store';
-import CompleteWorkoutDialog from '../dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
-import DeleteWorkoutDialog from '../dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
+import { completeWorkout, deleteWorkout } from '../../../../redux/slices/workoutSlice';
+import { RootState, useAppDispatch } from '../../../../redux/store';
+import CompleteWorkoutDialog from '../../../../components/dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
+import DeleteWorkoutDialog from '../../../../components/dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const styles = {
   root: {
-    maxWidth: 250,
     width: '100%',
   },
   buttonContainer: {

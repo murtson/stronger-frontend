@@ -1,17 +1,13 @@
+// general
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Typography, Button, Tabs, Tab, Divider } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
-import { styled } from '@mui/material/styles';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { completeWorkout, deleteWorkout } from '../../redux/slices/workoutSlice';
+// mui & components
+import { Box, Typography, Button, Tabs, Tab, Divider, styled } from '@mui/material';
 import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
-
-import DeleteWorkoutDialog from '../dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
-import CompleteWorkoutDialog from '../dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
+// constants
+import { contentBorderStyle } from '../../../../constants/styles';
 
 const SideTabs = styled(Tabs)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -51,16 +47,11 @@ type IconPosition = 'top' | 'start' | 'end' | 'bottom';
 
 const styles = {
   root: {
-    maxWidth: 250,
+    ...contentBorderStyle,
     width: '100%',
-    backgroundColor: 'white',
-    borderRadius: 2,
+    backgroundColor: '#ffffff',
     boxSizing: 'border-box',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'divider',
     p: 2,
-    boxShadow: 1,
   },
 };
 

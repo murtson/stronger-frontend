@@ -13,8 +13,9 @@ import {
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
-
+// constants
 import { Exercise } from '../../../ts/interfaces/Exercise';
+import { contentBorderStyle } from '../../../constants/styles';
 
 const styles = {
   header: {
@@ -25,14 +26,12 @@ const styles = {
     px: { xs: 2, md: 0 },
   },
   body: {
+    ...contentBorderStyle,
     backgroundColor: 'white',
     flex: { xs: 1, md: 'initial' },
-    borderRadius: { xs: 0, md: 2 },
-    borderStyle: 'solid',
-    borderWidth: { xs: 1, md: 0 },
-    borderColor: 'divider',
+
     mb: { xs: 0, md: 2 },
-    boxShadow: { xs: 0, md: 1 },
+
     overflow: 'hidden',
   },
 };

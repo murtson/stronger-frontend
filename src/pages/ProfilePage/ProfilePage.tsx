@@ -1,22 +1,34 @@
+// general
 import React from 'react';
-import { Box } from '@mui/material';
+// mui & components
+import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+// constants
+import { pageRoot } from '../../constants/styles';
 
-import ProfileHeader from '../../components/Headers/ProfileHeader/ProfileHeader';
-import ProfileView from './views/ProfileView';
+const styles = {
+  root: pageRoot,
+  contentGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  sideGrid: {
+    px: 3,
+  },
+};
 
 const HomePage: React.FC = () => {
+  const theme = useTheme();
+  const isLargerAndUpScreen = useMediaQuery(theme.breakpoints.up('lg'));
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-        paddingBottom: { xs: '56px', md: 0 },
-      }}
-    >
-      {/* <ProfileHeader /> */}
-      <ProfileView />
-    </Box>
+    <Grid container sx={styles.root}>
+      <Grid item xs={12} lg={8} xl={8.5} sx={styles.contentGrid}>
+        <ProfileInfo />
+      </Grid>
+      {isLargerAndUpScreen ? <Grid item lg={4} xl={3.5} sx={styles.sideGrid}></Grid> : null}
+    </Grid>
   );
 };
 

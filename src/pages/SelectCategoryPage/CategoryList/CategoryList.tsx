@@ -1,5 +1,7 @@
-import React from 'react';
+// overall
+import React, { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
+// mui & components
 import {
   Box,
   List,
@@ -13,7 +15,9 @@ import {
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
+// constants
 import { ExerciseCategory } from '../../../ts/interfaces/ExerciseCategory';
+import { contentBorderStyle } from '../../../constants/styles';
 
 const styles = {
   header: {
@@ -24,13 +28,9 @@ const styles = {
     px: { xs: 2, md: 0 },
   },
   body: {
+    ...contentBorderStyle,
     backgroundColor: 'white',
     flex: { xs: 1, md: 'initial' },
-    borderRadius: { xs: 0, md: 2 },
-    boxShadow: { xs: 0, md: 1 },
-    borderStyle: 'solid',
-    borderWidth: { xs: 1, md: 0 },
-    borderColor: 'divider',
     overflow: 'hidden',
   },
 };
@@ -48,7 +48,7 @@ const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Box sx={styles.header}>
         <Typography variant='subtitle1' sx={{ color: 'text.secondary' }}>
           Exercise categories
@@ -89,7 +89,7 @@ const CategoryList: React.FC<Props> = ({ categories, isLoading }) => {
           </List>
         )}
       </Box>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

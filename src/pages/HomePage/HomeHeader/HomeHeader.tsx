@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 import HeaderTabs from '../../../components/Headers/HeaderTabs/HeaderTabs';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+// constants
+import { contentBorderStyle } from '../../../constants/styles';
 
 const tabsArray = [
   { value: 'stats', label: 'Stats' },
@@ -12,19 +14,16 @@ const HomeHeader: React.FC = () => {
   return (
     <Box
       sx={{
+        ...contentBorderStyle,
         height: { xs: 150, md: 150 },
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'white',
-        boxShadow: { xs: 0, md: 1 },
-        borderRadius: { xs: 0, md: 2 },
+
         overflow: 'hidden',
       }}
     >
-      <Grid
-        container
-        sx={{ flex: 1, paddingLeft: { xs: 2, md: 0 }, paddingRight: { xs: 1, md: 0 } }}
-      >
+      <Grid container sx={{ flex: 1, paddingLeft: { xs: 2, md: 0 }, paddingRight: { xs: 1, md: 0 } }}>
         <Grid
           item
           xs={6}

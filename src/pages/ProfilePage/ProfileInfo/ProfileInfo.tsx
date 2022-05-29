@@ -1,19 +1,18 @@
+// general
 import React from 'react';
-import { Box, Typography, Avatar, Button, Grid } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+// mui & components
+import { Box, Typography, Avatar, Button, Grid, useTheme } from '@mui/material';
 import FaceIcon from '@mui/icons-material/Face';
+// constants
+import { contentBorderStyle } from '../../../constants/styles';
 
 const styles = {
   root: {
+    ...contentBorderStyle,
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: { xs: 0, md: 2 },
     overflow: 'hidden',
-    boxShadow: { xs: 0, md: 1 },
     height: { xs: 275, md: 350, lg: 415 },
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'divider',
   },
   header: {
     flex: 1,
@@ -44,13 +43,7 @@ const ProfileInfo: React.FC = () => {
   return (
     <Box sx={styles.root}>
       <Box sx={styles.header} />
-      <Grid
-        container
-        sx={{
-          ...styles.gridContainer,
-          borderBottom: { xs: `1px solid ${theme.palette.divider}`, md: 'none' },
-        }}
-      >
+      <Grid container sx={styles.gridContainer}>
         <Avatar sx={styles.avatar}>
           <FaceIcon sx={{ fontSize: { xs: '48px', md: '64px' } }} />
         </Avatar>

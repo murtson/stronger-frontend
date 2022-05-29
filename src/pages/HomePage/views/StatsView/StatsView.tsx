@@ -1,21 +1,20 @@
-import { Box, Typography } from '@mui/material';
+// general
 import React from 'react';
+// mui & components
+import { Box, Typography } from '@mui/material';
+// constants
+import { contentBorderStyle } from '../../../../constants/styles';
 
 const StatsView: React.FC = () => {
   return (
     <Box
       sx={{
+        ...contentBorderStyle,
         display: 'flex',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        mb: { xs: 0, md: 2 },
-        boxShadow: { xs: 0, md: 1 },
-        borderStyle: 'solid',
-        borderWidth: { xs: 1, md: 0 },
-        borderColor: 'divider',
-        borderRadius: { xs: 0, md: 2 },
       }}
     >
       <Typography variant='subtitle1' sx={{ fontWeight: 600 }}>
