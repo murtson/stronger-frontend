@@ -3,6 +3,7 @@ import React from 'react';
 // mui & components
 import LoggedExercise from './LoggedExercise/LoggedExercise';
 import { Box, List, Divider } from '@mui/material';
+import NoLoggedWorkout from '../../NoLoggedWorkout/NoLoggedWorkout';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
@@ -22,6 +23,8 @@ const styles = {
 
 const ExercisesView: React.FC = () => {
   const { currentWorkout, loading } = useSelector((state: RootState) => state.workout);
+
+  if (!currentWorkout) return <NoLoggedWorkout />;
 
   return (
     <Box sx={styles.root}>

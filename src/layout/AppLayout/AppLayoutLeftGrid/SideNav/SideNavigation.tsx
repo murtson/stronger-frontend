@@ -8,6 +8,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 // constants
 import { contentBorderStyle } from '../../../../constants/styles';
+import { MainRoutePaths, WorkoutSubRoutes, HomeSubRoutes } from '../../../../ts/enums/routePaths';
 
 const SideTabs = styled(Tabs)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -41,8 +42,8 @@ const SideTab = styled((props: { label: string; value: string; icon: any; iconPo
   },
 }));
 
-type PageValues = 'home' | 'workout' | 'profile';
-type PageTabValues = '/stats' | '/exercises' | '';
+type PageValues = MainRoutePaths.HOME | MainRoutePaths.WORKOUT | MainRoutePaths.PROFILE;
+type PageTabValues = `/${WorkoutSubRoutes.EXERCISES}` | `/${HomeSubRoutes.STATS}` | '';
 type IconPosition = 'top' | 'start' | 'end' | 'bottom';
 
 const styles = {
@@ -53,13 +54,17 @@ const styles = {
     boxSizing: 'border-box',
     p: 2,
   },
+  title: {
+    color: 'primary.main',
+    mb: 2,
+    pl: 2,
+  },
 };
 
 const SideNavigation: React.FC = () => {
+  const [value, setValue] = useState<MainRoutePaths | string>(MainRoutePaths.WORKOUT);
   let navigate = useNavigate();
   let location = useLocation();
-
-  const [value, setValue] = useState('workout');
 
   useEffect(() => {
     const pathname = location.pathname.split('/');
@@ -68,8 +73,8 @@ const SideNavigation: React.FC = () => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: PageValues) => {
     let subRoute: PageTabValues;
-    if (newValue === 'workout') subRoute = '/exercises';
-    else if (newValue === 'home') subRoute = '/stats';
+    if (newValue === MainRoutePaths.WORKOUT) subRoute = `/${WorkoutSubRoutes.EXERCISES}`;
+    else if (newValue === MainRoutePaths.HOME) subRoute = `/${HomeSubRoutes.STATS}`;
     else subRoute = '';
     setValue(newValue);
     navigate(`${newValue}${subRoute}`);
@@ -77,13 +82,28 @@ const SideNavigation: React.FC = () => {
 
   return (
     <Box sx={styles.root}>
-      <Typography variant='h6' sx={{ color: 'primary.main', mb: 2, pl: 2 }}>
+      <Typography variant='h6' sx={styles.title}>
         Stronger
       </Typography>
       <SideTabs value={value} onChange={handleChange} centered variant='fullWidth' orientation='vertical'>
-        <SideTab label='Home' value='home' icon={<DonutSmallOutlinedIcon />} iconPosition='start' />
-        <SideTab label='Workout' value='workout' icon={<WhatshotOutlinedIcon />} iconPosition='start' />
-        <SideTab label='Profile' value='profile' icon={<AccountCircleOutlinedIcon />} iconPosition='start' />
+        <SideTab
+          label='Home'
+          value={MainRoutePaths.HOME}
+          icon={<DonutSmallOutlinedIcon />}
+          iconPosition='start'
+        />
+        <SideTab
+          label='Workout'
+          value={MainRoutePaths.WORKOUT}
+          icon={<WhatshotOutlinedIcon />}
+          iconPosition='start'
+        />
+        <SideTab
+          label='Profile'
+          value={MainRoutePaths.PROFILE}
+          icon={<AccountCircleOutlinedIcon />}
+          iconPosition='start'
+        />
       </SideTabs>
     </Box>
   );

@@ -47,13 +47,7 @@ const WorkoutPage: React.FC = () => {
       <Grid item xs={12} lg={8} xl={8.5} sx={styles.contentGrid}>
         <WorkoutHeader />
         <DatePicker />
-        {error ? (
-          <WorkoutPageError loading={loading} handleRetryClick={() => dispatch(getWorkout())} />
-        ) : !currentWorkout ? (
-          <NoSavedWorkout />
-        ) : (
-          <Outlet />
-        )}
+        <Outlet />
       </Grid>
       {isLargerAndUpScreen ? (
         <Grid item lg={4} xl={3.5} sx={styles.sideGrid}>

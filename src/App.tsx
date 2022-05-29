@@ -1,4 +1,4 @@
-import { AppRoutes } from './AppRoutes';
+import { AppRoutes } from './components/AppRoutes/AppRoutes';
 
 function App() {
   return (
