@@ -5,11 +5,11 @@ import { Box, Typography, Button, Divider, List } from '@mui/material';
 import HistoryWorkout from './HistoryWorkout/HistoryWorkout';
 // redux
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../../redux/store';
 // services
-import { getWorkouts } from '../../services/ApiService/ApiService';
+import { getWorkouts } from '../../../services/ApiService/ApiService';
 // interfaces
-import { Workout } from '../../ts/interfaces/Workout';
+import { Workout } from '../../../ts/interfaces/Workout';
 
 const styles = {
   root: {

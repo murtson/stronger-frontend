@@ -5,19 +5,19 @@ import { Box, Typography, IconButton, Stack } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 // services & libs
-import { getWorkoutExerciseCategories } from '../../services/WorkoutService/WorkoutService';
+import { getWorkoutExerciseCategories } from '../../../services/WorkoutService/WorkoutService';
 import { format, isBefore, isAfter, isSameDay, parseISO } from 'date-fns';
 // redux
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch } from '../../../redux/store';
 import {
   incrementCalendarMonth,
   decrementCalendarMonth,
   getWorkoutsFromCalendarDates,
-} from '../../redux/slices/calendarSlice';
-import { setSelectedDate } from '../../redux/slices/workoutSlice';
+} from '../../../redux/slices/calendarSlice';
+import { setSelectedDate } from '../../../redux/slices/workoutSlice';
 // constants
-import { contentBorderStyle } from '../../constants/styles';
+import { contentBorderStyle } from '../../../constants/styles';
 
 const styles = {
   root: {

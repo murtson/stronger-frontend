@@ -4,11 +4,11 @@ import { Outlet } from 'react-router-dom';
 // mui & components
 import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
 import WorkoutHeader from './WorkoutHeader/WorkoutHeader';
-import DatePicker from '../../components/Datepicker/DatePicker';
+import DatePicker from './Datepicker/DatePicker';
 import WorkoutPageError from './WorkoutPageError/WorkoutPageError';
 import NoSavedWorkout from './NoLoggedWorkout/NoLoggedWorkout';
-import SideCalendar from '../../components/SideCalendar/SideCalendar';
-import SideHistory from '../../components/SideHistory/SideHistory';
+import SideCalendar from './SideCalendar/SideCalendar';
+import SideHistory from './SideHistory/SideHistory';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';

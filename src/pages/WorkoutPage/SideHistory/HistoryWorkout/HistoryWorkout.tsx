@@ -4,12 +4,12 @@ import React from 'react';
 import { Box, Grid, Typography, ListItemButton, Chip } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 // services & libs
-import { getWorkoutExerciseCategories } from '../../../services/WorkoutService/WorkoutService';
-import { Workout } from '../../../ts/interfaces/Workout';
+import { getWorkoutExerciseCategories } from '../../../../services/WorkoutService/WorkoutService';
+import { Workout } from '../../../../ts/interfaces/Workout';
 import { format, parseISO } from 'date-fns';
 // redux
-import { useAppDispatch } from '../../../redux/store';
-import { setSelectedDate } from '../../../redux/slices/workoutSlice';
+import { useAppDispatch } from '../../../../redux/store';
+import { setSelectedDate } from '../../../../redux/slices/workoutSlice';
 
 const styles = {
   root: {

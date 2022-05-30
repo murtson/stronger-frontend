@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+// general
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+// components
 import WorkoutSideActions from './WorkoutSideActions/WorkoutSideActions';
 // constants
-import { MainRoutePaths } from '../../../../ts/enums/routePaths';
+import { MainRoutePaths } from '../../../ts/enums/routePaths';
 
-const styles = {
-  root: {
-    width: '100%',
-  },
-  buttonContainer: {
-    mt: 2,
-  },
-  button: {
-    borderRadius: 2,
-    mb: 2,
-  },
-};
-
-const SideActions = () => {
+const SideActions: React.FC = () => {
   let location = useLocation();
 
   const pathname = location.pathname.split('/');

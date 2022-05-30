@@ -1,7 +1,8 @@
+// general
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+// mui & components
 import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
-
 import HomeHeader from './HomeHeader/HomeHeader';
 import DateIntervalSelector from './DateIntervalSelector/DateIntervalSelector';
 // constants

@@ -27,8 +27,6 @@ import { MainRoutePaths, WorkoutSubRoutes, HomeSubRoutes, LogSubRoutes } from '.
 export const AppRoutes = () => {
   const { isAuth, loading } = useSelector((state: RootState) => state.auth);
 
-  if (loading) return <div>loading...</div>;
-
   return (
     <Router>
       <Routes>

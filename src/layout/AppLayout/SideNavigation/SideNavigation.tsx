@@ -7,8 +7,8 @@ import DonutSmallOutlinedIcon from '@mui/icons-material/DonutSmallOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 // constants
-import { contentBorderStyle } from '../../../../constants/styles';
-import { MainRoutePaths, WorkoutSubRoutes, HomeSubRoutes } from '../../../../ts/enums/routePaths';
+import { contentBorderStyle } from '../../../constants/styles';
+import { MainRoutePaths, WorkoutSubRoutes, HomeSubRoutes } from '../../../ts/enums/routePaths';
 
 const SideTabs = styled(Tabs)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {

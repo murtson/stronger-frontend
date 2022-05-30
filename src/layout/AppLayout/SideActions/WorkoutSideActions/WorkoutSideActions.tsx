@@ -1,4 +1,7 @@
+// general
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+// mui & components
 import { LoadingButton } from '@mui/lab';
 import { Box, Button, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -6,12 +9,12 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CompleteWorkoutDialog from '../../../../components/dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
+import DeleteWorkoutDialog from '../../../../components/dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
+// redux
 import { useSelector } from 'react-redux';
-import { completeWorkout, deleteWorkout } from '../../../../../redux/slices/workoutSlice';
-import { RootState, useAppDispatch } from '../../../../../redux/store';
-import CompleteWorkoutDialog from '../../../../../components/dialogs/CompleteWorkoutDialog/CompleteWorkoutDialog';
-import DeleteWorkoutDialog from '../../../../../components/dialogs/DeleteWorkoutDialog/DeleteWorkoutDialog';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { completeWorkout, deleteWorkout } from '../../../../redux/slices/workoutSlice';
+import { RootState, useAppDispatch } from '../../../../redux/store';
 
 const styles = {
   root: {
@@ -26,7 +29,7 @@ const styles = {
   },
 };
 
-const WorkoutSideActions = () => {
+const WorkoutSideActions: React.FC = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [completeDialogOpen, setCompleteDialogOpen] = useState(false);
   const { currentWorkout, loading, error } = useSelector((state: RootState) => state.workout);

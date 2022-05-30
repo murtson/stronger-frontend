@@ -3,8 +3,8 @@ import { Grid, IconButton, Typography } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../redux/store';
-import { incrementDate, decrementDate } from '../../redux/slices/workoutSlice';
+import { RootState, AppDispatch } from '../../../redux/store';
+import { incrementDate, decrementDate } from '../../../redux/slices/workoutSlice';
 import { useTheme } from '@mui/material';
 
 const Datepicker: React.FC = () => {
@@ -29,11 +29,7 @@ const Datepicker: React.FC = () => {
         // borderBottom: `1px solid ${theme.palette.divider}`,
       }}
     >
-      <Grid
-        item
-        xs={3}
-        sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}
-      >
+      <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
         <IconButton sx={{ color: 'text.secondary' }} onClick={() => dispatch(decrementDate())}>
           <ArrowBackOutlinedIcon />
         </IconButton>

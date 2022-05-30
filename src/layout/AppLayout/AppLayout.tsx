@@ -6,8 +6,10 @@ import { Grid, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import BottomNavbar from '../../components/BottomNavbar/BottomNavbar';
-import AppSpeedDial from '../../components/Buttons/SpeedDial/SpeedDial';
-import AppLayoutLeftGrid from './AppLayoutLeftGrid/AppLayoutLeftGrid';
+import AppSpeedDial from '../../components/SpeedDial/SpeedDial';
+import SideActions from './SideActions/SideActions';
+import SideNavigation from './SideNavigation/SideNavigation';
+import SideProfile from './SideProfile/SideProfile';
 
 const styles = {
   gridContainer: {
@@ -16,6 +18,13 @@ const styles = {
     minHeight: '100vh',
     margin: 'auto',
     py: { xs: 0, md: 2 },
+  },
+  leftGridContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    px: 3,
   },
 };
 
@@ -26,8 +35,12 @@ const AppLayout: React.FC = () => {
   return (
     <Grid container maxWidth='xl' sx={styles.gridContainer}>
       {isMediumAndUpScreen ? (
-        <Grid item md={3} lg={2.5} xl={2.25} sx={{ display: 'flex' }}>
-          <AppLayoutLeftGrid />
+        <Grid item md={3} lg={2.5} xl={2.25} sx={styles.leftGridContainer}>
+          <Box>
+            <SideNavigation />
+            <SideActions />
+          </Box>
+          <SideProfile />
         </Grid>
       ) : null}
       <Grid item xs={12} md={9} lg={9.5} xl={9.75} sx={{ display: 'flex' }}>

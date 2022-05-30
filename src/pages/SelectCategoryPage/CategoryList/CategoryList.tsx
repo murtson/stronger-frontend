@@ -14,7 +14,7 @@ import {
   ListItem,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import SkeletonList from '../../../components/Loaders/SkeletonList/SkeletonList';
+import SkeletonList from '../../../components/loaders/SkeletonList/SkeletonList';
 // constants
 import { ExerciseCategory } from '../../../ts/interfaces/ExerciseCategory';
 import { contentBorderStyle } from '../../../constants/styles';
