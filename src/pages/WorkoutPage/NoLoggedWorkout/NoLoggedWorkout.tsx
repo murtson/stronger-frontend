@@ -6,20 +6,22 @@ import { Typography } from '@mui/material';
 // constants
 import { contentBorderStyle } from '../../../constants/styles';
 
-const NoSavedWorkout: React.FC = () => {
+const styles = {
+  root: {
+    ...contentBorderStyle,
+    flex: 1,
+    display: 'flex',
+    backgroundColor: '#ffffff',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+};
+
+const NoLoggedWorkout: React.FC = () => {
   return (
-    <Box
-      sx={{
-        ...contentBorderStyle,
-        display: 'flex',
-        flex: 1,
-        backgroundColor: 'white',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-      }}
-    >
+    <Box sx={styles.root}>
       <Box sx={{ maxWidth: 480, px: { xs: 2, md: 0 } }}>
         <Typography
           variant='subtitle1'
@@ -37,4 +39,4 @@ const NoSavedWorkout: React.FC = () => {
   );
 };
 
-export default NoSavedWorkout;
+export default NoLoggedWorkout;

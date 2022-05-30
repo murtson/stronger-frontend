@@ -1,3 +1,5 @@
 import { render, screen } from '../../../utilities/test-utils';
 
-describe('LogExercisePage', () => {});
+describe('LogExercisePage', () => {
+  test.skip('', () => {});
+});

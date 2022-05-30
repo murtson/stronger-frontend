@@ -12,8 +12,15 @@ const AllTheProviders: React.FC = ({ children }) => {
   );
 };
 
-const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+const WithReduxProvider: React.FC = ({ children }) => {
+  return <ReduxProvider store={store}>{children}</ReduxProvider>;
+};
+
+const withAllRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
   render(ui, { wrapper: AllTheProviders, ...options });
 
+const reduxRender = (ui: React.ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+  render(ui, { wrapper: WithReduxProvider, ...options });
+
 export * from '@testing-library/react';
-export { customRender as render };
+export { withAllRender as render, reduxRender };

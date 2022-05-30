@@ -14,7 +14,7 @@ const withProvider: React.FC = ({ children }) => {
   );
 };
 
-test('logging exercise flow works properly', async () => {
+test.skip('logging exercise flow works properly', async () => {
   // we start at workout page (check how routes are setup in App).
   render(<App />, { wrapper: withProvider });
 

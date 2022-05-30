@@ -14,7 +14,7 @@ const withProvider: React.FC = ({ children }) => {
   );
 };
 
-test('bottom navbar works properly', async () => {
+test.skip('bottom navbar works properly', async () => {
   render(<App />, { wrapper: withProvider });
 
   // expect to initially be on workout page (initial route on app load)
