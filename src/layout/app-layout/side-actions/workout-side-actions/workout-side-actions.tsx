@@ -9,7 +9,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CompleteWorkoutDialog from '../../../../components/dialogs/complete-workout-dialog/compelte-workout-dialog';
+import CompleteWorkoutDialog from '../../../../components/dialogs/complete-workout-dialog/complete-workout-dialog';
 import DeleteWorkoutDialog from '../../../../components/dialogs/delete-workout-dialog/delete-workout-dialog';
 // redux
 import { useSelector } from 'react-redux';
