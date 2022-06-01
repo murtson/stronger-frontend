@@ -2,8 +2,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
 // layouts
-import AppLayout from '../../layout/AppLayout/AppLayout';
-import LogLayout from '../../layout/log-layout/LogLayout';
+import AppLayout from '../../layout/app-layout/app-layout';
+import LogLayout from '../../layout/log-layout/log-layout';
 // pages
 import WorkoutPage from '../../pages/workout-page/workout-page';
 import HomePage from '../../pages/home-page/home-page';
@@ -13,8 +13,8 @@ import LogExercisePage from '../../pages/log-exercise-page/log-exercise-page';
 import RegisterPage from '../../pages/register-page/register-page';
 import LoginPage from '../../pages/login-page/login-page';
 // views
-import StatsView from '../../pages/home-page/views/stats-view/StatsView';
-import MusclesView from '../../pages/home-page/views/muscle-view/MusclesView';
+import StatsView from '../../pages/home-page/views/stats-view/stats-view';
+import MusclesView from '../../pages/home-page/views/muscle-view/muscle-view';
 import ProfilePage from '../../pages/profile-page/profile-page';
 import ExercisesView from '../../pages/workout-page/views/exercises-view/exercises-view';
 import OverviewView from '../../pages/workout-page/views/overview-view/overview-view';
@@ -24,7 +24,7 @@ import { RootState } from '../../redux/store';
 // constants
 import { MainRoutePaths, WorkoutSubRoutes, HomeSubRoutes, LogSubRoutes } from '../../ts/enums/route-paths';
 
-export const AppRoutes = () => {
+const AppRoutes = () => {
   const { isAuth, loading } = useSelector((state: RootState) => state.auth);
 
   return (
@@ -59,3 +59,5 @@ export const AppRoutes = () => {
     </Router>
   );
 };
+
+export default AppRoutes;

@@ -28,6 +28,11 @@ const styles = {
     width: 45,
     boxSizing: 'border-box',
   },
+  exerciseCategoriesContainer: {
+    display: 'flex',
+    gap: '5px',
+    mb: 0.5,
+  },
   iconGrid: {
     display: 'flex',
     alignItems: 'center',
@@ -49,11 +54,12 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
 
   const renderExerciseCategories = () => {
     const categories = getWorkoutExerciseCategories(data);
-    return categories.map((category) => (
+    return categories.map((category, index) => (
       <Box
         key={category.id}
+        data-testid={`exercise-category-${index + 1}`}
         sx={{ width: 20, height: 3, borderRadius: 2, backgroundColor: category.color }}
-      ></Box>
+      />
     ));
   };
 
@@ -68,7 +74,7 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
         </Grid>
         <Grid item xs={7.5}>
           <Box sx={{ mb: 2 }}>
-            <Box sx={{ display: 'flex', gap: '5px', mb: 0.5 }}>{renderExerciseCategories()}</Box>
+            <Box sx={styles.exerciseCategoriesContainer}>{renderExerciseCategories()}</Box>
             <Box>
               <Typography variant='subtitle2' data-testid='workout-name'>
                 {data.name}

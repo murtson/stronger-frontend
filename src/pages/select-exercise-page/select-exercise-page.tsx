@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchField from '../../components/search-field/search-field';
-import ExerciseList from './select-exercise-list/ExerciseList';
+import ExerciseList from './select-exercise-list/select-exercise-list';
 import { useParams } from 'react-router-dom';
 import SelectExerciseHeader from './select-exercise-header/select-exercise-header';
 import { useSelector } from 'react-redux';

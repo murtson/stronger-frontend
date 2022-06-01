@@ -1,5 +1,5 @@
 import { render, screen } from '../../../../utilities/testing-utils';
-import ExerciseList from '../ExerciseList';
+import ExerciseList from '../select-exercise-list';
 import { exercises as AllExercises } from '../../../../mocks/mock-data/exercises-mock';
 
 const chestExercises = AllExercises.filter((exercise) => exercise.categoryId.toString() === '1');

@@ -21,7 +21,7 @@ import {
   incrementByOneDay,
   decrementByOneDay,
   formatDisplayDate,
-} from '../../services/date-picker-service/DatePickerService';
+} from '../../services/date-picker-service/date-picker-service';
 
 export const getWorkout = createAsyncThunk('workout/getWorkout', async (_, { getState, dispatch }) => {
   const appState = getState() as RootState;

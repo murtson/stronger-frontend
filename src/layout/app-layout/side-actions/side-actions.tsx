@@ -2,7 +2,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 // components
-import WorkoutSideActions from './WorkoutSideActions/WorkoutSideActions';
+import WorkoutSideActions from './workout-side-actions/workout-side-actions';
 // constants
 import { MainRoutePaths } from '../../../ts/enums/route-paths';
 
