@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { store } from '../redux/store';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from '@mui/material/styles';
-import { mainTheme } from '../material-theme';
+import { mainTheme } from '../mui-theme';
 
 const withProvider: React.FC = ({ children }) => {
   return (

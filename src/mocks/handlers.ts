@@ -1,6 +1,6 @@
 import { graphql } from 'msw';
-import { exerciseCategories } from './mock-data/exerciseCategories';
-import { exercises } from './mock-data/exercises';
+import { exerciseCategories } from './mock-data/exercise-categories-mock';
+import { exercises } from './mock-data/exercises-mock';
 
 export const handlers = [
   graphql.query('exerciseCategories', (req, res, ctx) => {

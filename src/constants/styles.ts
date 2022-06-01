@@ -14,7 +14,8 @@ export const appLayoutGridPx = {
 
 export const contentBorderStyle = {
   borderStyle: 'solid',
-  borderWidth: 1,
+  borderWidth: 0,
   borderColor: 'divider',
+  boxShadow: 1,
   borderRadius: { xs: 0, md: 2 },
 };

@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import contentReducer from './slices/contentSlice';
-import workoutReducer from './slices/workoutSlice';
-import calendarReducer from './slices/calendarSlice';
-import authReducer from './slices/authSlice';
-import { getExerciseCategories, getAllExercises } from './slices/contentSlice';
-import { getWorkoutsFromCalendarDates } from './slices/calendarSlice';
-import { checkAuthStatus } from './slices/authSlice';
+import contentReducer from './slices/content-slice';
+import workoutReducer from './slices/workout-slice';
+import calendarReducer from './slices/calendar-slice';
+import authReducer from './slices/auth-slice';
+import { getExerciseCategories, getAllExercises } from './slices/content-slice';
+import { getWorkoutsFromCalendarDates } from './slices/calendar-slice';
+import { checkAuthStatus } from './slices/auth-slice';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
