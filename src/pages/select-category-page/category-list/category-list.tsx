@@ -17,7 +17,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import SkeletonList from '../../../components/loaders/skeleton-list/skeleton-list';
 // constants
 import { ExerciseCategory } from '../../../ts/interfaces/ExerciseCategory';
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const styles = {
   header: {
@@ -28,7 +28,7 @@ const styles = {
     px: { xs: 2, md: 0 },
   },
   body: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     backgroundColor: 'white',
     flex: { xs: 1, md: 'initial' },
     overflow: 'hidden',

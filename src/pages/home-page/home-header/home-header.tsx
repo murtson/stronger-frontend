@@ -3,7 +3,7 @@ import { Box, Grid, Typography, IconButton } from '@mui/material';
 import HeaderTabs from '../../../components/headers/header-tabs/header-tabs';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 // constants
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const tabsArray = [
   { value: 'stats', label: 'Stats' },
@@ -14,7 +14,7 @@ const HomeHeader: React.FC = () => {
   return (
     <Box
       sx={{
-        ...contentBorderStyle,
+        ...CONTENT_BORDER_STYLE,
         height: { xs: 150, md: 150 },
         display: 'flex',
         flexDirection: 'column',

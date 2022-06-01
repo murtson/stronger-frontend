@@ -1,18 +1,14 @@
 // desc: file containing general styles
 
-const pagePaddingBottom = { xs: '56px', md: 0 };
+const PAGE_PADDING_BOTTOM = { xs: '56px', md: 0 };
 
-export const pageRoot = {
+export const PAGE_ROOT = {
   display: 'flex',
   flex: 1,
-  paddingBottom: pagePaddingBottom,
+  paddingBottom: PAGE_PADDING_BOTTOM,
 };
 
-export const appLayoutGridPx = {
-  px: 3,
-};
-
-export const contentBorderStyle = {
+export const CONTENT_BORDER_STYLE = {
   borderStyle: 'solid',
   borderWidth: 0,
   borderColor: 'divider',

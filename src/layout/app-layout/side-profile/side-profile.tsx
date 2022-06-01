@@ -3,11 +3,11 @@ import React from 'react';
 // mui & components
 import { Box } from '@mui/material';
 // constants
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     borderRadius: 10,
     backgroundColor: '#ffffff',
     height: 60,

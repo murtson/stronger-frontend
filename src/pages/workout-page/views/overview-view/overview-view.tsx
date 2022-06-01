@@ -7,11 +7,11 @@ import NoLoggedWorkout from '../../no-logged-workout/no-logged-workout';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 // constants
-import { contentBorderStyle } from '../../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     display: 'flex',
     flex: 1,
     alignItems: 'center',

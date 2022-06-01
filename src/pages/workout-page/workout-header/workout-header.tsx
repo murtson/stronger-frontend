@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { getNumberOfSets, getNumberOfExercises } from '../../../services/workout-service/workout-service';
 // constants
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const tabsArray = [
   { value: 'exercises', label: 'Exercises' },
@@ -21,7 +21,7 @@ const tabsArray = [
 
 const styles = {
   root: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     overflow: 'hidden',
     height: { xs: 150, md: 150 },
     justifyContent: 'space-between',

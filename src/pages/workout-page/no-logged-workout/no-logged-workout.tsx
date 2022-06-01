@@ -4,11 +4,11 @@ import React from 'react';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 // constants
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     flex: 1,
     display: 'flex',
     backgroundColor: '#ffffff',

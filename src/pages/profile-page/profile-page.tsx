@@ -4,10 +4,10 @@ import React from 'react';
 import { Box, Grid, useMediaQuery, useTheme } from '@mui/material';
 import ProfileInfo from './profile-info/profile-info';
 // constants
-import { pageRoot } from '../../constants/styles';
+import { PAGE_ROOT } from '../../constants/styles-constants';
 
 const styles = {
-  root: pageRoot,
+  root: PAGE_ROOT,
   contentGrid: {
     display: 'flex',
     flexDirection: 'column',

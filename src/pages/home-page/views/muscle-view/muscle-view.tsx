@@ -3,13 +3,13 @@ import React from 'react';
 // mui & components
 import { Box, Typography } from '@mui/material';
 // constants
-import { contentBorderStyle } from '../../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../../constants/styles-constants';
 
 const MusclesView: React.FC = () => {
   return (
     <Box
       sx={{
-        ...contentBorderStyle,
+        ...CONTENT_BORDER_STYLE,
         display: 'flex',
         flex: 1,
         alignItems: 'center',

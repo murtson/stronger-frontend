@@ -17,11 +17,11 @@ import {
 } from '../../../redux/slices/calendar-slice';
 import { setSelectedDate } from '../../../redux/slices/workout-slice';
 // constants
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     backgroundColor: 'white',
     boxSizing: 'border-box',
     p: { xs: 1, lg: 2 },

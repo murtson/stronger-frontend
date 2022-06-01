@@ -12,10 +12,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getWorkout, resetEditingExercise } from '../../redux/slices/workout-slice';
 // constants
-import { pageRoot } from '../../constants/styles';
+import { PAGE_ROOT } from '../../constants/styles-constants';
 
 const styles = {
-  root: pageRoot,
+  root: PAGE_ROOT,
   contentGrid: {
     display: 'flex',
     flexDirection: 'column',

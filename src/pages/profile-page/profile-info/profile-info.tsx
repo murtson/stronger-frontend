@@ -4,11 +4,11 @@ import React from 'react';
 import { Box, Typography, Avatar, Button, Grid, useTheme } from '@mui/material';
 import FaceIcon from '@mui/icons-material/Face';
 // constants
-import { contentBorderStyle } from '../../../constants/styles';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...contentBorderStyle,
+    ...CONTENT_BORDER_STYLE,
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',

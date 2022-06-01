@@ -6,10 +6,10 @@ import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import HomeHeader from './home-header/home-header';
 import DateIntervalSelector from './date-interval-selector/date-interval-selector';
 // constants
-import { pageRoot } from '../../constants/styles';
+import { PAGE_ROOT } from '../../constants/styles-constants';
 
 const styles = {
-  root: pageRoot,
+  root: PAGE_ROOT,
   contentGrid: {
     display: 'flex',
     flexDirection: 'column',
