@@ -1,7 +1,7 @@
 // general
 import React from 'react';
 // mui
-import { Box, Grid, Typography, ListItemButton, Chip } from '@mui/material';
+import { Box, Grid, Typography, ListItem, ListItemButton, Chip } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 // services & libs
 import { getWorkoutExerciseCategories } from '../../../../services/workout-service/workout-service';
@@ -64,45 +64,47 @@ const HistoryWorkout: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <ListItemButton sx={styles.root} onClick={() => handleClick(data.time.createdAt)}>
-      <Grid container>
-        <Grid item xs={3}>
-          <Box sx={styles.dateBox} data-testid='date-container'>
-            <Typography variant='subtitle2'>{format(date, 'MMM')}</Typography>
-            <Typography variant='subtitle2'>{format(date, 'd')}</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={7.5}>
-          <Box sx={{ mb: 2 }}>
-            <Box sx={styles.exerciseCategoriesContainer}>{renderExerciseCategories()}</Box>
-            <Box>
-              <Typography variant='subtitle2' data-testid='workout-name'>
-                {data.name}
-              </Typography>
+    <ListItem sx={{ p: 0 }}>
+      <ListItemButton sx={styles.root} onClick={() => handleClick(data.time.createdAt)}>
+        <Grid container>
+          <Grid item xs={3}>
+            <Box sx={styles.dateBox} data-testid='date-container'>
+              <Typography variant='subtitle2'>{format(date, 'MMM')}</Typography>
+              <Typography variant='subtitle2'>{format(date, 'd')}</Typography>
             </Box>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography
-              noWrap={true}
-              variant='subtitle2'
-              sx={{ color: 'text.secondary' }}
-              data-testid='number-of-exercises'
-            >
-              {data.exercises.length} exercises
-            </Typography>
-            <Chip
-              data-testid='workout-progress-chip'
-              label={data.isCompleted ? 'completed' : 'in progress'}
-              color={data.isCompleted ? 'success' : 'primary'}
-              sx={{ height: 24, ml: 1.25, width: 100 }}
-            />
-          </Box>
+          </Grid>
+          <Grid item xs={7.5}>
+            <Box sx={{ mb: 2 }}>
+              <Box sx={styles.exerciseCategoriesContainer}>{renderExerciseCategories()}</Box>
+              <Box>
+                <Typography variant='subtitle2' data-testid='workout-name'>
+                  {data.name}
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography
+                noWrap={true}
+                variant='subtitle2'
+                sx={{ color: 'text.secondary' }}
+                data-testid='number-of-exercises'
+              >
+                {data.exercises.length} exercises
+              </Typography>
+              <Chip
+                data-testid='workout-progress-chip'
+                label={data.isCompleted ? 'completed' : 'in progress'}
+                color={data.isCompleted ? 'success' : 'primary'}
+                sx={{ height: 24, ml: 1.25, width: 100 }}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={1.5} sx={styles.iconGrid}>
+            <NavigateNextIcon sx={{ color: 'text.secondary' }} />
+          </Grid>
         </Grid>
-        <Grid item xs={1.5} sx={styles.iconGrid}>
-          <NavigateNextIcon sx={{ color: 'text.secondary' }} />
-        </Grid>
-      </Grid>
-    </ListItemButton>
+      </ListItemButton>
+    </ListItem>
   );
 };
 

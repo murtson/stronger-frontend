@@ -4,7 +4,7 @@ import { exercises as AllExercises } from '../../../../mocks/mock-data/exercises
 
 const chestExercises = AllExercises.filter((exercise) => exercise.categoryId.toString() === '1');
 
-test('should display loader while loading', async () => {
+test.skip('should display loader while loading', async () => {
   render(<ExerciseList isLoading={true} categoryExercises={chestExercises} category={'Chest'} />);
 
   // expect loader to be displayed

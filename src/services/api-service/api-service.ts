@@ -1,58 +1,66 @@
 import axios from 'axios';
-
 // interfaces & types
 import { Workout } from '../../ts/interfaces/workout-interfaces';
-import { Exercise } from '../../ts/interfaces/Exercise';
-import { Set } from '../../ts/interfaces/Set';
-import { ExerciseSet } from '../../ts/interfaces/ExerciseSet';
-import { User } from '../../ts/interfaces/user-interfaces';
+import {
+  AuthResponse,
+  RegisterUserInput,
+  LoginUserInput,
+  GetWorkoutResponse,
+  CreateWorkoutInput,
+  UpdateWorkoutSetsInput,
+  CreateWorkoutSetInput,
+  CreateWorkoutSetResponse,
+  UpdateWorkoutSetsResponse,
+  GetWorkoutsResponse,
+} from '../../ts/interfaces/api-interfaces';
 
-const baseURL = 'http://localhost:4000/api/v1';
+export const BASE_URL = 'http://localhost:4000/api/v1';
 
 axios.defaults.withCredentials = true;
 
-// workout API
+// workout
+
 export const getWorkout = async (date: string) => {
   try {
-    return await axios.get<{
-      message: 'found' | 'not found' | 'deleted';
-      workout: Workout | null;
-    }>(`${baseURL}/user-workout/${date}`);
+    return await axios.get<GetWorkoutResponse>(`${BASE_URL}/user-workout/${date}`);
   } catch (e: any) {
     throw new Error(e);
   }
 };
 
-export const createWorkout = async (data: { exercise: Exercise; sets: Set[]; createdAt: string }) => {
+export const getWorkouts = async (page: number, perPage: number) => {
   try {
-    return await axios.post<Workout>(`${baseURL}/user-workout/create`, {
-      exercise: data.exercise,
-      sets: data.sets,
-      createdAt: data.createdAt,
-    });
+    return await axios.get<GetWorkoutsResponse>(`${BASE_URL}/user-workout?page=${page}&perPage=${perPage}`);
   } catch (e: any) {
     throw new Error(e);
   }
 };
 
-export const createWorkoutSet = async (data: { exercise: Exercise; sets: Set[] }, workoutID: string) => {
+export const createWorkout = async (data: CreateWorkoutInput) => {
   try {
-    return await axios.post<{
-      updatedWorkout: Workout;
-      newExerciseSet: ExerciseSet;
-    }>(`${baseURL}/user-workout/${workoutID}/set`, data);
+    return await axios.post<Workout>(`${BASE_URL}/user-workout/create`, data);
   } catch (e: any) {
     throw new Error(e);
   }
 };
 
-export const updateWorkoutSets = async (data: { workoutId: string; setId: string; sets: Set[] }) => {
+export const createWorkoutSet = async (data: CreateWorkoutSetInput) => {
   try {
-    return await axios.put<{ updatedWorkout: Workout; updatedExerciseSet: ExerciseSet }>(
-      `${baseURL}/user-workout/${data.workoutId}/set/${data.setId}`,
-      {
-        updatedSets: data.sets,
-      }
+    const { exercise, sets, workoutId } = data;
+    const reqBody = { exercise, sets };
+    return await axios.post<CreateWorkoutSetResponse>(`${BASE_URL}/user-workout/${workoutId}/set`, reqBody);
+  } catch (e: any) {
+    throw new Error(e);
+  }
+};
+
+export const updateWorkoutSets = async (data: UpdateWorkoutSetsInput) => {
+  try {
+    const { workoutId, setId, sets } = data;
+    const reqBody = { updatedSets: sets };
+    return await axios.put<UpdateWorkoutSetsResponse>(
+      `${BASE_URL}/user-workout/${workoutId}/set/${setId}`,
+      reqBody
     );
   } catch (e: any) {
     throw new Error(e);
@@ -61,7 +69,7 @@ export const updateWorkoutSets = async (data: { workoutId: string; setId: string
 
 export const completeWorkout = async (workoutId: string) => {
   try {
-    return await axios.post<Workout>(`${baseURL}/user-workout/complete/${workoutId}`);
+    return await axios.post<Workout>(`${BASE_URL}/user-workout/complete/${workoutId}`);
   } catch (e: any) {
     throw new Error(e);
   }
@@ -69,17 +77,7 @@ export const completeWorkout = async (workoutId: string) => {
 
 export const deleteWorkout = async (workoutId: string) => {
   try {
-    return await axios.post<string>(`${baseURL}/user-workout/delete/${workoutId}`);
-  } catch (e: any) {
-    throw new Error(e);
-  }
-};
-
-export const getWorkouts = async (page: number, perPage: number) => {
-  try {
-    return await axios.get<{ workouts: Workout[]; totalWorkouts: number }>(
-      `${baseURL}/user-workout?page=${page}&perPage=${perPage}`
-    );
+    return await axios.post<string>(`${BASE_URL}/user-workout/delete/${workoutId}`);
   } catch (e: any) {
     throw new Error(e);
   }
@@ -87,35 +85,25 @@ export const getWorkouts = async (page: number, perPage: number) => {
 
 export const getWorkoutsBetweenIntervals = async (startDate: string, endDate: string) => {
   try {
-    return await axios.get<Workout[]>(`${baseURL}/user-workout/?startDate=${startDate}&endDate=${endDate}`);
+    return await axios.get<Workout[]>(`${BASE_URL}/user-workout/?startDate=${startDate}&endDate=${endDate}`);
   } catch (e: any) {
     throw new Error(e);
   }
 };
 
-// auth API
+// Auth
 
-interface AuthResponse {
-  user: User | null;
-  isLoggedIn: boolean;
-}
-
-export const registerUser = async (userData: {
-  firstname: string;
-  lastname: string;
-  password: string;
-  email: string;
-}) => {
+export const registerUser = async (data: RegisterUserInput) => {
   try {
-    return await axios.post<AuthResponse>(`${baseURL}/auth/register`, userData);
+    return await axios.post<AuthResponse>(`${BASE_URL}/auth/register`, data);
   } catch (e: any) {
     throw new Error(e);
   }
 };
 
-export const loginUser = async (userData: { email: string; password: string }) => {
+export const loginUser = async (data: LoginUserInput) => {
   try {
-    return await axios.post<AuthResponse>(`${baseURL}/auth/login`, userData);
+    return await axios.post<AuthResponse>(`${BASE_URL}/auth/login`, data);
   } catch (e: any) {
     throw new Error(e);
   }
@@ -123,9 +111,8 @@ export const loginUser = async (userData: { email: string; password: string }) =
 
 export const checkAuthStatus = async () => {
   try {
-    return await axios.get<AuthResponse>(`${baseURL}/auth/status`);
+    return await axios.get<AuthResponse>(`${BASE_URL}/auth/status`);
   } catch (e: any) {
     throw new Error(e);
   }
 };
-// content API

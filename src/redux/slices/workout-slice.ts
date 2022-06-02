@@ -13,15 +13,17 @@ import {
 import * as ApiService from '../../services/api-service/api-service';
 // interfaces & types
 import { SelectedDate } from '../../ts/interfaces/SelectedDate';
-import { Exercise } from '../../ts/interfaces/Exercise';
-import { Workout } from '../../ts/interfaces/workout-interfaces';
-import { ExerciseSet } from '../../ts/interfaces/ExerciseSet';
-import { Set } from '../../ts/interfaces/Set';
+import { Workout, ExerciseSet, Exercise, Set } from '../../ts/interfaces/workout-interfaces';
 import {
   incrementByOneDay,
   decrementByOneDay,
   formatDisplayDate,
 } from '../../services/date-picker-service/date-picker-service';
+import {
+  CreateWorkoutInput,
+  CreateWorkoutSetInput,
+  UpdateWorkoutSetsInput,
+} from '../../ts/interfaces/api-interfaces';
 
 export const getWorkout = createAsyncThunk('workout/getWorkout', async (_, { getState, dispatch }) => {
   const appState = getState() as RootState;
@@ -43,7 +45,7 @@ export const logExerciseSet = createAsyncThunk(
     else if (!editingExercise) dispatch(createWorkoutSet(args));
     // we are editing an existing set on an existing workout
     else {
-      const input = {
+      const input: UpdateWorkoutSetsInput = {
         workoutId: currentWorkout._id,
         setId: editingExercise.setId,
         sets: args.sets,
@@ -58,7 +60,7 @@ export const createWorkout = createAsyncThunk(
   async (args: { exercise: Exercise; sets: Set[] }, { getState, dispatch }) => {
     const appState = getState() as RootState;
     const { selectedDate } = appState.workout;
-    const createWorkoutInput = { ...args, createdAt: selectedDate.value };
+    const createWorkoutInput: CreateWorkoutInput = { ...args, createdAt: selectedDate.value };
     const response = await ApiService.createWorkout(createWorkoutInput);
     dispatch(pushToCalendarWorkouts(response.data));
     return response.data;
@@ -71,14 +73,15 @@ export const createWorkoutSet = createAsyncThunk(
     const appState = getState() as RootState;
     const { currentWorkout } = appState.workout;
     if (!currentWorkout) throw new Error('no currentWorkout found in Redux Store');
-    const response = await ApiService.createWorkoutSet(args, currentWorkout._id);
+    const data: CreateWorkoutSetInput = { ...args, workoutId: currentWorkout._id };
+    const response = await ApiService.createWorkoutSet(data);
     return response.data;
   }
 );
 
 export const updateWorkoutSets = createAsyncThunk(
   'workout/updateWorkoutSets',
-  async (args: { workoutId: string; setId: string; sets: Set[] }, thunkAPI) => {
+  async (args: UpdateWorkoutSetsInput, thunkAPI) => {
     const response = await ApiService.updateWorkoutSets(args);
     return response.data;
   }

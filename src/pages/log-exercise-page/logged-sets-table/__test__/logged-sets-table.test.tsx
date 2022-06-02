@@ -7,7 +7,6 @@ describe('LoggedSetsTable', () => {
 
     const tableRows = screen.queryAllByRole('row');
     expect(tableRows).toHaveLength(0);
-    screen.debug();
   });
 
   test('should render correct amount of sets', () => {

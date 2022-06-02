@@ -1,11 +1,11 @@
 import { renderWithRedux, screen } from '../../../../../utilities/testing-utils';
 import HistoryWorkout from '../history-workout';
-import { mockWorkout_1, mockWorkout_2 } from '../../../../../mocks/mock-data/workouts-mock';
+import { workoutMock1, workoutMock2 } from '../../../../../mocks/mock-data/workouts-mock';
 import { CategoryColors } from '../../../../../ts/enums/colors';
 
 describe('HistoryWorkout', () => {
   test('should render correct initial content for completed workout', () => {
-    renderWithRedux(<HistoryWorkout data={mockWorkout_1} />);
+    renderWithRedux(<HistoryWorkout data={workoutMock1} />);
 
     const dateContainer = screen.getByTestId('date-container');
     expect(dateContainer).toHaveTextContent(/may25/i);
@@ -24,9 +24,12 @@ describe('HistoryWorkout', () => {
 
     const progressChip = screen.getByTestId('workout-progress-chip');
     expect(progressChip).toHaveTextContent(/completed/i);
+
+    const navigateNextIcon = screen.getByTestId('NavigateNextIcon');
+    expect(navigateNextIcon).toBeInTheDocument();
   });
-  test('should render correct initial content for completed workout', () => {
-    renderWithRedux(<HistoryWorkout data={mockWorkout_2} />);
+  test('should render correct initial content for uncompleted workout', () => {
+    renderWithRedux(<HistoryWorkout data={workoutMock2} />);
 
     const dateContainer = screen.getByTestId('date-container');
     expect(dateContainer).toHaveTextContent(/Jun12/i);
@@ -42,5 +45,8 @@ describe('HistoryWorkout', () => {
 
     const progressChip = screen.getByTestId('workout-progress-chip');
     expect(progressChip).toHaveTextContent(/in progress/i);
+
+    const navigateNextIcon = screen.getByTestId('NavigateNextIcon');
+    expect(navigateNextIcon).toBeInTheDocument();
   });
 });

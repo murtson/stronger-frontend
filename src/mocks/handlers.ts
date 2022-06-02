@@ -1,21 +1,11 @@
-import { graphql } from 'msw';
-import { exerciseCategories } from './mock-data/exercise-categories-mock';
-import { exercises } from './mock-data/exercises-mock';
+import { rest } from 'msw';
+import { workoutsMock1 } from './mock-data/workouts-mock';
+import { BASE_URL } from '../services/api-service/api-service';
 
 export const handlers = [
-  graphql.query('exerciseCategories', (req, res, ctx) => {
-    return res(
-      ctx.data({
-        exerciseCategories: exerciseCategories,
-      })
-    );
-  }),
-
-  graphql.query('exercises', (req, res, ctx) => {
-    return res(
-      ctx.data({
-        exercises: exercises,
-      })
-    );
+  rest.get(`${BASE_URL}/user-workout`, (req, res, ctx) => {
+    const page = req.url.searchParams.get('page');
+    const perPage = req.url.searchParams.get('perPage');
+    return res(ctx.status(200), ctx.json({ workouts: workoutsMock1, totalWorkouts: workoutsMock1.length }));
   }),
 ];

@@ -1,7 +1,7 @@
 import { render, screen } from '../../../utilities/testing-utils';
 import SelectCategoryPage from '../select-category-page';
 
-test('should first render loader then display exercise categories', async () => {
+test.skip('should first render loader then display exercise categories', async () => {
   render(<SelectCategoryPage />);
 
   // skeleton loader should initially be displayed (while fetching data from server)
