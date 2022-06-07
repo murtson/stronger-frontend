@@ -13,18 +13,16 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   },
 }));
 
-const StyledTab = styled((props: { label: string; value: string }) => <Tab {...props} />)(
-  ({ theme }) => ({
-    fontSize: 16,
-    fontWeight: 500,
-    textTransform: 'none',
-    // color: theme.palette.neutral.contrastText,
-    opacity: 0.6,
-    '&.Mui-selected': {
-      opacity: 1,
-    },
-  })
-);
+const StyledTab = styled((props: { label: string; value: string }) => <Tab {...props} />)(({ theme }) => ({
+  fontSize: 16,
+  fontWeight: 500,
+  textTransform: 'none',
+  // color: theme.palette.neutral.contrastText,
+  opacity: 0.6,
+  '&.Mui-selected': {
+    opacity: 1,
+  },
+}));
 
 interface Props {
   tabs: { label: string; value: string }[];

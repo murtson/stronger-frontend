@@ -18,6 +18,8 @@ import MusclesView from '../../pages/home-page/views/muscle-view/muscle-view';
 import ProfilePage from '../../pages/profile-page/profile-page';
 import ExercisesView from '../../pages/workout-page/views/exercises-view/exercises-view';
 import OverviewView from '../../pages/workout-page/views/overview-view/overview-view';
+import UserView from '../../pages/profile-page/views/user-view/user-view';
+import UserFeedView from '../../pages/profile-page/views/user-feed-view/user-feed-view';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
@@ -47,7 +49,11 @@ const AppRoutes = () => {
               <Route path={WorkoutSubRoutes.EXERCISES} element={<ExercisesView />} />
               <Route path={WorkoutSubRoutes.OVERVIEW} element={<OverviewView />} />
             </Route>
-            <Route path={MainRoutePaths.PROFILE} element={<ProfilePage />} />
+            <Route path={MainRoutePaths.PROFILE} element={<ProfilePage />}>
+              <Route path='' element={<Navigate replace to={'you'} />} />
+              <Route path={'you'} element={<UserView />} />
+              <Route path={'your-feed'} element={<UserFeedView />} />
+            </Route>
           </Route>
           <Route path={MainRoutePaths.LOG} element={<LogLayout />}>
             <Route path={LogSubRoutes.SELECT_CATEGORY} element={<SelectCategoryPage />} />

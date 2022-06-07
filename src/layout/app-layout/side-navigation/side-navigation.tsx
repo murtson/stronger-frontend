@@ -28,7 +28,7 @@ const SideTab = styled((props: { label: string; value: string; icon: any; iconPo
   justifyContent: 'flex-start',
 
   fontWeight: 600,
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.primary,
   '&:hover': {
     backgroundColor: theme.palette.neutral.main,
     opacity: 0.5,
@@ -47,13 +47,7 @@ type PageTabValues = `/${WorkoutSubRoutes.EXERCISES}` | `/${HomeSubRoutes.STATS}
 type IconPosition = 'top' | 'start' | 'end' | 'bottom';
 
 const styles = {
-  root: {
-    ...CONTENT_BORDER_STYLE,
-    width: '100%',
-    backgroundColor: '#ffffff',
-    boxSizing: 'border-box',
-    p: 2,
-  },
+  root: {},
   title: {
     color: 'primary.main',
     mb: 2,

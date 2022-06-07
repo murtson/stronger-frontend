@@ -10,8 +10,8 @@ export const PAGE_ROOT = {
 
 export const CONTENT_BORDER_STYLE = {
   borderStyle: 'solid',
-  borderWidth: 0,
+  borderWidth: 1,
   borderColor: 'divider',
-  boxShadow: 1,
+  boxShadow: 0,
   borderRadius: { xs: 0, md: 2 },
 };
