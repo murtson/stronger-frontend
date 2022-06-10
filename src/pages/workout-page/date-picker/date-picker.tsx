@@ -13,7 +13,8 @@ const styles = {
   root: {
     padding: 0.5,
     borderBox: 'box-fit',
-    my: { xs: 0.5, md: 1 },
+    // my: { xs: 0.5, md: 1 },
+    height: 60,
   },
   leftButton: {
     display: 'flex',

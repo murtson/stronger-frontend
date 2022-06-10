@@ -7,6 +7,7 @@ import WorkoutHeader from './workout-header/workout-header';
 import DatePicker from './date-picker/date-picker';
 import SideCalendar from './side-calendar/side-calendar';
 import SideHistory from './side-history/side-history';
+import WorkoutSideActions from './workout-side-actions/workout-side-actions';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -22,7 +23,8 @@ const styles = {
     flex: 1,
   },
   sideGrid: {
-    px: 3,
+    pr: 3,
+    marginTop: '60px',
   },
 };
 
@@ -42,19 +44,17 @@ const WorkoutPage: React.FC = () => {
 
   return (
     <Grid container sx={styles.root}>
-      <Grid item xs={12} lg={8} xl={8.5} sx={styles.contentGrid}>
-        <WorkoutHeader />
+      {isLargerAndUpScreen ? (
+        <Grid item lg={2.5} sx={styles.sideGrid}>
+          <WorkoutSideActions currentWorkout={currentWorkout} loading={loading} />
+        </Grid>
+      ) : null}
+      <Grid item xs={12} lg={7} sx={styles.contentGrid}>
+        {/* <WorkoutHeader /> */}
         <DatePicker />
         <Outlet />
       </Grid>
-      {isLargerAndUpScreen ? (
-        <Grid item lg={4} xl={3.5} sx={styles.sideGrid}>
-          <Stack spacing={2}>
-            <SideCalendar />
-            <SideHistory />
-          </Stack>
-        </Grid>
-      ) : null}
+      <Grid item lg={2.5} sx={styles.sideGrid}></Grid>
     </Grid>
   );
 };
