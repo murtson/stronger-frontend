@@ -15,3 +15,5 @@ export const CONTENT_BORDER_STYLE = {
   boxShadow: 1,
   borderRadius: { xs: 0, md: 2 },
 };
+
+export const HEADER_HEIGHT = '64px';

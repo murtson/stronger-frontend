@@ -1,5 +1,5 @@
 // general
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 // mui & components
 import { Grid, Box } from '@mui/material';
@@ -10,45 +10,38 @@ import AppSpeedDial from '../../components/speed-dial/speed-dial';
 import SideActions from './side-actions/side-actions';
 import SideNavigation from './side-navigation/side-navigation';
 import SideProfile from './side-profile/side-profile';
+import MainHeader from '../../components/main-header/main-header';
+import MainSidebar from '../../components/main-sidebar/main-sidebar';
 
 const styles = {
-  gridContainer: {
-    position: 'relative',
+  appContentContainer: {
     display: 'flex',
     minHeight: '100vh',
     margin: 'auto',
-    py: { xs: 0, md: 2 },
-  },
-  leftGridContainer: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    px: 3,
+    py: { xs: 8, lg: 9 },
   },
 };
 
 const AppLayout: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   const theme = useTheme();
   const isMediumAndUpScreen = useMediaQuery(theme.breakpoints.up('md'));
 
+  const handleSidebarState = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <Grid container maxWidth='xl' sx={styles.gridContainer}>
-      {isMediumAndUpScreen ? (
-        <Grid item md={3} lg={2.5} xl={2.25} sx={styles.leftGridContainer}>
-          <Box>
-            <SideNavigation />
-            <SideActions />
-          </Box>
-          <SideProfile />
+    <Box>
+      <MainHeader handleSidebarOpen={handleSidebarState} />
+      <MainSidebar open={sidebarOpen} />
+      <Grid container maxWidth='lg' sx={styles.appContentContainer}>
+        <Grid item xs={12} sx={{ display: 'flex' }}>
+          <Outlet />
         </Grid>
-      ) : null}
-      <Grid item xs={12} md={9} lg={9.5} xl={9.75} sx={{ display: 'flex' }}>
-        <Outlet />
-        {isMediumAndUpScreen ? null : <BottomNavbar />}
-        {isMediumAndUpScreen ? null : <AppSpeedDial />}
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
