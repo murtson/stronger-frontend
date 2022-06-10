@@ -4,6 +4,7 @@ import React from 'react';
 interface Props {
   icon: any;
   bgColor?: string;
+  handleOnClick: () => void;
 }
 
 const styles = {
@@ -18,9 +19,14 @@ const styles = {
   },
 };
 
-const WorkoutListItem: React.FC<Props> = ({ icon: Icon, children, bgColor = 'primary.main' }) => {
+const WorkoutListItem: React.FC<Props> = ({
+  icon: Icon,
+  children,
+  bgColor = 'primary.main',
+  handleOnClick,
+}) => {
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding onClick={handleOnClick}>
       <ListItemButton sx={{ py: 2 }}>
         <ListItemIcon>
           <Box sx={{ ...styles.iconContainer, backgroundColor: bgColor }}>{Icon}</Box>

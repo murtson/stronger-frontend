@@ -11,15 +11,31 @@ const styles = {
   },
 };
 
-const CompletedWorkoutActions = () => {
+interface Props {
+  openDeleteDialog: () => void;
+}
+
+const CompletedWorkoutActions: React.FC<Props> = ({ openDeleteDialog }) => {
   return (
     <List>
-      <WorkoutListItem icon={<EditIcon sx={styles.icon} fontSize='small' />}>Edit workout</WorkoutListItem>
-      <WorkoutListItem icon={<ContentCopyIcon sx={styles.icon} fontSize='small' />}>
+      <WorkoutListItem
+        handleOnClick={() => console.log()}
+        icon={<EditIcon sx={styles.icon} fontSize='small' />}
+      >
+        Edit workout
+      </WorkoutListItem>
+      <WorkoutListItem
+        handleOnClick={() => console.log()}
+        icon={<ContentCopyIcon sx={styles.icon} fontSize='small' />}
+      >
         Copy this workout
       </WorkoutListItem>
       <Divider />
-      <WorkoutListItem bgColor={'warning.main'} icon={<DeleteIcon sx={styles.icon} fontSize='small' />}>
+      <WorkoutListItem
+        handleOnClick={openDeleteDialog}
+        bgColor={'warning.main'}
+        icon={<DeleteIcon sx={styles.icon} fontSize='small' />}
+      >
         Delete workout
       </WorkoutListItem>
     </List>

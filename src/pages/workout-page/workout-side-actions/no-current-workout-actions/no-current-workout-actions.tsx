@@ -10,13 +10,22 @@ const styles = {
   },
 };
 
-const NoCurrentWorkoutActions = () => {
+interface Props {
+  handleNewWorkout: () => void;
+}
+
+const NoCurrentWorkoutActions: React.FC<Props> = ({ handleNewWorkout }) => {
   return (
     <List>
-      <WorkoutListItem icon={<AddIcon sx={styles.icon} fontSize='small' />}>
+      <WorkoutListItem handleOnClick={handleNewWorkout} icon={<AddIcon sx={styles.icon} fontSize='small' />}>
         Start new workout
       </WorkoutListItem>
-      <WorkoutListItem icon={<ContentCopyIcon sx={styles.icon} fontSize='small' />}>
+      <WorkoutListItem
+        handleOnClick={() => {
+          console.log();
+        }}
+        icon={<ContentCopyIcon sx={styles.icon} fontSize='small' />}
+      >
         Copy previous workout
       </WorkoutListItem>
     </List>

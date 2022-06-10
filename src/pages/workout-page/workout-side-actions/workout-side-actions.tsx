@@ -91,9 +91,16 @@ const WorkoutSideActions: React.FC<Props> = ({ currentWorkout, loading }) => {
   };
 
   const renderActions = () => {
-    if (!currentWorkout) return <NoCurrentWorkoutActions />;
-    else if (currentWorkout && !currentWorkout.isCompleted) return <ActiveWorkoutActions />;
-    else return <CompletedWorkoutActions />;
+    if (!currentWorkout) return <NoCurrentWorkoutActions handleNewWorkout={handleNewWorkout} />;
+    else if (currentWorkout && !currentWorkout.isCompleted)
+      return (
+        <ActiveWorkoutActions
+          handleAddExercise={handleNewWorkout}
+          openCompleteDialog={() => setCompleteDialogOpen(true)}
+          openDeleteDialog={() => setDeleteDialogOpen(true)}
+        />
+      );
+    else return <CompletedWorkoutActions openDeleteDialog={() => setDeleteDialogOpen(true)} />;
   };
 
   return (

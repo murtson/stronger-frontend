@@ -11,15 +11,35 @@ const styles = {
   },
 };
 
-const ActiveWorkoutActions = () => {
+interface Props {
+  openDeleteDialog: () => void;
+  handleAddExercise: () => void;
+  openCompleteDialog: () => void;
+}
+
+const ActiveWorkoutActions: React.FC<Props> = ({
+  openDeleteDialog,
+  handleAddExercise,
+  openCompleteDialog,
+}) => {
   return (
     <List>
-      <WorkoutListItem icon={<AddIcon sx={styles.icon} fontSize='small' />}>Add exercise</WorkoutListItem>
-      <WorkoutListItem bgColor={'success.main'} icon={<CheckIcon sx={styles.icon} fontSize='small' />}>
+      <WorkoutListItem handleOnClick={handleAddExercise} icon={<AddIcon sx={styles.icon} fontSize='small' />}>
+        Add exercise
+      </WorkoutListItem>
+      <WorkoutListItem
+        handleOnClick={openCompleteDialog}
+        bgColor={'success.main'}
+        icon={<CheckIcon sx={styles.icon} fontSize='small' />}
+      >
         Complete workout
       </WorkoutListItem>
       <Divider sx={{ my: 1 }} />
-      <WorkoutListItem bgColor={'warning.main'} icon={<DeleteIcon sx={styles.icon} fontSize='small' />}>
+      <WorkoutListItem
+        handleOnClick={openDeleteDialog}
+        bgColor={'warning.main'}
+        icon={<DeleteIcon sx={styles.icon} fontSize='small' />}
+      >
         Delete workout
       </WorkoutListItem>
     </List>
