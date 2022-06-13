@@ -8,10 +8,12 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../../redux/store';
 import { incrementDate, decrementDate } from '../../../redux/slices/workout-slice';
+import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
+// constants
 
 const styles = {
   root: {
-    padding: 0.5,
+    px: 1,
     borderBox: 'box-fit',
     // my: { xs: 0.5, md: 1 },
     height: 60,
@@ -40,7 +42,7 @@ const Datepicker: React.FC = () => {
   return (
     <Grid container sx={styles.root}>
       <Grid item xs={3} sx={styles.leftButton}>
-        <IconButton sx={{ color: 'text.secondary' }} onClick={() => dispatch(decrementDate())}>
+        <IconButton onClick={() => dispatch(decrementDate())}>
           <ArrowBackOutlinedIcon />
         </IconButton>
       </Grid>
@@ -50,7 +52,7 @@ const Datepicker: React.FC = () => {
         </Typography>
       </Grid>
       <Grid item xs={3} sx={styles.rightButton}>
-        <IconButton sx={{ color: 'text.secondary' }} onClick={() => dispatch(incrementDate())}>
+        <IconButton onClick={() => dispatch(incrementDate())}>
           <ArrowForwardOutlinedIcon />
         </IconButton>
       </Grid>

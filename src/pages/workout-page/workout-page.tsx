@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 // mui & components
-import { Stack, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Stack, Grid, useMediaQuery, useTheme, Box } from '@mui/material';
 import WorkoutHeader from './workout-header/workout-header';
 import DatePicker from './date-picker/date-picker';
 import SideCalendar from './side-calendar/side-calendar';
@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getWorkout, resetEditingExercise } from '../../redux/slices/workout-slice';
 // constants
-import { PAGE_ROOT } from '../../constants/styles-constants';
+import { PAGE_ROOT, CONTENT_BORDER_STYLE } from '../../constants/styles-constants';
 
 const styles = {
   root: PAGE_ROOT,
@@ -22,8 +22,17 @@ const styles = {
     flexDirection: 'column',
     flex: 1,
   },
+  contentContainer: {
+    ...CONTENT_BORDER_STYLE,
+    backgroundColor: '#ffffff',
+    flex: 1,
+    overflow: 'hidden',
+  },
   sideGrid: {
-    pr: 3,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    px: 2,
     marginTop: '60px',
   },
 };
@@ -45,16 +54,23 @@ const WorkoutPage: React.FC = () => {
   return (
     <Grid container sx={styles.root}>
       {isLargerAndUpScreen ? (
-        <Grid item lg={2.5} sx={styles.sideGrid}>
+        <Grid item lg={3} sx={styles.sideGrid}>
           <WorkoutSideActions currentWorkout={currentWorkout} loading={loading} />
         </Grid>
       ) : null}
-      <Grid item xs={12} lg={7} sx={styles.contentGrid}>
-        {/* <WorkoutHeader /> */}
+      <Grid item xs={12} lg={6} sx={styles.contentGrid}>
         <DatePicker />
-        <Outlet />
+        {/* <WorkoutHeader /> */}
+        <Box sx={styles.contentContainer}>
+          <Outlet />
+        </Box>
       </Grid>
-      <Grid item lg={2.5} sx={styles.sideGrid}></Grid>
+      {isLargerAndUpScreen ? (
+        <Grid item lg={3} sx={styles.sideGrid}>
+          <SideCalendar />
+          <SideHistory />
+        </Grid>
+      ) : null}
     </Grid>
   );
 };

@@ -30,7 +30,7 @@ const CompletedWorkoutActions: React.FC<Props> = ({ openDeleteDialog }) => {
       >
         Copy this workout
       </WorkoutListItem>
-      <Divider />
+      <Divider sx={{ my: 1 }} />
       <WorkoutListItem
         handleOnClick={openDeleteDialog}
         bgColor={'warning.main'}

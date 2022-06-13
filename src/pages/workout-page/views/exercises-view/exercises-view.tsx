@@ -12,12 +12,11 @@ import { CONTENT_BORDER_STYLE } from '../../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...CONTENT_BORDER_STYLE,
+    // ...CONTENT_BORDER_STYLE,
     display: 'flex',
-    flex: 1,
-    backgroundColor: 'white',
     flexDirection: 'column',
-    overflow: 'hidden',
+    flex: 1,
+    // backgroundColor: 'white',
   },
 };
 

@@ -10,12 +10,12 @@ import { format, parseISO } from 'date-fns';
 // redux
 import { useAppDispatch } from '../../../../redux/store';
 import { setSelectedDate } from '../../../../redux/slices/workout-slice';
+import { CONTENT_BORDER_STYLE } from '../../../../constants/styles-constants';
 
 const styles = {
   root: {
-    my: 1,
-    px: 1,
-    borderRadius: 2,
+    my: 0.5,
+    p: 2,
   },
   dateBox: {
     height: '100%',

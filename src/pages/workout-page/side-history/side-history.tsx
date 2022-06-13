@@ -17,7 +17,6 @@ const styles = {
   root: {
     minHeight: 350,
     boxSizing: 'border-box',
-    overflow: 'hidden',
   },
   titleContainer: {
     display: 'flex',

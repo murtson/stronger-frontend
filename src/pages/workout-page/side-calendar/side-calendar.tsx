@@ -1,7 +1,7 @@
 // general
 import React from 'react';
 // mui & components
-import { Box, Typography, IconButton, Stack } from '@mui/material';
+import { Box, Typography, IconButton, Stack, Divider } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 // services & libs
@@ -57,7 +57,7 @@ const styles = {
     alignItems: 'center',
     width: 26,
     height: 26,
-    borderRadius: 2,
+    borderRadius: 50,
   },
   categoriesContainer: {
     height: 10,
@@ -144,6 +144,7 @@ const SideCalendar: React.FC = () => {
           <NavigateNextIcon />
         </IconButton>
       </Box>
+
       <Stack spacing={1} sx={{ borderRadius: 2, px: 1 }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
           {weekDays.map((day) => (
