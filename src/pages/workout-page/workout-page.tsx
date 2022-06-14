@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 // mui & components
-import { Stack, Grid, useMediaQuery, useTheme, Box, Divider } from '@mui/material';
+import { Grid, useMediaQuery, useTheme, Box, Divider } from '@mui/material';
 import WorkoutHeader from './workout-header/workout-header';
 import DatePicker from './date-picker/date-picker';
 import SideCalendar from './side-calendar/side-calendar';

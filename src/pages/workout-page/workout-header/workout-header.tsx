@@ -1,24 +1,16 @@
 // general
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 // mui & components
-import { Grid, Typography, IconButton, Stack, Divider, useTheme, Box } from '@mui/material';
+import { Grid, Typography, IconButton, Stack, useTheme, Box } from '@mui/material';
 import HeaderTabs from '../../../components/headers/header-tabs/header-tabs';
 import MoreVertIcon from '@mui/icons-material/MoreHoriz';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import AdjustIcon from '@mui/icons-material/Adjust';
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
-import CircleIcon from '@mui/icons-material/Circle';
-import CachedIcon from '@mui/icons-material/Cached';
 import CheckIcon from '@mui/icons-material/Check';
-import PendingIcon from '@mui/icons-material/Pending';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import SingleBedIcon from '@mui/icons-material/SingleBed';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import { getNumberOfSets, getNumberOfExercises } from '../../../services/workout-service/workout-service';
-// constants
-import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const tabsArray = [
   { value: 'exercises', label: 'Exercises' },
@@ -35,6 +27,12 @@ const styles = {
     pr: 1.5,
     pt: 1,
   },
+  statusIconContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   moreOptionsGrid: {
     display: 'flex',
     alignItems: 'center',
@@ -82,61 +80,28 @@ const WorkoutHeader: React.FC = () => {
     >
       <Grid container sx={styles.gridContainer}>
         <Grid item xs={10} sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
+          <Box sx={styles.statusIconContainer}>
             {renderStatusIcon()}
             <Typography
               variant='subtitle2'
-              sx={{
-                color: `${colorTheme}.contrastText`,
-                fontWeight: 600,
-                mr: 1,
-              }}
+              sx={{ color: `${colorTheme}.contrastText`, fontWeight: 500, mr: 1 }}
             >
               {statusText}
             </Typography>
-            <Typography
-              sx={{
-                color: `${colorTheme}.contrastText`,
-                fontWeight: 600,
-                mr: 1,
-              }}
-            >
-              •
-            </Typography>
+            <Typography sx={{ color: `${colorTheme}.contrastText`, fontWeight: 500, mr: 1 }}>•</Typography>
           </Box>
           <Typography
             noWrap={true}
             variant='subtitle2'
-            sx={{
-              fontWeight: 600,
-              mr: 1,
-              color: `${colorTheme}.contrastText`,
-            }}
+            sx={{ color: `${colorTheme}.contrastText`, fontWeight: 500, mr: 1 }}
           >
             {getNumberOfExercises(currentWorkout)}
           </Typography>
-          <Typography
-            sx={{
-              color: `${colorTheme}.contrastText`,
-              fontWeight: 600,
-              mr: 1,
-            }}
-          >
-            •
-          </Typography>
+          <Typography sx={{ color: `${colorTheme}.contrastText`, fontWeight: 500, mr: 1 }}>•</Typography>
           <Typography
             noWrap={true}
             variant='subtitle2'
-            sx={{
-              fontWeight: 600,
-              color: `${colorTheme}.contrastText`,
-            }}
+            sx={{ fontWeight: 500, color: `${colorTheme}.contrastText` }}
           >
             {getNumberOfSets(currentWorkout)}
           </Typography>
@@ -150,10 +115,7 @@ const WorkoutHeader: React.FC = () => {
           <Typography
             noWrap={true}
             variant='subtitle1'
-            sx={{
-              fontWeight: 600,
-              color: `${colorTheme}.contrastText`,
-            }}
+            sx={{ fontWeight: 600, color: `${colorTheme}.contrastText` }}
           >
             {!currentWorkout ? '' : 'Chest & Shoulders'}
           </Typography>
@@ -162,11 +124,7 @@ const WorkoutHeader: React.FC = () => {
           <Typography
             noWrap={true}
             variant='subtitle1'
-            sx={{
-              fontWeight: 600,
-              color: `${colorTheme}.contrastText`,
-              mr: 1,
-            }}
+            sx={{ fontWeight: 600, color: `${colorTheme}.contrastText` }}
           >
             {!currentWorkout ? '' : '00:00'}
           </Typography>

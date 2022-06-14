@@ -37,9 +37,23 @@ const LoggedExerciseHeader: React.FC<Props> = ({ setIndex, exerciseSet }) => {
         </Box>
         <Box sx={{ flex: 1 }}>
           <Typography variant='subtitle1'>{exerciseSet.exercise.name}</Typography>
-          <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-            {exerciseSet.sets.length} sets - {category?.name.toLowerCase()} - compound
-          </Typography>
+          <Box sx={{ display: 'flex' }}>
+            <Typography variant='subtitle2' sx={{ color: 'text.secondary', mr: 1 }}>
+              {exerciseSet.sets.length} sets
+            </Typography>
+            <Typography variant='subtitle2' sx={{ color: 'text.secondary', mr: 1 }}>
+              •
+            </Typography>
+            <Typography variant='subtitle2' sx={{ color: 'text.secondary', mr: 1 }}>
+              {category?.name.toLowerCase()}
+            </Typography>
+            <Typography variant='subtitle2' sx={{ color: 'text.secondary', mr: 1 }}>
+              •
+            </Typography>
+            <Typography variant='subtitle2' sx={{ color: 'text.secondary', mr: 1 }}>
+              compound
+            </Typography>
+          </Box>
         </Box>
       </Box>
       <Box></Box>
