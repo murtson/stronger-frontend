@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 // mui & components
-import { Grid, Box, useTheme, useMediaQuery } from '@mui/material';
+import { Grid, Box, useTheme, useMediaQuery, Backdrop } from '@mui/material';
 import MainHeader from '../../components/main-header/main-header';
 import MainSidebar from '../../components/main-sidebar/main-sidebar';
 
@@ -32,8 +32,12 @@ const AppLayout: React.FC = () => {
 
   return (
     <Box sx={styles.root}>
-      <MainHeader handleSidebarOpen={handleSidebarState} />
-      <MainSidebar open={isMediumAndUpScreen ? false : sidebarOpen} />
+      <MainHeader handleSidebarOpen={handleSidebarState} sideBarOpen={sidebarOpen} />
+      <MainSidebar
+        closeSidebar={() => setSidebarOpen(false)}
+        sidebarIsOpen={isMediumAndUpScreen ? false : sidebarOpen}
+      />
+
       <Grid container maxWidth='xl' sx={styles.appContentContainer}>
         <Grid item xs={12} sx={{ display: 'flex', flex: 1 }}>
           <Outlet />

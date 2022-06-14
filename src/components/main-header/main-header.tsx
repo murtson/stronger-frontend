@@ -10,21 +10,21 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import { HEADER_HEIGHT } from '../../constants/styles-constants';
 import MenuIcon from '@mui/icons-material/Menu';
-import { SIDEBAR_WIDTH } from '../../constants/styles-constants';
 import HeaderAvatar from './header-avatar/header-avatar';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Props {
   handleSidebarOpen: () => void;
+  sideBarOpen: boolean;
 }
 
 const styles = {
   root: {
-    zIndex: 200,
+    zIndex: 300,
     backgroundColor: '#101f34',
     boxShadow: { xs: 0, md: 3 },
   },
@@ -52,7 +52,7 @@ const styles = {
   },
 };
 
-const MainHeader: React.FC<Props> = ({ handleSidebarOpen }) => {
+const MainHeader: React.FC<Props> = ({ handleSidebarOpen, sideBarOpen }) => {
   const theme = useTheme();
   const isMediumAndUpScreen = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -61,7 +61,6 @@ const MainHeader: React.FC<Props> = ({ handleSidebarOpen }) => {
       position='fixed'
       sx={{
         ...styles.root,
-        borderBottom: { xs: `1px solid ${theme.palette.neutral.main}`, md: 'none' },
       }}
     >
       <Toolbar sx={styles.toolBar}>
@@ -86,7 +85,11 @@ const MainHeader: React.FC<Props> = ({ handleSidebarOpen }) => {
             </Fragment>
           ) : (
             <IconButton onClick={handleSidebarOpen}>
-              <MenuIcon sx={{ color: 'primary.contrastText' }} />
+              {sideBarOpen ? (
+                <CloseIcon sx={{ color: 'primary.contrastText' }} />
+              ) : (
+                <MenuIcon sx={{ color: 'primary.contrastText' }} />
+              )}
             </IconButton>
           )}
         </Box>
