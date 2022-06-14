@@ -1,5 +1,10 @@
-import { Drawer, Box, Divider, useTheme } from '@mui/material';
+// react
 import React, { useState, Fragment } from 'react';
+// mui & components
+import { Box, Divider, useTheme } from '@mui/material';
+import SidebarNavigationList from './sidebar-navigation-list/sidebar-navigation-list';
+import SidebarProfileInfo from './sidebar-profile-info/sidebar-profile-info';
+// constants
 import { SIDEBAR_WIDTH } from '../../constants/styles-constants';
 
 interface Props {
@@ -32,12 +37,18 @@ const MainSidebar: React.FC<Props> = ({ sidebarIsOpen, closeSidebar }) => {
   return (
     <Fragment>
       <Box
+        id='main-sidebar'
         sx={{
           ...styles.sidebar,
           left: sidebarIsOpen ? 0 : '-100%',
           borderRight: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
         }}
-      />
+      >
+        <SidebarProfileInfo />
+        <Divider />
+        <SidebarNavigationList />
+        <Divider />
+      </Box>
       <Box onClick={closeSidebar} sx={{ ...styles.backdrop, display: sidebarIsOpen ? 'block' : 'none' }} />
     </Fragment>
   );

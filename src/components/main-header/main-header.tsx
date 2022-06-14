@@ -57,18 +57,14 @@ const MainHeader: React.FC<Props> = ({ handleSidebarOpen, sideBarOpen }) => {
   const isMediumAndUpScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <AppBar
-      position='fixed'
-      sx={{
-        ...styles.root,
-      }}
-    >
+    <AppBar position='fixed' sx={styles.root}>
       <Toolbar sx={styles.toolBar}>
         <Box sx={{ ...styles.leftSpan }}>
           <Typography variant='h6' sx={{ color: 'primary.contrastText' }}>
             STRONGER
           </Typography>
         </Box>
+        <Box sx={styles.middleSpan}></Box>
         <Box sx={styles.rightSpan}>
           {isMediumAndUpScreen ? (
             <Fragment>
