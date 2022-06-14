@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Typography, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 
 const SelectCategoryHeader: React.FC = () => {
   let navigate = useNavigate();
@@ -39,7 +39,7 @@ const SelectCategoryHeader: React.FC = () => {
         </Box>
         <Typography variant='h6'>Categories</Typography>
         <IconButton sx={{ color: 'text.primary' }}>
-          <MoreVertIcon />
+          <MoreHorizOutlinedIcon />
         </IconButton>
       </Box>
     </Box>

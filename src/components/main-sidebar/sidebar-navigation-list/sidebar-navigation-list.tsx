@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { List, ListItem, ListItemButton, ListItemIcon, Typography } from '@mui/material';
+import { List } from '@mui/material';
 import SidebarNavigationListItem from './sidebar-navigation-list-item/sidebar-navigation-list-item';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
-import WhatshotIcon from '@mui/icons-material/Whatshot';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const SidebarNavigationList: React.FC = () => {

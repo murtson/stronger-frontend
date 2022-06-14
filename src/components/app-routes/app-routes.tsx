@@ -52,7 +52,6 @@ const AppRoutes = () => {
             <Route path={MainRoutePaths.PROFILE} element={<ProfilePage />}>
               <Route path='' element={<Navigate replace to={'you'} />} />
               <Route path={'you'} element={<UserView />} />
-              <Route path={'your-feed'} element={<UserFeedView />} />
             </Route>
           </Route>
           <Route path={MainRoutePaths.LOG} element={<LogLayout />}>

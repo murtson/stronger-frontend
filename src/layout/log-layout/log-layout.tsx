@@ -21,7 +21,7 @@ const LogLayout: React.FC = () => {
           margin: 'auto',
         }}
       >
-        <Grid item xs={12} md={7} lg={6} sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Grid item xs={12} md={7} lg={7} sx={{ display: 'flex', flexDirection: 'column' }}>
           <Outlet />
         </Grid>
       </Grid>

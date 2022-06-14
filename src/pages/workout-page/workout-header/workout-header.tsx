@@ -42,14 +42,14 @@ const styles = {
 
 const WorkoutHeader: React.FC = () => {
   const [colorTheme, setColorTheme] = useState<'success' | 'primary' | 'secondary'>('secondary');
-  const [statusText, setStatustext] = useState<'completed' | 'in progress' | 'rest day'>('rest day');
+  const [statusText, setStatustext] = useState<'completed' | 'in progress' | 'snoozing'>('snoozing');
   const { currentWorkout, loading } = useSelector((state: RootState) => state.workout);
   const theme = useTheme();
 
   useEffect(() => {
     if (!currentWorkout) {
       setColorTheme('secondary');
-      setStatustext('rest day');
+      setStatustext('snoozing');
     } else if (currentWorkout.isCompleted) {
       setColorTheme('success');
       setStatustext('completed');
