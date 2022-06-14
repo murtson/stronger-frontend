@@ -18,7 +18,7 @@ const actions: Actions = [
   { icon: <FileCopyIcon />, title: 'Copy Workout', path: 'calendar' },
 ];
 
-const AppSpeedDial: React.FC = () => {
+const WorkoutSpeedDial: React.FC = () => {
   let navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>, path: string) => {
@@ -28,7 +28,7 @@ const AppSpeedDial: React.FC = () => {
   return (
     <SpeedDial
       ariaLabel='SpeedDial Main'
-      sx={{ position: 'fixed', bottom: 72, right: 16 }}
+      sx={{ position: 'fixed', bottom: 16, right: 16 }}
       icon={<SpeedDialIcon openIcon={<WhatshotOutlinedIcon />} />}
     >
       {actions.map((action, index) => (
@@ -45,4 +45,4 @@ const AppSpeedDial: React.FC = () => {
   );
 };
 
-export default AppSpeedDial;
+export default WorkoutSpeedDial;

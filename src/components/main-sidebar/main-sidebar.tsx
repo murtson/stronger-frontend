@@ -25,7 +25,7 @@ const MainSidebar: React.FC<Props> = ({ open }) => {
     <Box
       sx={{
         ...styles.root,
-        left: open ? 0 : -400,
+        left: open ? 0 : -600,
         borderRight: { xs: 'none', md: `1px solid ${theme.palette.neutral.main}` },
       }}
     ></Box>

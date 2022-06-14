@@ -26,7 +26,7 @@ const StyledTab = styled((props: { label: string; value: string }) => <Tab {...p
 
 interface Props {
   tabs: { label: string; value: string }[];
-  colorTheme?: 'success' | 'primary' | 'neutral';
+  colorTheme?: 'success' | 'primary' | 'neutral' | 'secondary';
 }
 
 const HeaderTabs: React.FC<Props> = ({ tabs, colorTheme = 'neutral' }) => {

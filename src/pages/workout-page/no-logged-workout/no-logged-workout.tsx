@@ -8,10 +8,8 @@ import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 
 const styles = {
   root: {
-    ...CONTENT_BORDER_STYLE,
     flex: 1,
     display: 'flex',
-    backgroundColor: '#ffffff',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',

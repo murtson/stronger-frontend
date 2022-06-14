@@ -9,7 +9,10 @@ export const PAGE_ROOT = {
 
 export const CONTENT_BORDER_STYLE = {
   borderStyle: 'solid',
-  borderWidth: { xs: 1, md: 0 },
+  borderTopWidth: { xs: 1, md: 0 },
+  borderBottomWidth: { xs: 1, md: 0 },
+  borderLeftWidth: 0,
+  borderRightWidth: 0,
   borderColor: 'divider',
   boxShadow: { xs: 0, md: 1 },
   borderRadius: { xs: 0, md: 2 },

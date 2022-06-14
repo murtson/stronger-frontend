@@ -1,12 +1,18 @@
 // general
 import React, { useState, useEffect, Fragment } from 'react';
 // mui & components
-import { Grid, Typography, IconButton, Stack, Divider, useTheme } from '@mui/material';
+import { Grid, Typography, IconButton, Stack, Divider, useTheme, Box } from '@mui/material';
 import HeaderTabs from '../../../components/headers/header-tabs/header-tabs';
 import MoreVertIcon from '@mui/icons-material/MoreHoriz';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import CircleIcon from '@mui/icons-material/Circle';
+import CachedIcon from '@mui/icons-material/Cached';
+import CheckIcon from '@mui/icons-material/Check';
+import PendingIcon from '@mui/icons-material/Pending';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import SingleBedIcon from '@mui/icons-material/SingleBed';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
@@ -21,11 +27,8 @@ const tabsArray = [
 
 const styles = {
   root: {
-    ...CONTENT_BORDER_STYLE,
-    overflow: 'hidden',
-    height: { xs: 150, md: 150 },
+    height: 152,
     justifyContent: 'space-between',
-    backgroundColor: '#ffffff',
   },
   gridContainer: {
     pl: 2,
@@ -40,14 +43,15 @@ const styles = {
 };
 
 const WorkoutHeader: React.FC = () => {
-  const [colorTheme, setColorTheme] = useState<'success' | 'primary' | 'neutral'>('neutral');
-  const [statusText, setStatustext] = useState<'completed' | 'in progress' | ''>('');
+  const [colorTheme, setColorTheme] = useState<'success' | 'primary' | 'secondary'>('secondary');
+  const [statusText, setStatustext] = useState<'completed' | 'in progress' | 'rest day'>('rest day');
   const { currentWorkout, loading } = useSelector((state: RootState) => state.workout);
+  const theme = useTheme();
 
   useEffect(() => {
     if (!currentWorkout) {
-      setColorTheme('neutral');
-      setStatustext('');
+      setColorTheme('secondary');
+      setStatustext('rest day');
     } else if (currentWorkout.isCompleted) {
       setColorTheme('success');
       setStatustext('completed');
@@ -59,11 +63,11 @@ const WorkoutHeader: React.FC = () => {
 
   const renderStatusIcon = () => {
     if (!currentWorkout) {
-      return <CircleOutlinedIcon sx={{ color: `text.secondary`, mr: 0.5 }} />;
+      return <SingleBedIcon sx={{ color: `${colorTheme}.contrastText`, mr: 0.5 }} />;
     } else if (currentWorkout.isCompleted) {
-      return <CheckCircleOutlineIcon sx={{ color: `success.contrastText`, mr: 0.5 }} />;
+      return <CheckIcon sx={{ color: `${colorTheme}.contrastText`, mr: 0.5 }} />;
     } else {
-      return <AdjustIcon sx={{ color: `primary.contrastText`, mr: 0.5 }} />;
+      return <WhatshotIcon sx={{ color: `${colorTheme}.contrastText`, mr: 0.5 }} />;
     }
   };
 
@@ -71,70 +75,100 @@ const WorkoutHeader: React.FC = () => {
     <Stack
       sx={{
         ...styles.root,
-        backgroundColor: colorTheme === 'neutral' ? `${colorTheme}.main` : `${colorTheme}.main`,
+        backgroundColor: `${colorTheme}.main`,
+        borderBottom: `1px solid ${theme.palette.divider}`,
+        borderTop: { xs: `1px solid ${theme.palette.divider}`, md: 'none' },
       }}
     >
       <Grid container sx={styles.gridContainer}>
         <Grid item xs={10} sx={{ display: 'flex', alignItems: 'center' }}>
-          <Fragment>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             {renderStatusIcon()}
             <Typography
               variant='subtitle2'
               sx={{
                 color: `${colorTheme}.contrastText`,
                 fontWeight: 600,
+                mr: 1,
               }}
             >
               {statusText}
             </Typography>
-          </Fragment>
-        </Grid>
-        <Grid item xs={2} sx={styles.moreOptionsGrid}>
-          <IconButton disabled={loading}>
-            <MoreVertIcon
-              sx={{
-                color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
-              }}
-            />
-          </IconButton>
-        </Grid>
-        <Grid item xs={6} sx={{ pt: 1 }}>
-          {
             <Typography
-              noWrap={true}
-              variant='subtitle1'
               sx={{
+                color: `${colorTheme}.contrastText`,
                 fontWeight: 600,
-                color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+                mr: 1,
               }}
             >
-              {!currentWorkout ? 'No workout' : 'Custom workout'}
+              •
             </Typography>
-          }
-        </Grid>
-        <Grid item xs={6} sx={{ pt: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          </Box>
           <Typography
             noWrap={true}
             variant='subtitle2'
             sx={{
               fontWeight: 600,
               mr: 1,
-              color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+              color: `${colorTheme}.contrastText`,
             }}
           >
             {getNumberOfExercises(currentWorkout)}
           </Typography>
-
+          <Typography
+            sx={{
+              color: `${colorTheme}.contrastText`,
+              fontWeight: 600,
+              mr: 1,
+            }}
+          >
+            •
+          </Typography>
           <Typography
             noWrap={true}
             variant='subtitle2'
             sx={{
               fontWeight: 600,
-              pr: 1,
-              color: colorTheme === 'neutral' ? 'text.secondary' : `${colorTheme}.contrastText`,
+              color: `${colorTheme}.contrastText`,
             }}
           >
             {getNumberOfSets(currentWorkout)}
+          </Typography>
+        </Grid>
+        <Grid item xs={2} sx={styles.moreOptionsGrid}>
+          <IconButton disabled={loading}>
+            <MoreVertIcon sx={{ color: `${colorTheme}.contrastText` }} />
+          </IconButton>
+        </Grid>
+        <Grid item xs={6} sx={{ pt: 1 }}>
+          <Typography
+            noWrap={true}
+            variant='subtitle1'
+            sx={{
+              fontWeight: 600,
+              color: `${colorTheme}.contrastText`,
+            }}
+          >
+            {!currentWorkout ? '' : 'Chest & Shoulders'}
+          </Typography>
+        </Grid>
+        <Grid item xs={6} sx={{ pt: 1, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Typography
+            noWrap={true}
+            variant='subtitle1'
+            sx={{
+              fontWeight: 600,
+              color: `${colorTheme}.contrastText`,
+              mr: 1,
+            }}
+          >
+            {!currentWorkout ? '' : '00:00'}
           </Typography>
         </Grid>
       </Grid>

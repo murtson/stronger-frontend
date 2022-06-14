@@ -37,7 +37,7 @@ const ActiveWorkoutActions: React.FC<Props> = ({
       <Divider sx={{ my: 1 }} />
       <WorkoutListItem
         handleOnClick={openDeleteDialog}
-        bgColor={'warning.main'}
+        bgColor={'error.main'}
         icon={<DeleteIcon sx={styles.icon} fontSize='small' />}
       >
         Delete workout

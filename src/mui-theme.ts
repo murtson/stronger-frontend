@@ -59,11 +59,10 @@ export const mainTheme = createTheme({
     primary: {
       light: '#d7ebff',
       main: '#1b82eb',
-      dark: '#095db3',
       contrastText: '#FFFFFF',
     },
     warning: {
-      main: '#F95555',
+      main: '#fb8c00',
     },
     success: {
       main: '#32cf92',
@@ -76,7 +75,7 @@ export const mainTheme = createTheme({
       light: '#f5f5f5',
       main: '#e0e0e0',
       dark: '#9e9e9e',
-      contrastText: '#000000',
+      contrastText: '#000000DE',
     },
   },
 });

@@ -14,8 +14,6 @@ import { CONTENT_BORDER_STYLE } from '../../../constants/styles-constants';
 const styles = {
   root: {
     px: 1,
-    borderBox: 'box-fit',
-    // my: { xs: 0.5, md: 1 },
     height: 60,
   },
   leftButton: {
@@ -43,7 +41,7 @@ const Datepicker: React.FC = () => {
     <Grid container sx={styles.root}>
       <Grid item xs={3} sx={styles.leftButton}>
         <IconButton onClick={() => dispatch(decrementDate())}>
-          <ArrowBackOutlinedIcon />
+          <ArrowBackOutlinedIcon sx={{ color: 'text.secondary' }} />
         </IconButton>
       </Grid>
       <Grid item xs={6} sx={styles.dateTitle}>
@@ -53,7 +51,7 @@ const Datepicker: React.FC = () => {
       </Grid>
       <Grid item xs={3} sx={styles.rightButton}>
         <IconButton onClick={() => dispatch(incrementDate())}>
-          <ArrowForwardOutlinedIcon />
+          <ArrowForwardOutlinedIcon sx={{ color: 'text.secondary' }} />
         </IconButton>
       </Grid>
     </Grid>
